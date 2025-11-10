@@ -1,0 +1,13 @@
+namespace Final2025.Models.General
+{
+    public class Persona
+    {
+        public int PersonaID { get; set; }
+        public string Nombre { get; set; }
+        public int Edad { get; set; }
+        public int Peso { get; set; }
+        public string UsuarioID { get; set; }
+
+        public virtual ICollection<Actividad> Actividades { get; set; }
+    }
+}
