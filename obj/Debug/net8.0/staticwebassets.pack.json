@@ -1,0 +1,93 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\CSS\\materialdesignicons.min.css",
+      "PackagePath": "staticwebassets\\Corona\\CSS\\materialdesignicons.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\CSS\\style.css",
+      "PackagePath": "staticwebassets\\Corona\\CSS\\style.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\CSS\\vendor.bundle.base.css",
+      "PackagePath": "staticwebassets\\Corona\\CSS\\vendor.bundle.base.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\favicon.png",
+      "PackagePath": "staticwebassets\\Corona\\Img\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\fondo.jpg",
+      "PackagePath": "staticwebassets\\Corona\\Img\\fondo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\logo-mini.svg",
+      "PackagePath": "staticwebassets\\Corona\\Img\\logo-mini.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\logo.svg",
+      "PackagePath": "staticwebassets\\Corona\\Img\\logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\perfil.jpg",
+      "PackagePath": "staticwebassets\\Corona\\Img\\perfil.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\js\\misc.js",
+      "PackagePath": "staticwebassets\\Corona\\js\\misc.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\js\\vendor.bundle.base.js",
+      "PackagePath": "staticwebassets\\Corona\\js\\vendor.bundle.base.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Panel Principal\\main.js",
+      "PackagePath": "staticwebassets\\Panel Principal\\main.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\auth.js",
+      "PackagePath": "staticwebassets\\js\\auth.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\session.js",
+      "PackagePath": "staticwebassets\\js\\session.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\token.js",
+      "PackagePath": "staticwebassets\\js\\token.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",
+      "PackagePath": "staticwebassets\\views\\home.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\sesionUsuario.html",
+      "PackagePath": "staticwebassets\\views\\sesionUsuario.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\tipoActividad.html",
+      "PackagePath": "staticwebassets\\views\\tipoActividad.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Final2025.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Final2025.props",
+      "PackagePath": "build\\Final2025.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Final2025.props",
+      "PackagePath": "buildMultiTargeting\\Final2025.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Final2025.props",
+      "PackagePath": "buildTransitive\\Final2025.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -101,7 +101,7 @@ app.Use(async (context, next) =>
 {
     if (context.Request.Path == "/")
     {
-        context.Response.Redirect("/Views/login.html");
+        context.Response.Redirect("/Views/sesionUsuario.html");
         return;
     }
     await next();

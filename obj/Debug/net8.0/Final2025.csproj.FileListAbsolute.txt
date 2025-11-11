@@ -253,3 +253,5 @@ C:\Users\Usuario\OneDrive\Escritorio\Final2025\obj\Debug\net8.0\refint\Final2025
 C:\Users\Usuario\OneDrive\Escritorio\Final2025\obj\Debug\net8.0\Final2025.pdb
 C:\Users\Usuario\OneDrive\Escritorio\Final2025\obj\Debug\net8.0\Final2025.genruntimeconfig.cache
 C:\Users\Usuario\OneDrive\Escritorio\Final2025\obj\Debug\net8.0\ref\Final2025.dll
+C:\Users\Usuario\OneDrive\Escritorio\Final2025\bin\Debug\net8.0\Final2025.staticwebassets.runtime.json
+C:\Users\Usuario\OneDrive\Escritorio\Final2025\obj\Debug\net8.0\Final2025.sourcelink.json

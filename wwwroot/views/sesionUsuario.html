@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin - Login / Registro</title>
+    <link rel="stylesheet" href="../Corona/CSS/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../Corona/CSS/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../Corona/CSS/style.css">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        body {
+            background: url('../Corona/Img/fondo.jpg') no-repeat center center;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                    <div class="card col-lg-4 mx-auto">
+                        <div class="card-body px-5 py-5">
+
+                            <!-- FORMULARIO LOGIN -->
+                            <div id="login-form">
+                                <h3 class="card-title text-left mb-3">Iniciar sesión</h3>
+                                <form id="loginForm">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" name="email"
+                                            placeholder="Ingrese su correo electronico" autofocus />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" id="loginPassword" class="form-control" name="password"
+                                            aria-describedby="password" />
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit"
+                                            class="btn btn-primary btn-block enter-btn">Ingresar</button>
+                                    </div>
+                                    <p class="sign-up text-center mt-3">
+                                        ¿No tienes una cuenta?
+                                        <a href="#" id="show-register">Regístrate</a>
+                                    </p>
+                                </form>
+                            </div>
+
+                            <!-- FORMULARIO REGISTRO -->
+                            <div id="register-form" class="hidden">
+                                <h3 class="card-title text-left mb-3">Registrarse</h3>
+                                <form id="registerForm">
+                                    <div class="form-group">
+                                        <label>Nombre</label>
+                                        <input type="text" class="form-control" id="regNombre"
+                                            placeholder="Nombre Completo" autofocus />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" id="regEmail"
+                                            placeholder="Ingrese su email" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" id="regPassword" class="form-control" name="password"
+                                            aria-describedby="password" />
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit"
+                                            class="btn btn-success btn-block enter-btn">Registrar</button>
+                                    </div>
+                                    <p class="sign-up text-center mt-3">
+                                        ¿Ya tienes una cuenta?
+                                        <a href="#" id="show-login">Inicia sesión</a>
+                                    </p>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para alternar entre login y registro -->
+    <script src="../js/auth.js"></script>
+    <script>
+        document.getElementById('show-register').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-form').classList.remove('hidden');
+        });
+
+        document.getElementById('show-login').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        });
+    </script>
+
+
+</body>
+
+</html>
