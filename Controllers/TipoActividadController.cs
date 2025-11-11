@@ -50,6 +50,16 @@ namespace Final2025.Controllers
             {
                 return BadRequest();
             }
+            //Validar que no exista una categoria con el mismo nombre - sin importar mayúsculas/minúsculas
+            var nombreExistente = await _context.TipoActividades
+            .Where(c => tipoActividad.Nombre.ToLower().ToUpper() == c.Nombre.ToLower().ToUpper() && c.TipoActividadID != id)
+            .AnyAsync();
+
+            //Hace una condicion de que si la categoria ya existe, se devuelva un error
+            if (nombreExistente)
+            {
+                return BadRequest(new { codigo = 0, mensaje = $"El Tipo Actividad {tipoActividad.Nombre} ya existe ." });
+            }
 
             _context.Entry(tipoActividad).State = EntityState.Modified;
 
@@ -77,6 +87,15 @@ namespace Final2025.Controllers
         [HttpPost]
         public async Task<ActionResult<TipoActividad>> PostTipoActividad(TipoActividad tipoActividad)
         {
+            //Validar que no exista una categoria con el mismo nombre
+            var nombreExistente = await _context.TipoActividades
+            .FirstOrDefaultAsync(c => tipoActividad.Nombre.ToLower().ToUpper() == c.Nombre.ToLower().ToUpper());
+
+            if (nombreExistente != null)
+            {
+                return BadRequest(new { codigo = 0, mensaje = $"El Tipo de Actividad {tipoActividad.Nombre} ya existe." });
+            }
+
             _context.TipoActividades.Add(tipoActividad);
             await _context.SaveChangesAsync();
 

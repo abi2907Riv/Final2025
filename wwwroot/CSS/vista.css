@@ -1,0 +1,300 @@
+@charset "UTF-8";
+:root {
+  --bs-blue: #007bff;
+  --bs-indigo: #6610f2;
+  --bs-purple: #696cff;
+  --bs-pink: #e83e8c;
+  --bs-red: #ff3e1d;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffab00;
+  --bs-green: #71dd37;
+  --bs-teal: #20c997;
+  --bs-cyan: #03c3ec;
+  --bs-white: #fff;
+  --bs-gray: rgba(67, 89, 113, 0.6);
+  --bs-gray-dark: rgba(67, 89, 113, 0.8);
+  --bs-gray-25: rgba(67, 89, 113, 0.025);
+  --bs-gray-50: rgba(67, 89, 113, 0.05);
+  --bs-primary: #696cff;
+  --bs-secondary: #8592a3;
+  --bs-success: #71dd37;
+  --bs-info: #03c3ec;
+  --bs-warning: #ffab00;
+  --bs-danger: #ff3e1d;
+  --bs-light: #fcfdfd;
+  --bs-dark: #233446;
+  --bs-gray: rgba(67, 89, 113, 0.1);
+  --bs-primary-rgb: 105, 108, 255;
+  --bs-secondary-rgb: 133, 146, 163;
+  --bs-success-rgb: 113, 221, 55;
+  --bs-info-rgb: 3, 195, 236;
+  --bs-warning-rgb: 255, 171, 0;
+  --bs-danger-rgb: 255, 62, 29;
+  --bs-light-rgb: 252, 253, 253;
+  --bs-dark-rgb: 35, 52, 70;
+  --bs-gray-rgb: 67, 89, 113;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 67, 89, 113;
+  --bs-body-color-rgb: 105, 122, 141;
+  --bs-body-bg-rgb: 245, 245, 249;
+  --bs-font-sans-serif: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --bs-font-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-root-font-size: 16px;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 0.9375rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.53;
+  --bs-body-color: #697a8d;
+  --bs-body-bg: #f5f5f9;
+}
+
+/*Color para la celda desactivadas*/
+.categoria-eliminada, .cliente-eliminado, .desarrollador-eliminado {
+  background-color: #f92c3d36 !important;
+}
+/*Fin Color para la celda desactivadas*/
+
+
+/*Badges para las prioridades*/
+.badge-alta {
+  background-color: #ee462c4a !important;
+  color: #f2290b;
+}
+.badge-media {
+  background-color: #ffcc0040 !important;
+  color: #cda70d;
+}
+.badge-baja {
+  background-color: #3a85f75d !important;
+  color: #0d6efd;
+}
+/*Fin Badges para las prioridades*/
+
+
+/*Badges para el estado*/
+.badge-abierto {
+  background-color: #5EABD6;
+  color: #ffff;              
+}
+.badge-enproceso {
+  background-color: #ff6a00 !important; 
+  color: #ffff; 
+}
+.badge-cerrado {
+  background-color: #54b910 !important;
+  color: #ffff;
+}
+.badge-cancelado {
+  background-color: #E62727;
+  color: #ffff;         
+}
+/*Fin Badges para el estado*/
+
+
+/*Estilos para los botones*/
+.btn-eliminar, .btn-editar, .btn-comentario {
+  border: none !important;
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0;
+  align-items: center !important;
+}
+.icon-only-btn {
+  border: none !important;
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  align-items: center !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+/*Fin Estilos para los botones*/
+
+
+/*Panel de historial de tickets*/
+.sidebar {
+  z-index: 1060;
+  background-color: #eceef1 !important;
+  border: 1px solid #615d5d8d;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+  position: fixed;
+  right: 0;
+  top: 1rem;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  padding: 1rem;
+}
+.sidebar.open {
+  transform: translateX(0);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+.overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar {
+  transition: transform 0.3s ease-in-out, max-height 0.3s ease;
+}
+/*Fin del Panel de historial de tickets*/
+
+
+
+
+
+/*Estilos para el checkbox*/
+.checkbox-ticket {
+  transform: scale(1.1); /* agranda */
+  cursor: pointer;       /* cambia cursor */
+  transition: transform 0.3s ease-in-out; /* animación */
+  border-color: #1177d1;
+}
+
+.checkbox-enproceso:checked {
+  background-color: #ff6600 !important;
+  border-color: #ff6600 !important;
+}
+
+.checkbox-cerrado:checked {
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+}
+
+/*Fin Estilos para el checkbox*/
+
+
+
+.categorias-agrupadas {
+  background-color: #a3a4f641 !important;
+}
+
+
+.categorias-subagrupadas {
+  background-color: #ecf6a341 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Popup general */
+.swal2-border-radius {
+  border-radius: 12px;
+  padding: 1.2rem;  /* más compacto que 2rem */
+  max-width: 350px; /* ancho máximo del popup */
+}
+
+/* Título del Swal */
+.swal2-title-small {
+  font-size: 1rem;      /* tamaño más pequeño */
+  font-weight: 700;      /* sigue en negrita */
+  color: #1f2937;        /* gris oscuro */
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+
+/* Cuerpo (html) del Swal */
+.swal2-html-custom {
+  font-size: 0.875rem;  /* texto más pequeño */
+  color: #6b7280;       /* gris medio */
+  line-height: 1.4;
+  text-align: center;
+  margin: 0;
+}
+
+/* Botón de eliminar */
+.swal2-btn-eliminar {
+  background-color: #ef4444; /* rojo */
+  color: white;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  margin: 0 0.3rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.swal2-btn-eliminar:hover {
+  background-color: #dc2626;
+}
+
+/* Botón de cancelar */
+.swal2-btn-cancelar {
+  background-color: #9ca3af; /* gris */
+  color: white;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  margin: 0 0.3rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.swal2-btn-cancelar:hover {
+  background-color: #6b7280;
+}
+
+
+
+
+
+.swal2-toast-small {
+  width: 180px;          /* más compacto */
+  padding: 0.4rem 0.6rem; 
+  font-size: 0.90rem;    /* texto más pequeño */
+  border-radius: 8px;
+}
+
+.swal2-toast-small-title {
+  font-size: 0.75rem;    /* título más pequeño */
+  font-weight: 500;
+}
+
+.swal2-toast-small-icon {
+  width: 16px;           /* ícono más pequeño */
+  height: 16px;
+}
+

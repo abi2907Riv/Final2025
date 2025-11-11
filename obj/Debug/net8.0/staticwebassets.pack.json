@@ -1,44 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\CSS\\materialdesignicons.min.css",
-      "PackagePath": "staticwebassets\\Corona\\CSS\\materialdesignicons.min.css"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\CSS\\style.css",
-      "PackagePath": "staticwebassets\\Corona\\CSS\\style.css"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\CSS\\vendor.bundle.base.css",
-      "PackagePath": "staticwebassets\\Corona\\CSS\\vendor.bundle.base.css"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\favicon.png",
-      "PackagePath": "staticwebassets\\Corona\\Img\\favicon.png"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\fondo.jpg",
-      "PackagePath": "staticwebassets\\Corona\\Img\\fondo.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\logo-mini.svg",
-      "PackagePath": "staticwebassets\\Corona\\Img\\logo-mini.svg"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\logo.svg",
-      "PackagePath": "staticwebassets\\Corona\\Img\\logo.svg"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\Img\\perfil.jpg",
-      "PackagePath": "staticwebassets\\Corona\\Img\\perfil.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\js\\misc.js",
-      "PackagePath": "staticwebassets\\Corona\\js\\misc.js"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Corona\\js\\vendor.bundle.base.js",
-      "PackagePath": "staticwebassets\\Corona\\js\\vendor.bundle.base.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\CSS\\vista.css",
+      "PackagePath": "staticwebassets\\CSS\\vista.css"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\Panel Principal\\main.js",
@@ -47,6 +11,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\tipoActividad.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\tipoActividad.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\auth.js",
@@ -59,6 +27,86 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\token.js",
       "PackagePath": "staticwebassets\\js\\token.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\css\\core.css",
+      "PackagePath": "staticwebassets\\sneat\\css\\core.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\css\\demo.css",
+      "PackagePath": "staticwebassets\\sneat\\css\\demo.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\css\\page-auth.css",
+      "PackagePath": "staticwebassets\\sneat\\css\\page-auth.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\css\\theme-default.css",
+      "PackagePath": "staticwebassets\\sneat\\css\\theme-default.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\LogoTicket.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\LogoTicket.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\LogoTicket2.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\LogoTicket2.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\cardPrincipal.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\cardPrincipal.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\cc-warning.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\cc-warning.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\facebook.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\facebook.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\github.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\github.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\google.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\google.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\instagram.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\instagram.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\perfil.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\perfil.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\wallet-info.png",
+      "PackagePath": "staticwebassets\\sneat\\img\\wallet-info.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\helpers.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\helpers.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\jquery.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\main.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\main.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\menu.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\menu.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\popper.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\popper.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",

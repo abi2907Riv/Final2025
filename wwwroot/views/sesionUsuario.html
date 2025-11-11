@@ -2,115 +2,147 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin - Login / Registro</title>
-    <link rel="stylesheet" href="../Corona/CSS/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../Corona/CSS/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../Corona/CSS/style.css">
-    <link rel="shortcut icon" href="../../assets/images/favicon.png" />
-    <style>
-        .hidden {
-            display: none;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Login / Registro</title>
 
-        body {
-            background: url('../Corona/Img/fondo.jpg') no-repeat center center;
-            background-size: cover;
-        }
-    </style>
+  <!-- Estilos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+  <link rel="stylesheet" href="../sneat/css/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="../sneat/css/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="../sneat/css/demo.css" />
+  <link rel="stylesheet" href="../sneat/css/page-auth.css" />
+  <!-- Helpers -->
+  <script src="../sneat/js/helpers.js"></script>
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="row w-100 m-0">
-                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-                    <div class="card col-lg-4 mx-auto">
-                        <div class="card-body px-5 py-5">
+  <div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+      <div class="authentication-inner">
+        <div class="card">
+          <div class="card-body">
 
-                            <!-- FORMULARIO LOGIN -->
-                            <div id="login-form">
-                                <h3 class="card-title text-left mb-3">Iniciar sesión</h3>
-                                <form id="loginForm">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" id="loginEmail" name="email"
-                                            placeholder="Ingrese su correo electronico" autofocus />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Contraseña</label>
-                                        <input type="password" id="loginPassword" class="form-control" name="password"
-                                            aria-describedby="password" />
-                                    </div>
-
-                                    <div class="text-center">
-                                        <button type="submit"
-                                            class="btn btn-primary btn-block enter-btn">Ingresar</button>
-                                    </div>
-                                    <p class="sign-up text-center mt-3">
-                                        ¿No tienes una cuenta?
-                                        <a href="#" id="show-register">Regístrate</a>
-                                    </p>
-                                </form>
-                            </div>
-
-                            <!-- FORMULARIO REGISTRO -->
-                            <div id="register-form" class="hidden">
-                                <h3 class="card-title text-left mb-3">Registrarse</h3>
-                                <form id="registerForm">
-                                    <div class="form-group">
-                                        <label>Nombre</label>
-                                        <input type="text" class="form-control" id="regNombre"
-                                            placeholder="Nombre Completo" autofocus />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" id="regEmail"
-                                            placeholder="Ingrese su email" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Contraseña</label>
-                                        <input type="password" id="regPassword" class="form-control" name="password"
-                                            aria-describedby="password" />
-                                    </div>
-
-                                    <div class="text-center">
-                                        <button type="submit"
-                                            class="btn btn-success btn-block enter-btn">Registrar</button>
-                                    </div>
-                                    <p class="sign-up text-center mt-3">
-                                        ¿Ya tienes una cuenta?
-                                        <a href="#" id="show-login">Inicia sesión</a>
-                                    </p>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+            <!-- Logo -->
+            <div class="app-brand justify-content-center mb-4">
+              <a href="#" class="app-brand-link gap-2">
+                <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+              </a>
             </div>
+
+            <!-- Login -->
+            <div id="login-form">
+              <h4 class="mb-2">¡Bienvenido a Sneat! 👋</h4>
+              <p class="mb-4">Inicia sesión en tu cuenta y comienza la aventura.</p>
+
+              <form id="loginForm" class="mb-3">
+                <div class="mb-3">
+                  <label for="loginEmail" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="loginEmail" placeholder="Ingrese su correo electrónico" autofocus />
+                </div>
+
+                <div class="mb-3 form-password-toggle">
+                  <div class="d-flex justify-content-between">
+                    <label class="form-label" for="loginPassword">Contraseña</label>
+                  </div>
+                  <div class="input-group input-group-merge">
+                    <input type="password" id="loginPassword" class="form-control" aria-describedby="password" />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <button class="btn btn-primary d-grid w-100" type="submit">Iniciar sesión</button>
+                </div>
+              </form>
+
+              <pre id="tokenOutput"></pre>
+
+              <p class="text-center">
+                <span>¿Eres nuevo en nuestra plataforma?</span>
+                <a href="#" id="show-register">
+                  <span>Crea una cuenta</span>
+                </a>
+              </p>
+            </div>
+
+            <!-- Registro -->
+            <div id="register-form" class="hidden">
+              <h4 class="mb-2">La aventura comienza aquí 🚀</h4>
+              <p class="mb-4">¡Haz que la gestión de tus aplicaciones sea fácil y divertida!</p>
+
+              <form id="registerForm" class="mb-3">
+                <div class="mb-3">
+                  <label for="regNombre" class="form-label">Nombre de usuario</label>
+                  <input type="text" class="form-control" id="regNombre" placeholder="Nombre completo" autofocus />
+                </div>
+
+                <div class="mb-3">
+                  <label for="regEmail" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="regEmail" placeholder="Ingrese su correo electrónico" />
+                </div>
+
+                <div class="mb-3 form-password-toggle">
+                  <label class="form-label" for="regPassword">Contraseña</label>
+                  <div class="input-group input-group-merge">
+                    <input type="password" id="regPassword" class="form-control" aria-describedby="password" />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary d-grid w-100" type="submit">Registrar</button>
+              </form>
+
+              <p class="text-center">
+                <span>¿Ya tienes una cuenta?</span>
+                <a href="#" id="show-login">
+                  <span>Inicia sesión en su lugar</span>
+                </a>
+              </p>
+            </div>
+
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Script para alternar entre login y registro -->
-    <script src="../js/auth.js"></script>
-    <script>
-        document.getElementById('show-register').addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('login-form').classList.add('hidden');
-            document.getElementById('register-form').classList.remove('hidden');
-        });
+  <!-- Scripts -->
+  <script src="../js/auth.js"></script>
+  <script src="../sneat/js/jquery.js"></script>
+  <script src="../sneat/js/popper.js"></script>
+  <script src="../sneat/js/bootstrap.js"></script>
+  <script src="../sneat/js/menu.js"></script>
+  <script src="../sneat/js/main.js"></script>
+  <script src="../js/register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        document.getElementById('show-login').addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('register-form').classList.add('hidden');
-            document.getElementById('login-form').classList.remove('hidden');
-        });
-    </script>
+  <!-- Script para alternar entre login y registro -->
+  <script>
+    document.getElementById('show-register').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('register-form').classList.remove('hidden');
+    });
 
-
+    document.getElementById('show-login').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('register-form').classList.add('hidden');
+      document.getElementById('login-form').classList.remove('hidden');
+    });
+  </script>
 </body>
 
 </html>
