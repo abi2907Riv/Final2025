@@ -119,6 +119,19 @@
               </li>
             </ul>
           </li>
+          <li class="menu-item">
+            <a class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-user"></i>
+              <div data-i18n="Layouts">Personas</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="#personas" class="menu-link">
+                  <div data-i18n="Without menu">Personas</div>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </aside>
       <!-- Fin del Menu Lateral -->
@@ -219,7 +232,7 @@
                 </div>
                 <div class="modal-footer">
                   <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                  <a class="btn btn-primary" style="color: white;" onclick="cerrarSesion()">Cerrar Sesión</a>
+                  <a class="btn btn-primary" style="color: white;" onclick="CerrarSesion()">Cerrar Sesión</a>
                 </div>
               </div>
             </div>
@@ -247,6 +260,8 @@
     </div>
   </div>
 
+
+  
     <script src="./sneat/js/jquery.js"></script>
   <script src="./sneat/js/popper.js"></script>
   <script src="./sneat/js/bootstrap.js"></script>
@@ -254,8 +269,13 @@
   <script src="./sneat/js/main.js"></script>
 
   <script src="./Panel Principal/main.js"></script>
-  <script src="./js/session.js"></script>
   <script src="./js/token.js"></script>
+  
+  <script src="./js/session.js"></script>
+  
+  
+  
+  
 
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -265,7 +285,7 @@
       verificarUsuario();
     });
   </script>
-
+<script src="./js/auth.js?v=2"></script>
 
 
 </body>

@@ -1,0 +1,110 @@
+<div class="content-wrapper">
+
+
+    <!-- Cards -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card">
+            <h5 class="card-header d-flex align-items-center justify-content-between fw-bold">
+                <span class="d-flex align-items-center">
+                    <i class="bx bx-user fs-4 me-2"></i> Listado de Personas
+                </span>
+                <div class="d-flex flex-wrap gap-2 justify-content-end">
+                    <button class="btn btn-primary flex-grow-1 flex-md-grow-0" data-bs-toggle="collapse"
+                        data-bs-target="#collapsePersonas" aria-expanded="false"
+                        aria-controls="collapsePersonas">
+                        <i class="bx bx-plus"></i> Agregar Personas
+                    </button>
+                </div>
+            </h5>
+
+            <!-- Formulario -->
+            <div class="collapse" id="collapsePersonas">
+                <div class="card-body border-top">
+                    <form class="needs-validation" novalidate id="formPersonas">
+                        <input type="hidden" id="PersonaId" />
+                        <div class="row g-3 mb-3">
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="nombrePersona">NOMBRE</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-user'></i></span>
+                                    <input type="text" class="form-control" id="nombrePersona"
+                                        placeholder="Ej: Juan Perez" required />
+                                    <div class="invalid-feedback" id="errorNombrePersona"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="EmailPersona">EMAIL</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-envelope'></i></span>
+                                    <input type="email" class="form-control" id="EmailPersona"
+                                        placeholder="Ej: juanperez@gmail.com" required />
+                                    <div class="invalid-feedback" id="errorEmailPersona"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="FechaNacimiento">FECHA DE NACIMIENTO</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-calendar'></i></span>
+                                    <input type="date" class="form-control" id="FechaNacimiento"
+                                        placeholder="Ej: 01/01/2000" required />
+                                    <div class="invalid-feedback" id="errorFechaNacimiento"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="PesoPersona">PESO</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-git-compare'></i></span>
+                                    <input type="number" class="form-control" id="PesoPersona"
+                                        placeholder="Ej: 50" required />
+                                    <div class="invalid-feedback" id="ErrorPesoPersona"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary me-2"
+                                onclick="BuscarPersonaId()">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                                data-bs-target="#collapsePersonas" onclick="LimpiarFormulario()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tabla -->
+            <div class="table-responsive text-nowrap mt-3" id="tablaPersonaContainer">
+                <table class="table" id="tablaPersona">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Edad</th>
+                            <th>Peso</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="todasLasPersonas"></tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Scripts específicos de la vista -->
+<script src="../js/Fetch/persona.js"></script>
+<script src="../js/token.js"></script>
+<script src="../Panel Principal/main.js"></script>
+<script type="text/javascript">
+    window.onload = () => {
+        refreshToken();
+    };
+</script>

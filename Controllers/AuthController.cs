@@ -45,11 +45,11 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Register([FromBody] Register model)
     {
         //CREAMOS EL ROL DE ADMINISTRADOR
-        var rolAdmin = _context.Roles.Where(r => r.Name == "ADMINISTRADOR").SingleOrDefault();
-        if (rolAdmin == null)
-        {
-            var rolResult = await _rolManager.CreateAsync(new IdentityRole("ADMINISTRADOR"));
-        }
+        // var rolAdmin = _context.Roles.Where(r => r.Name == "ADMINISTRADOR").SingleOrDefault();
+        // if (rolAdmin == null)
+        // {
+        //     var rolResult = await _rolManager.CreateAsync(new IdentityRole("ADMINISTRADOR"));
+        // }
 
         // Creamos un nuevo usuario con los datos que escribió
         var user = new ApplicationUser
@@ -64,7 +64,7 @@ public class AuthController : ControllerBase
 
         if (result.Succeeded)
         {
-            await _userManager.AddToRoleAsync(user, "ADMINISTRADOR");
+            // await _userManager.AddToRoleAsync(user, "ADMINISTRADOR");
             return Ok("Registro exitoso");
         }
 
@@ -79,16 +79,16 @@ public class AuthController : ControllerBase
         if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
         {
             //Buscar el rol que tiene cada usuario
-            var rolUsuario = _context.UserRoles.Where(r => r.UserId == user.Id);
-            string rolNombre = "";
+            // var rolUsuario = _context.UserRoles.Where(r => r.UserId == user.Id);
+            // string rolNombre = "";
 
-            var rolAsigando = rolUsuario.FirstOrDefault();
-            if (rolAsigando != null)
-            {
-                var rol = _context.Roles.FirstOrDefault(r => r.Id == rolAsigando.RoleId);
-                if (rol != null)
-                    rolNombre = rol.Name;
-            }
+            // var rolAsigando = rolUsuario.FirstOrDefault();
+            // if (rolAsigando != null)
+            // {
+            //     var rol = _context.Roles.FirstOrDefault(r => r.Id == rolAsigando.RoleId);
+            //     if (rol != null)
+            //         rolNombre = rol.Name;
+            // }
             
             //Si se encuentra el usuario y la contraseña es correcta, se crea el token
             var claims = new[]
@@ -96,7 +96,7 @@ public class AuthController : ControllerBase
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, rolNombre),
+                // new Claim(ClaimTypes.Role, rolNombre),
                 new Claim(JwtRegisteredClaimNames. Jti, Guid.NewGuid().ToString())
             };
 
@@ -125,7 +125,7 @@ public class AuthController : ControllerBase
                 refreshToken = refreshToken,
                 email = user.Email,
                 nombreCompleto = user.NombreCompleto,
-                rol = rolNombre
+                // rol = rolNombre
             });
         }
         return Unauthorized("Credenciales inválidas");
@@ -161,16 +161,16 @@ public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest mod
     }
 
     // Obtener rol del usuario
-    var rolUsuario = _context.UserRoles.Where(r => r.UserId == user.Id);
-    string rolNombre = "";
+    // var rolUsuario = _context.UserRoles.Where(r => r.UserId == user.Id);
+    // string rolNombre = "";
 
-    var rolAsigando = rolUsuario.FirstOrDefault();
-    if (rolAsigando != null)
-    {
-        var rol = _context.Roles.FirstOrDefault(r => r.Id == rolAsigando.RoleId);
-        if (rol != null)
-            rolNombre = rol.Name;
-    }
+    // var rolAsigando = rolUsuario.FirstOrDefault();
+    // if (rolAsigando != null)
+    // {
+    //     var rol = _context.Roles.FirstOrDefault(r => r.Id == rolAsigando.RoleId);
+    //     if (rol != null)
+    //         rolNombre = rol.Name;
+    // }
 
     // Generar nuevo token JWT
     var claims = new[]
@@ -178,7 +178,7 @@ public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest mod
         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
         new Claim(ClaimTypes.Name, user.UserName),
         new Claim(ClaimTypes.Email, user.Email),
-        new Claim(ClaimTypes.Role, rolNombre),
+        // new Claim(ClaimTypes.Role, rolNombre),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
     };
 
@@ -205,7 +205,7 @@ public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest mod
         refreshToken = newRefreshToken,
         email = user.Email,
         nombreCompleto = user.NombreCompleto,
-        rol = rolNombre
+        // rol = rolNombre
     });
 }
 

@@ -2,6 +2,7 @@ const BASE_API_URL = "http://localhost:5291/api/";
 
 var API_URL = BASE_API_URL;
 
+
 //Registrar usuario
 document
   .getElementById("registerForm")
@@ -68,40 +69,3 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 });
 
 
-async function cerrarSesion() {
-  //FUNCION DE LEER TOKEN DEL DISPOSITIVO
-  //const getToken = () => localStorage.getItem("token");
-  const token = getToken();
-  const email = localStorage.getItem("email"); // suponiendo que guardaste el email al hacer login
-
-  if (!token || !email) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    window.location.href = "../views/login.html";
-    return;
-  }
-  try {
-    const res = await fetch(BASE_API_URL + `auth/logout`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    if (res.ok) {
-      //alert("Sesión cerrada correctamente");
-    } else {
-      alert("Error al cerrar sesión: " + (await res.text()));
-    }
-  } catch (error) {
-    console.error("Error en logout:", error);
-  }
-
-  // Limpiar token y redirigir
-  localStorage.removeItem("token");
-  localStorage.removeItem("email");
-
-  window.location.href = "../views/login.html";
-}
