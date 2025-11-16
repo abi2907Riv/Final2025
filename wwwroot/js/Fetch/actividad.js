@@ -1,0 +1,299 @@
+////////////////////////////////////////////
+////FUNCION PARA OBTENER LAS ACTIVIDADES/////
+////////////////////////////////////////////
+async function ObtenerActividad() {
+  const res = await authFetch("Actividades", {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => MostrarActividad(data), LimpiarFormulario())
+    .catch((error) => console.log("No se puede acceder al servicio", error));
+}
+
+
+////////////////////////////////////////////
+////FUNCION PARA MOSTRAR LAS ACTIVIDADES/////
+////////////////////////////////////////////
+function MostrarActividad(data) {
+  $("#todasLasActividades").empty();
+
+  if (data.length === 0) {
+    $("#todasLasActividades").append(
+      "<tr><td colspan='5' class='text-center text-muted'>No hay actividades para mostrar</td></tr>"
+    );
+  }
+
+  $.each(data, function (index, item) {
+
+    var botonesAcciones =
+      "<td class='text-end'>" +
+      "<button class='btn btn-primary btn-editar me-5' style='background: none; border: none; color: #0d6efd; outline: none; font-size: 18px;' " +
+      "onclick=\"MostrarModalEditar('" +
+      item.actividadID + "','" +
+      item.personaID + "','" +
+      item.tipoActividadID + "','" +
+      item.fecha + "','" +
+      item.duracionMinutos + "','" +
+      item.observaciones +
+      "')\">" +
+      "<i class='bi bi-pencil-square'></i>" +
+      "</button>" +
+
+      "<button class='btn btn-danger btn-eliminar me-5' style='background: none; border: none; color:#dc3545; font-size: 18px;' " +
+      "onclick='EliminarActividad(" + item.actividadID + ")'>" +
+      "<i class='bx bx-trash'></i>" +
+      "</button>" +
+      "</td>";
+
+    $("#todasLasActividades").append(
+      "<tr>" +
+      //"<td>" + item.persona.nombre + "</td>" +
+      "<td>" + item.tipoActividad.nombre + "</td>" +
+      "<td>" + item.fechaString + "</td>" +
+      "<td>" + item.duracionMinutos + "</td>" +
+      "<td>" + item.observaciones + "</td>" +
+      botonesAcciones +
+      "</tr>"
+    );
+  });
+}
+
+
+// ////////////////////////////////////////////
+// ////FUNCION PARA VALIDAR FORMULARIO/////
+// ////////////////////////////////////////////
+function ValidarFormulario() {
+  //const selectPersona = document.getElementById("PersonaId");
+  //const errorSelectPersona = document.getElementById("errorPersonaId");
+  //const persona = selectPersona.value  
+
+  const selectTipoActividad = document.getElementById("TipoActividadId");
+  const errorSelectTipoActividad = document.getElementById("errorTipoActividadId");
+  const tipoActividad = selectTipoActividad.value
+
+  const inputFecha = document.getElementById("Fecha");
+  const errorFecha = document.getElementById("errorFecha");
+  const fecha = inputFecha.value
+
+  const inputDuracionMinutos = document.getElementById("DuracionMinutos");
+  const errorDuracionMinutos = document.getElementById("ErrorDuracionMinutos");
+  const duracionMinutos = inputDuracionMinutos.value
+
+  const inputObservacion = document.getElementById("Observaciones");
+  const errorObservacion = document.getElementById("ErrorObservaciones");
+  const observacion = inputObservacion.value
+  
+
+  //Limpiar errores anteriores
+  //errorSelectPersona.textContent = "";
+  //selectPersona.classList.remove("is-invalid", "is-valid");
+  errorSelectTipoActividad.textContent = "";
+  selectTipoActividad.classList.remove("is-invalid", "is-valid");
+  errorFecha.textContent = "";
+  inputFecha.classList.remove("is-invalid", "is-valid");
+  errorDuracionMinutos.textContent = "";
+  inputDuracionMinutos.classList.remove("is-invalid", "is-valid");
+  errorObservacion.textContent = "";
+  inputObservacion.classList.remove("is-invalid", "is-valid");
+
+  let valido = true
+  //Validar campo nombre
+  //if (persona === "0") {
+    //selectPersona.classList.add("is-invalid");
+   // errorSelectPersona.textContent = "Seleccione una persona";
+   // valido = false
+ // }
+  if (tipoActividad === "0"){
+    selectTipoActividad.classList.add("is-invalid");
+    errorSelectTipoActividad.textContent = "Seleccione una persona";
+    valido = false
+  }
+  if (!fecha){
+    inputFecha.classList.add("is-invalid");
+    errorFecha.textContent = "Seleccione una fecha";
+    valido = false
+  }
+  if (!duracionMinutos){
+    inputDuracionMinutos.classList.add("is-invalid");
+    errorDuracionMinutos.textContent = "Campo requerido";
+    valido = false
+  }
+  if (!observacion){
+    inputObservacion.classList.add("is-invalid");
+    errorObservacion.textContent = "Campo requerido";
+    valido = false
+  }
+  return valido;
+}
+////////////////////////////////////////////
+//FUNCION PARA BUSCAR LA CATEGORIA POR SU ID//
+//////VACIO: CREAR -- CONTRARIO: EIDTAR//////
+////////////////////////////////////////////
+function BuscarActividadId() {
+  let idActividad = parseInt(document.getElementById("ActividadId").value);
+  //let idPersona = parseInt(document.getElementById("PersonaId").value);
+  let idTipoActividad = parseInt(document.getElementById("TipoActividadId").value)
+  let fecha = document.getElementById("Fecha").value
+  let duracionMinutos = parseInt(document.getElementById("DuracionMinutos").value)
+  let observaciones = document.getElementById("Observaciones").value.trim();
+  if (!idActividad || idActividad === 0) {
+    CrearActividad();
+  } else {
+    EditarActividad(idActividad, idTipoActividad, fecha, duracionMinutos, observaciones);
+  }
+}
+
+////////////////////////////////////////////
+////FUNCION PARA CREAR UNA ACTIVIDAD/////
+////////////////////////////////////////////
+async function CrearActividad() {
+  if (!ValidarFormulario()) {
+    return;}
+  let actividad = {
+    // personaID: parseInt(document.getElementById("PersonaId").value),
+    tipoActividadID : parseInt(document.getElementById("TipoActividadId").value),
+    fecha: document.getElementById("Fecha").value,
+    duracionMinutos: document.getElementById("DuracionMinutos").value.trim(),
+    observaciones: document.getElementById("Observaciones").value.trim(),
+  };
+  const res = await authFetch("Actividades", {
+    method: "POST",
+    body: JSON.stringify(actividad),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+    //   if (data.mensaje) {
+    //     ValidarExistenciaTipoActividad(data.mensaje);
+    //   } else {
+        Swal.fire({
+          toast: true,
+          position: "bottom-start",
+          icon: "success",
+          text: "Actividad Creada",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        document
+          .querySelector('[data-bs-target="#collapseActividades"]')
+          .click();
+        ObtenerActividad();
+        LimpiarFormulario()
+      //}
+    })
+
+    .catch((error) =>
+      console.log("Hubo un error al crear la categoria", error)
+    );
+}
+
+
+// ////////////////////////////////////////////
+// ////FUNCION PARA LIMPIAR FORMULARIO/////
+// ////////////////////////////////////////////
+function LimpiarFormulario() {
+  document.getElementById("ActividadId").value = "";
+//   const selectPersonaId = document.getElementById("PersonaId");
+//   selectPersonaId.value = "";
+  const selectTipoActividadId = document.getElementById("TipoActividadId");
+  selectTipoActividadId.value = ""
+  const inputFecha = document.getElementById("Fecha");
+  inputFecha.value = ""
+  const inputDuracionMinutos = document.getElementById("DuracionMinutos");
+  inputDuracionMinutos.value = ""
+  const inputObservaciones = document.getElementById("Observaciones");
+  inputObservaciones.value = ""
+
+  //Limpiar las validaciones
+  //selectPersonaId.classList.remove("is-invalid", "is-valid");
+  selectTipoActividadId.classList.remove("is-invalid", "is-valid");
+  inputFecha.classList.remove("is-invalid", "is-valid");
+  inputDuracionMinutos.classList.remove("is-invalid", "is-valid");
+  inputObservaciones.classList.remove("is-invalid", "is-valid");
+
+  //Limpiar el mensaje de error
+  //const selectPersonaIdError = document.getElementById("errorPersonaId");
+  //selectPersonaIdError.textContent = "";
+  const selectTipoActividadIdError = document.getElementById("errorTipoActividadId");
+  selectTipoActividadIdError.textContent = "";
+  const inputFechaError = document.getElementById("errorFecha");
+  inputFechaError.textContent = "";
+  const inputDuracionMinutosError = document.getElementById("ErrorDuracionMinutos");
+  inputDuracionMinutosError.textContent = "";
+  const inputObservacionesError = document.getElementById("ErrorObservaciones");
+  inputObservacionesError.textContent = "";
+}
+
+////////////////////////////////////////////
+////FUNCION PARA MOSTRAR MODAL EDICION/////
+////////////////////////////////////////////
+async function MostrarModalEditar(actividadID) {
+  const res = await authFetch(`Actividades/${actividadID}`);
+  const actividades = await res.json();
+
+  document.getElementById("ActividadId").value = actividades.actividadID;
+  //document.getElementById("PersonaId").value = actividades.personaID;
+  document.getElementById("TipoActividadId").value = actividades.tipoActividadID;
+
+  const fecha = new Date(actividades.fecha);
+  const fechaFormateada = fecha.toISOString().split('T')[0];
+
+  document.getElementById("Fecha").value = fechaFormateada;
+  document.getElementById("DuracionMinutos").value = actividades.duracionMinutos;
+  document.getElementById("Observaciones").value = actividades.observaciones;
+
+
+  document.querySelector('[data-bs-target="#collapseActividades"]').click();
+}
+
+
+////////////////////////////////////////////
+//////FUNCION PARA EDITAR LA CATEGORIA//////
+////////////////////////////////////////////
+async function EditarActividad(idActividad, idTipoActividad, fecha, duracionMinutos, observaciones) {
+  if (!ValidarFormulario()) {
+    return;
+  }
+
+  const actividad = {
+    actividadID: idActividad,
+    //personaID: idPersona,
+    tipoActividadID: idTipoActividad,
+    fecha: fecha,
+    duracionMinutos: duracionMinutos,
+    observaciones: observaciones
+  };
+
+  try {
+    const res = await authFetch(`Actividades/${idActividad}`, {
+      method: "PUT",
+      body: JSON.stringify(actividad),
+    });
+
+    if (res.ok) {
+      Swal.fire({
+        toast: true,
+        position: "bottom-start",
+        icon: "success",
+        text: "Actividad editada correctamente",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+
+      document.querySelector('[data-bs-target="#collapseActividades"]').click();
+      ObtenerActividad();
+      LimpiarFormulario();
+    } else {
+      if (res?.mensaje) {
+        ValidarExistenciaTipoActividad(res.mensaje);
+      } else {
+        console.error("Error desconocido al editar tipo de actividad", res);
+      }
+    }
+
+  } catch (error) {
+    console.log("No se pudo editar la categoría", error);
+  }
+}
+ObtenerActividad()

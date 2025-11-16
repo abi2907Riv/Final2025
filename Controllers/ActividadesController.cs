@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Final2025.Models.General;
+using System.Security.Claims;
 
 namespace Final2025.Controllers
 {
@@ -24,13 +25,23 @@ namespace Final2025.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Actividad>>> GetActividades()
         {
-            return await _context.Actividades.ToListAsync();
+            var emailPersona = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+            Console.WriteLine("EMAIL DEL TOKEN = " + emailPersona);
+            var persona = _context.Personas.FirstOrDefault(p => p.Email == emailPersona);
+            Console.WriteLine("¿PERSONA ENCONTRADA? " + (persona != null));
+
+            return await _context.Actividades
+            .Where(a => a.PersonaID == persona.PersonaID)
+            .Include(a => a.Persona)
+            .Include(a => a.TipoActividad)
+            .ToListAsync();
         }
 
         // GET: api/Actividades/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Actividad>> GetActividad(int id)
         {
+            
             var actividad = await _context.Actividades.FindAsync(id);
 
             if (actividad == null)
@@ -51,7 +62,13 @@ namespace Final2025.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(actividad).State = EntityState.Modified;
+            var actividades = await _context.Actividades.FindAsync(id);
+
+            actividades.TipoActividadID = actividad.TipoActividadID;
+            actividades.Fecha = actividad.Fecha;
+            actividades.DuracionMinutos = actividad.DuracionMinutos;
+            actividades.Observaciones = actividad.Observaciones;
+            //_context.Entry(actividad).State = EntityState.Modified;
 
             try
             {
@@ -77,6 +94,11 @@ namespace Final2025.Controllers
         [HttpPost]
         public async Task<ActionResult<Actividad>> PostActividad(Actividad actividad)
         {
+            var emailPersona = HttpContext.User.FindFirst(ClaimTypes.Email)?.Value;
+
+            var persona = _context.Personas.FirstOrDefault(p => p.Email == emailPersona);
+
+            actividad.PersonaID = persona.PersonaID;
             _context.Actividades.Add(actividad);
             await _context.SaveChangesAsync();
 

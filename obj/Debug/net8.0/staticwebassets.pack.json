@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Common\\obtenerPersonas.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerPersonas.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Common\\obtenerTipoActividad.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerTipoActividad.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\actividad.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\actividad.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\persona.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\persona.js"
     },
@@ -111,6 +123,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\popper.js",
       "PackagePath": "staticwebassets\\sneat\\js\\popper.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividad.html",
+      "PackagePath": "staticwebassets\\views\\actividad.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",

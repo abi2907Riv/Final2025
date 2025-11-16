@@ -1,0 +1,40 @@
+//////////////////////////////////////////////////
+//FUNCION PARA OBTENER LOS TIPOS DE ACTIVIDAD EN EL DROP//
+/////////////////////////////////////////////////
+async function ObtenerTipoActividadDrop() {
+    const res = await authFetch('TipoActividad', {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+        MostrarTipoActividadDrop(data)
+    })
+    .catch(error => console.log('No se puede acceder al servicio', error));
+}
+function MostrarTipoActividadDrop(data) {
+    let bodySelect = document.getElementById("TipoActividadId");
+    bodySelect.innerHTML = "";
+    // let bodySelectFiltro = document.getElementById("CategoriaIDBuscar");
+    // bodySelectFiltro.innerHTML = "";
+    
+
+    bodySelect.innerHTML = "<option value='0' hidden>[Seleccione una opción]</option>";
+    // bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
+
+    data.forEach(element => {
+        let opt = document.createElement("option");
+        opt.value = element.tipoActividadID;
+        opt.innerHTML = element.nombre;
+        bodySelect.appendChild(opt);
+
+        // let optFiltro = document.createElement("option");
+        // optFiltro.value = element.id;
+        // optFiltro.innerHTML = element.nombre;
+        // bodySelectFiltro.appendChild(optFiltro);
+   })
+}
+////////////////////////////////////////////////////
+//FUNCION PARA CARGAR DROP CATEGORIAS INICIALMENTE//
+///////////////////////////////////////////////////
+ObtenerTipoActividadDrop()
+

@@ -1,0 +1,126 @@
+<div class="content-wrapper">
+
+
+    <!-- Cards -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card">
+            <h5 class="card-header d-flex align-items-center justify-content-between fw-bold">
+                <span class="d-flex align-items-center">
+                    <i class="bx bx-run fs-4 me-2"></i> Listado de Actividades
+                </span>
+                <div class="d-flex flex-wrap gap-2 justify-content-end">
+                    <button class="btn btn-primary flex-grow-1 flex-md-grow-0" data-bs-toggle="collapse"
+                        data-bs-target="#collapseActividades" aria-expanded="false" aria-controls="collapseActividades">
+                        <i class="bx bx-plus"></i> Agregar Actividades
+                    </button>
+                </div>
+            </h5>
+
+            <!-- Formulario -->
+            <div class="collapse" id="collapseActividades">
+                <div class="card-body border-top">
+                    <form class="needs-validation" novalidate id="formActividades">
+                        <input type="hidden" id="ActividadId" />
+                        <div class="row g-3 mb-3">
+                            <input type="hidden" id="PersonaId" />
+
+                            <!-- <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="PersonaId">PERSONA</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-user'></i></span>
+                                    <select class="form-control" id="PersonaId" required>
+                                        <option value="">Seleccione una persona</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="errorPersonaId"></div>
+                                </div>
+                            </div> -->
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="TipoActividadId">TIPO ACTIVIDAD</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-dumbbell'></i></span>
+                                    <select class="form-control" id="TipoActividadId" required>
+                                        <option value="">Seleccione un tipo de actividad</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="errorTipoActividadId"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="Fecha">FECHA</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-calendar'></i></span>
+                                    <input type="date" class="form-control" id="Fecha" placeholder="Ej: 01/01/2000"
+                                        required />
+                                    <div class="invalid-feedback" id="errorFecha"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="DuracionMinutos">DURACION MINUTOS</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-time-five'></i></span>
+                                    <input type="number" class="form-control" id="DuracionMinutos" placeholder="Ej: 50"
+                                        required />
+                                    <div class="invalid-feedback" id="ErrorDuracionMinutos"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold" for="Observaciones">OBSERVACIONES</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text"><i class='bx bx-note'></i></span>
+                                    <textarea class="form-control" id="Observaciones"
+                                        placeholder="Ej: Ritmo suave, buena resistencia" required></textarea>
+                                    <div class="invalid-feedback" id="ErrorObservaciones"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary me-2"
+                                onclick="BuscarActividadId()">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                                data-bs-target="#collapseActividades" onclick="LimpiarFormulario()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tabla -->
+            <div class="table-responsive text-nowrap mt-3" id="tablaActividadesContainer">
+                <table class="table" id="tablaActividades">
+                    <thead class="table-light">
+                        <tr>
+                            <!-- <th>Persona</th> -->
+                            <th>Tipo Actividad</th>
+                            <th>Fecha</th>
+                            <th>Duracion minutos</th>
+                            <th>Observaciones</th>
+                            <th class="text-end">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="todasLasActividades"></tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Scripts específicos de la vista -->
+
+<script src="../js/token.js"></script>
+<script src="../Panel Principal/main.js"></script>
+<script type="text/javascript">
+    window.onload = () => {
+        refreshToken();
+    };
+</script>
+<script src="../js/Fetch/actividad.js"></script>
+<script src="../js/Fetch/Common/obtenerPersonas.js"></script>
+<script src="../js/Fetch/Common/obtenerTipoActividad.js"></script>
