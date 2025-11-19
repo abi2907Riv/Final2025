@@ -13,10 +13,8 @@ async function ObtenerTipoActividad() {
 ////////////////////////////////////////////
 ////FUNCION PARA MOSTRAR LOS TIPOS DE ACTIVIDAD/////
 ////////////////////////////////////////////
-
 function MostrarTipoActividad(data) {
   $("#todosLosTiposActiidades").empty();
-  const rol = getRol();
 
   if (data.length === 0) {
     $("#todosLosTiposActiidades").append(
@@ -24,40 +22,41 @@ function MostrarTipoActividad(data) {
     );
   }
 
-  $.each(data, function (index, item) {
-    var botonesAcciones =
-      "<td class='text-end'>" +
-      "<button class='btn btn-primary btn-editar me-5' style='background: none; border: none; color: #0d6efd; outline: none; font-size: 18px;' " +
-      "onclick='MostrarModalEditar(" +
-      item.tipoActividadID +
-      ', "' +
-      item.nombre +
-      '" ,"' +
-      item.caloriasPorMinuto +
-      "\")'>" +
-      "<i class='bi bi-pencil-square'></i>" +
-      "</button>" +
-      "<button class='btn btn-danger btn-eliminar me-5' style='background: none; border: none; color:#dc3545; font-size: 18px;' " +
-      "onclick='EliminarTipoActividad(" +
-      item.tipoActividadID +
-      ")'>" +
-      "<i class='bx bx-trash'></i>" +
-      "</button>";
+$.each(data, function (index, item) {
+    let claseFila = item.eliminado ? "tipoActividad-eliminada" : "";
+    let icono = item.eliminado ? "bi bi-toggle-off" : "bi bi-toggle-on";
+    let colorBoton = item.eliminado ? "#c54132ff" : "#22903bff";
+    let botonEditarVisible = item.eliminado ? "display: none;" : "";
 
-    botonesAcciones += "</td>";
+    // Botones activar/desactivar
+    let botonesAcciones = item.eliminado
+        ? "<td><button class='btn' style='background: none; border: none; color:" + colorBoton +
+          "; font-size: 16px;' onclick='ActivarTipoActividad(" + item.tipoActividadID + ")'>" +
+          "<i class='" + icono + "'></i></button></td>"
+        : "<td><button class='btn' style='background: none; border: none; color:" + colorBoton +
+          "; font-size: 16px;' onclick='DesactivarTipoActividad(" + item.tipoActividadID + ")'>" +
+          "<i class='" + icono + "'></i></button></td>";
+
+    // Botón editar
+    let botonEditar =
+        "<td><button class='btn' data-action='edit' style='" + botonEditarVisible +
+        "background: none; border: none; color:#007bff; font-size: 16px;' onclick='MostrarModalEditar(" +
+        item.tipoActividadID + ", \"" + item.nombre + "\", " + item.caloriasPorMinuto + ")'>" +
+        "<i class='bi bi-pencil-square'></i></button></td>";
+
+    // Armado final del TR
     $("#todosLosTiposActiidades").append(
-      "<tr>" +
-        "<td>" +
-        item.nombre +
-        "</td>" +
-        "<td>" +
-        item.caloriasPorMinuto +
-        "</td>" +
-        botonesAcciones +
+        "<tr class='" + claseFila + "'>" +
+            "<td>" + item.nombre + "</td>" +
+            "<td>" + item.caloriasPorMinuto + "</td>" +
+            botonEditar +
+            botonesAcciones +
         "</tr>"
     );
-  });
+});
+
 }
+
 
 // ////////////////////////////////////////////
 // ////FUNCION PARA VALIDAR FORMULARIO/////
@@ -255,37 +254,48 @@ async function EditarTipoActividad(tipoActividadID, nombre, caloriasPorMinutos) 
 
 
 ////////////////////////////////////////////
-////FUNCION PARA ELIMAR TIPO ACTIVIDAD/////
+////FUNCION PARA DESACTIVAR TIPO ACTIVIDAD/////
 ////////////////////////////////////////////
-function EliminarTipoActividad(tipoActividadID) {
-  Swal.fire({
-    title: "¿Desea eliminar este tipo de actividad?", // sin <strong>
-    html: `
-    <div style="text-align: center; font-size: 0.9rem; color: #6b7280; font-weight: 400;">
-      <p>Este tipo de actividad será eliminado de forma definitiva.</p>
-      <p>Esta acción no se puede deshacer.</p>
-    </div>
-  `,
-    showCancelButton: true,
-    confirmButtonText: "Sí, eliminar",
-    cancelButtonText: "Cancelar",
-    focusCancel: true,
-    customClass: {
-      popup: "swal2-border-radius",
-      title: "swal2-title-small", // <--- clase para achicar título
-      confirmButton: "swal2-btn-eliminar",
-      cancelButton: "swal2-btn-cancelar",
-    },
-    background: "#fff",
-    color: "#22223b",
-    buttonsStyling: false,
-  }).then((result) => {
-    if (result.isConfirmed) {
-      EliminarSiTipoActividad(tipoActividadID);
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
+async function DesactivarTipoActividad(tipoActividadID) {
+  try {
+    const result = await Swal.fire({
+      title: "¿Desactivar este Tipo de Actividad?",
+      html: `
+        <div style="text-align: center; font-size: 0.9rem; color: #6b7280;">
+          <p>Podrás volver a activarla más tarde.</p>
+          <p>Esta acción se puede revertir.</p>
+        </div>
+      `,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Sí, desactivar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+      customClass: {
+        popup: "swal2-border-radius",
+        title: "swal2-title-small",
+        confirmButton: "swal2-btn-eliminar",
+        cancelButton: "swal2-btn-cancelar",
+      },
+      background: "#fff",
+      color: "#22223b",
+      buttonsStyling: false,
+    });
+
+    if (!result.isConfirmed) return;
+
+    const res = await authFetch(`TipoActividad/${tipoActividadID}`, {
+      method: "DELETE",
+    });
+
+    let data = {};
+    if (res.status !== 204) data = await res.json();
+
+    if (res.ok) {
+      ObtenerTipoActividad();
+
       Swal.fire({
-        title: "Acción Cancelada",
-        text: "Permanece registrado.",
+        title: "¡Tipo Actividad Desactivada!",
         toast: true,
         position: "bottom-end",
         showConfirmButton: false,
@@ -293,7 +303,7 @@ function EliminarTipoActividad(tipoActividadID) {
         timerProgressBar: true,
         background: "#fef8f4",
         color: "#5f4339",
-        icon: "info",
+        icon: "success",
         iconColor: "#ff914d",
         customClass: {
           popup: "swal2-toast-status",
@@ -302,46 +312,78 @@ function EliminarTipoActividad(tipoActividadID) {
         },
       });
     }
-  });
+  } catch (error) {
+    console.error("Error al desactivar tipo actividad", error);
+  }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-// FUNCION PARA ELIMINAR SI TIPO ACTIVIDAD///////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-async function EliminarSiTipoActividad(tipoActividadID) {
+
+////////////////////////////////////////////
+////FUNCION PARA DESACTIVAR TIPO ACTIVIDAD/////
+////////////////////////////////////////////
+async function ActivarTipoActividad(tipoActividadID) {
   try {
+    const result = await Swal.fire({
+      title: "¿Activar este Tipo de Actividad?",
+      html: `
+        <div style="text-align: center; font-size: 0.9rem; color: #6b7280;">
+          <p>Podrás desactivarla luego desde la configuración.</p>
+          <p>Esta acción se puede revertir.</p>
+        </div>
+      `,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Activar",
+      cancelButtonText: "Cancelar",
+      focusCancel: true,
+      customClass: {
+        popup: "swal2-border-radius",
+        title: "swal2-title-small",
+        confirmButton: "swal2-btn-eliminar",
+        cancelButton: "swal2-btn-cancelar",
+      },
+      background: "#fff",
+      color: "#22223b",
+      buttonsStyling: false,
+    });
+
+    if (!result.isConfirmed) return;
+
     const res = await authFetch(`TipoActividad/${tipoActividadID}`, {
       method: "DELETE",
     });
 
-    if (!res.ok) throw new Error("No se pudo eliminar el criterio");
+    if (res.ok) {
+      ObtenerTipoActividad();
 
-    Swal.fire({
-      title: "¡Tipo Actividad Eliminado!",
-      toast: true,
-      position: "bottom-end",
-      showConfirmButton: false,
-      timer: 2200,
-      timerProgressBar: true,
-      background: "#f4fff7",
-      color: "#1c3d26",
-      icon: "success",
-      iconColor: "#28a746d8",
-      customClass: {
-        popup: "swal2-toast-small",
-        title: "swal2-toast-small-title",
-        icon: "swal2-toast-small-icon",
-      },
-    });
-
-    ObtenerTipoActividad();
-  } catch (error) {}
+      Swal.fire({
+        title: "¡Tipo Actividad Activada!",
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 2200,
+        timerProgressBar: true,
+        background: "#f4fff7",
+        color: "#1c3d26",
+        icon: "success",
+        iconColor: "#28a746d8",
+        customClass: {
+          popup: "swal2-toast-small",
+          title: "swal2-toast-small-title",
+          icon: "swal2-toast-small-icon",
+        },
+      });
+    }
+  } catch (error) {
+    console.error("Error al activar tipo actividad", error);
+  }
 }
 
 ////////////////////////////////////////////
-//FUNCION PARA CARGAR CATEGORIAS INICIALMENTE//
+//FUNCION PARA CARGAR TIPO ACTIVIDAD INICIALMENTE//
 ////////////////////////////////////////////
 ObtenerTipoActividad();
+
 
 
 

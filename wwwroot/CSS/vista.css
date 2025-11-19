@@ -55,6 +55,9 @@
 }
 /*Fin Color para la celda desactivadas*/
 
+.tipoActividad-eliminada {
+  background-color: #f92c3d36 !important;
+}
 
 /*Badges para las prioridades*/
 .badge-alta {

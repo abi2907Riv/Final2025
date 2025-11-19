@@ -21,7 +21,8 @@ function MostrarTipoActividadDrop(data) {
     bodySelect.innerHTML = "<option value='0' hidden>[Seleccione una opción]</option>";
     // bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
 
-    data.forEach(element => {
+    const activos = data.filter(item => item.eliminado == false);
+    activos.forEach(element => {
         let opt = document.createElement("option");
         opt.value = element.tipoActividadID;
         opt.innerHTML = element.nombre;
@@ -33,6 +34,15 @@ function MostrarTipoActividadDrop(data) {
         // bodySelectFiltro.appendChild(optFiltro);
    })
 }
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////
 //FUNCION PARA CARGAR DROP CATEGORIAS INICIALMENTE//
 ///////////////////////////////////////////////////

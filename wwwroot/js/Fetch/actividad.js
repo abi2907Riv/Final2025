@@ -296,4 +296,91 @@ async function EditarActividad(idActividad, idTipoActividad, fecha, duracionMinu
     console.log("No se pudo editar la categoría", error);
   }
 }
+
+
+
+
+////////////////////////////////////////////
+////FUNCION PARA ELIMAR TIPO ACTIVIDAD/////
+////////////////////////////////////////////
+function EliminarActividad(actividadID) {
+  Swal.fire({
+    title: "¿Desea eliminar esta Actividad?", // sin <strong>
+    html: `
+    <div style="text-align: center; font-size: 0.9rem; color: #6b7280; font-weight: 400;">
+      <p>Esta actividad será eliminado de forma definitiva.</p>
+      <p>Esta acción no se puede deshacer.</p>
+    </div>
+  `,
+    showCancelButton: true,
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+    focusCancel: true,
+    customClass: {
+      popup: "swal2-border-radius",
+      title: "swal2-title-small", // <--- clase para achicar título
+      confirmButton: "swal2-btn-eliminar",
+      cancelButton: "swal2-btn-cancelar",
+    },
+    background: "#fff",
+    color: "#22223b",
+    buttonsStyling: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      EliminarSiActividad(actividadID);
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      Swal.fire({
+        title: "Acción Cancelada",
+        text: "Permanece registrado.",
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 2200,
+        timerProgressBar: true,
+        background: "#fef8f4",
+        color: "#5f4339",
+        icon: "info",
+        iconColor: "#ff914d",
+        customClass: {
+          popup: "swal2-toast-status",
+          title: "swal2-toast-title",
+          content: "swal2-toast-content",
+        },
+      });
+    }
+  });
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FUNCION PARA ELIMINAR SI TIPO ACTIVIDAD///////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+async function EliminarSiActividad(actividadID) {
+  try {
+    const res = await authFetch(`Actividades/${actividadID}`, {
+      method: "DELETE",
+    });
+
+    if (!res.ok) throw new Error("No se pudo eliminar la actividad");
+
+    Swal.fire({
+      title: "¡Actividad Eliminada!",
+      toast: true,
+      position: "bottom-end",
+      showConfirmButton: false,
+      timer: 2200,
+      timerProgressBar: true,
+      background: "#f4fff7",
+      color: "#1c3d26",
+      icon: "success",
+      iconColor: "#28a746d8",
+      customClass: {
+        popup: "swal2-toast-small",
+        title: "swal2-toast-small-title",
+        icon: "swal2-toast-small-icon",
+      },
+    });
+
+    ObtenerActividad();
+  } catch (error) {}
+}
 ObtenerActividad()

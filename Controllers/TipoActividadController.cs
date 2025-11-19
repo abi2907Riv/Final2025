@@ -111,8 +111,8 @@ namespace Final2025.Controllers
             {
                 return NotFound();
             }
-
-            _context.TipoActividades.Remove(tipoActividad);
+            tipoActividad.Eliminado = !tipoActividad.Eliminado;
+            _context.TipoActividades.Update(tipoActividad);
             await _context.SaveChangesAsync();
 
             return NoContent();
