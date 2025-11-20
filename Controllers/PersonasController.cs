@@ -124,7 +124,7 @@ namespace Final2025.Controllers
                     Email = persona.Email
                 };
 
-                var result = await _userManager.CreateAsync(user, "FinalProgramacion2025");
+                var result = await _userManager.CreateAsync(user, "Final2025");
 
 
                 return CreatedAtAction("GetPersona", new { id = persona.PersonaID }, persona);

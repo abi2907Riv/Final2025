@@ -51,7 +51,7 @@ function MostrarActividad(data) {
       "<td>" + item.tipoActividad.nombre + "</td>" +
       "<td>" + item.fechaString + "</td>" +
       "<td>" + item.duracionMinutos + "</td>" +
-      "<td>" + item.observaciones + "</td>" +
+      // "<td>" + item.observaciones + "</td>" +
       botonesAcciones +
       "</tr>"
     );

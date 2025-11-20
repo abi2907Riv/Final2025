@@ -220,6 +220,9 @@ async function EditarTipoActividad(tipoActividadID, nombre, caloriasPorMinutos) 
   try {
     const res = await authFetch(`TipoActividad/${tipoActividadID}`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(tipoActividad),
     });
 
@@ -238,10 +241,11 @@ async function EditarTipoActividad(tipoActividadID, nombre, caloriasPorMinutos) 
       ObtenerTipoActividad();
       LimpiarFormulario();
     } else {
-      if (response?.mensaje) {
-        ValidarExistenciaTipoActividad(response.mensaje);
+      const errorResponse = await res.json();  
+      if (errorResponse?.mensaje) {
+        ValidarExistenciaTipoActividad(errorResponse.mensaje);
       } else {
-        console.error("Error desconocido al editar tipo de actividad", response);
+        console.error("Error desconocido al editar tipo de actividad", errorResponse);
       }
     }
 
@@ -249,6 +253,7 @@ async function EditarTipoActividad(tipoActividadID, nombre, caloriasPorMinutos) 
     console.log("No se pudo editar la categoría", error);
   }
 }
+
 
 
 
