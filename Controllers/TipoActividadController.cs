@@ -118,6 +118,28 @@ namespace Final2025.Controllers
             return NoContent();
         }
 
+
+
+        // [HttpPost("Filtrar")]
+        // public async Task<ActionResult<IEnumerable<TipoActividad>>> GetTipoActividad([FromBody] FiltroTipoActividad filtro)
+        // {
+        //     var tipoActividadFiltrada = _context.TipoActividades.AsQueryable();
+        //     if (filtro.Eliminado.HasValue)
+        //     {
+        //         tipoActividadFiltrada = tipoActividadFiltrada.Where(c => c.Eliminado == (filtro.Eliminado.Value == 1));
+        //     }
+        //     if (!string.IsNullOrEmpty(filtro.Nombre))
+        //     {
+        //         tipoActividadFiltrada = tipoActividadFiltrada.Where(c => c.Nombre.ToLower().Contains(filtro.Nombre.ToLower()));
+        //     }
+        //     if (filtro.CaloriasPorMinuto.HasValue)
+        //     {
+        //         tipoActividadFiltrada = tipoActividadFiltrada.Where(c => c.CaloriasPorMinuto == filtro.CaloriasPorMinuto.Value);
+        //     }
+            
+        //     return tipoActividadFiltrada.ToList();
+        // }        
+
         private bool TipoActividadExists(int id)
         {
             return _context.TipoActividades.Any(e => e.TipoActividadID == id);

@@ -467,3 +467,37 @@ ObtenerTipoActividad();
 //     })
 //     .catch((error) => console.log("No se pudo editar la categoria", error));
 // }
+
+
+// $(document).ready(function () {
+//   ObtenerTipoActividad();
+//   const filtrosBuscar = $(
+//     "#filtroNombre, #filtroCalorias, #filtroEstado"
+//   );
+//   filtrosBuscar.on("change keyup", function () {
+//     ObtenerTipoActividad();
+//   });
+// });
+
+
+
+// async function ObtenerTipoActividad() {
+//   let nombre = document.getElementById("filtroNombre").value;
+//   let calorias = document.getElementById("filtroCalorias").value;
+//   let estado = document.getElementById("filtroEstado").value;
+
+
+//   let filtro = {
+//     nombre: nombre !== "" ? nombre : null,
+//     caloriasPorMinuto: calorias !== "" ? parseFloat(calorias) : null,
+//     eliminado: estado !== "" ? parseInt(estado) : null,
+    
+//   };
+//   const res = await authFetch("TipoActividad/Filtrar", {
+//     method: "POST",
+//     body: JSON.stringify(filtro),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => MostrarTipoActividad(data), LimpiarFormulario())
+//     .catch((error) => console.log("No se puede acceder al servicio", error));
+// }
