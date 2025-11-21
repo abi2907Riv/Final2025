@@ -151,6 +151,31 @@ namespace Final2025.Controllers
             return NoContent();
         }
 
+
+    //     [HttpPost("Filtrar")]
+    //     public async Task<ActionResult<IEnumerable<Persona>>> GetPersona([FromBody] FiltroPersona filtro)
+    //     {
+    //         var personas = _context.Personas.AsQueryable();
+
+    //         if (!string.IsNullOrEmpty(filtro.Nombre))
+    //         {
+    //             personas = personas.Where(c => c.Nombre.ToLower().Contains(filtro.Nombre.ToLower()));
+    //         }
+    //         if (filtro.FechaNacimiento.HasValue)
+    //         {
+    //             var fechaInicio = filtro.FechaNacimiento.Value.Date;
+    //             var fechaFin = fechaInicio.AddDays(1);
+    //             personas = personas.Where(a => a.FechaNacimiento >= fechaInicio && a.FechaNacimiento < fechaFin);
+    //         }
+
+    //         if (filtro.Peso.HasValue)
+    //         {
+    //             personas = personas.Where(c => c.Peso == filtro.Peso.Value);
+    //         }
+            
+    //         return personas.ToList();
+    //    }
+
         private bool PersonaExists(int id)
         {
             return _context.Personas.Any(e => e.PersonaID == id);

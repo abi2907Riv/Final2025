@@ -121,6 +121,43 @@ namespace Final2025.Controllers
             return NoContent();
         }
 
+        // [HttpPost("Filtrar")]
+        // public async Task<ActionResult<IEnumerable<VistaActividad>>> FiltroActividad([FromBody] FiltroActividad filtro)
+        // {
+        //     List<VistaActividad> vista = new List<VistaActividad>();
+
+        //     var actividades = _context.Actividades.Include(t => t.TipoActividad).AsQueryable();
+
+        //     if (filtro.TipoActividadID > 0)
+        //         actividades = actividades.Where(t => t.TipoActividadID == filtro.TipoActividadID);
+
+        //     if (filtro.FechaActividad.HasValue)
+        //     {
+        //         var fechaInicio = filtro.FechaActividad.Value.Date;
+        //         var fechaFin = fechaInicio.AddDays(1);
+        //         actividades = actividades.Where(a => a.Fecha >= fechaInicio && a.Fecha < fechaFin);
+        //     }
+        //     if (filtro.DuracionMinutos.HasValue)
+        //     {
+        //         actividades = actividades.Where(c => c.DuracionMinutos == filtro.DuracionMinutos.Value);
+        //     }
+            
+        //     foreach (var actividad in actividades.OrderByDescending(t => t.Fecha))
+        //     {
+        //         var actividadMostrar = new VistaActividad
+        //         {
+        //             ActividadID = actividad.ActividadID,
+        //             TipoActividadID = actividad.TipoActividadID,
+        //             FechaString = actividad.Fecha.ToString("dd/MM/yyyy"),
+        //             DuracionMinutos = actividad.DuracionMinutos,
+        //             Nombre = actividad.TipoActividad != null ? actividad.TipoActividad.Nombre : "Sin categoría"
+
+        //         };
+        //         vista.Add(actividadMostrar); 
+        //     }
+        //     return vista.ToList();
+        // }
+
         private bool ActividadExists(int id)
         {
             return _context.Actividades.Any(e => e.ActividadID == id);

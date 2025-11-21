@@ -14,7 +14,7 @@ async function ObtenerTipoActividadDrop() {
 function MostrarTipoActividadDrop(data) {
     let bodySelect = document.getElementById("TipoActividadId");
     bodySelect.innerHTML = "";
-    // let bodySelectFiltro = document.getElementById("CategoriaIDBuscar");
+    // let bodySelectFiltro = document.getElementById("filtroActividad");
     // bodySelectFiltro.innerHTML = "";
     
 
@@ -29,7 +29,7 @@ function MostrarTipoActividadDrop(data) {
         bodySelect.appendChild(opt);
 
         // let optFiltro = document.createElement("option");
-        // optFiltro.value = element.id;
+        // optFiltro.value = element.tipoActividadID;
         // optFiltro.innerHTML = element.nombre;
         // bodySelectFiltro.appendChild(optFiltro);
    })

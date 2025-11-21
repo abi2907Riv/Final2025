@@ -1,3 +1,39 @@
+// $(document).ready(function () {
+//   ObtenerPersonas();
+//   const filtrosBuscar = $(
+//     "#filtroNombre, #filtroFecha, #filtroPeso"
+//   );
+//   filtrosBuscar.on("change keyup", function () {
+//     ObtenerPersonas();
+//   });
+// });
+
+
+
+// async function ObtenerPersonas() {
+//   let nombre = document.getElementById("filtroNombre").value;
+//   let fecha = document.getElementById("filtroFecha").value;
+//   let peso = document.getElementById("filtroPeso").value;
+
+//   let filtro = {
+//     nombre: nombre !== "" ? nombre : null,
+//     fechaNacimiento: fecha !== "" ? fecha : null,
+//     peso: peso !== "" ? parseInt(peso) : null,
+//   };
+
+//   const res = await authFetch("Personas/Filtrar", {
+//     method: "POST",
+//     body: JSON.stringify(filtro),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       MostrarPersonas(data);
+//       LimpiarFormulario();
+//     })
+//     .catch((error) => console.log("No se puede acceder al servicio", error));
+// }
+
+
 ////////////////////////////////////////////
 ////FUNCION PARA OBTENER LAS PERSONAS/////
 ////////////////////////////////////////////

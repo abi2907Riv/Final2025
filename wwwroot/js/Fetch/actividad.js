@@ -384,3 +384,42 @@ async function EliminarSiActividad(actividadID) {
   } catch (error) {}
 }
 ObtenerActividad()
+
+
+
+
+
+
+
+// $(document).ready(function () {
+//   ObtenerTickets();
+//   const filtrosBuscar = $(
+//     "#CategoriaIDBuscar, #fechaDesde, #fechaHasta, #estadoBuscar, #prioridadBuscar"
+//   );
+//   filtrosBuscar.on("change", function () {
+//     ObtenerTickets();
+//   });
+// });
+
+
+
+// async function ObtenerActividad() {
+//   let tipoActividadID = parseInt(document.getElementById("filtroActividad").value);
+//   let fechaActividad = document.getElementById("filtroFecha").value;
+//   let duracionMinutos = document.getElementById("filtroDuracion").value;
+
+
+//   let filtro = {
+//     tipoActividadID: tipoActividadID ? parseInt(tipoActividadID) : null,
+//     fechaActividad: fechaActividad ? new Date(fechaActividad) : null,
+//     duracionMinutos: duracionMinutos ? parseInt(duracionMinutos) : null
+    
+//   };
+//   const res = await authFetch("Actividades/Filtrar", {
+//     method: "POST",
+//     body: JSON.stringify(filtro),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => MostrarActividad(data), LimpiarFormulario())
+//     .catch((error) => console.log("No se puede acceder al servicio", error));
+// }
