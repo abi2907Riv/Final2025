@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PJzR/M4nQ/+zfIwJ8F0fe32+oC+Yp4nsd4NUqz0yPn4=",
+  "Hash": "x9vT19D32LHXtUlCjt9bviksneM5mmqMGYgw/DZXirI=",
   "Source": "Final2025",
   "BasePath": "_content/Final2025",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Fetch\\Common\\obtenerTipoActividad.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\InformeActividadesPorPersona.js",
+      "SourceId": "Final2025",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\",
+      "BasePath": "_content/Final2025",
+      "RelativePath": "js/Fetch/InformeActividadesPorPersona.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Fetch\\InformeActividadesPorPersona.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\persona.js",
@@ -642,6 +661,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\home.html"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informeActividadPorPersona.html",
+      "SourceId": "Final2025",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\",
+      "BasePath": "_content/Final2025",
+      "RelativePath": "views/informeActividadPorPersona.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\informeActividadPorPersona.html"
     },
     {
       "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personas.html",
