@@ -2,7 +2,7 @@
 ////FUNCION PARA OBTENER LAS CATEGORIAS/////
 ////////////////////////////////////////////
 async function ObtenerTipoActividad() {
-  const res = await authFetch("TipoActividad", {
+  const res = await authFetch("TiposActividades", {
     method: "GET",
   })
     .then((response) => response.json())
@@ -28,7 +28,6 @@ $.each(data, function (index, item) {
     let colorBoton = item.eliminado ? "#c54132ff" : "#22903bff";
     let botonEditarVisible = item.eliminado ? "display: none;" : "";
 
-    // Botones activar/desactivar
     let botonesAcciones = item.eliminado
         ? "<td><button class='btn' style='background: none; border: none; color:" + colorBoton +
           "; font-size: 16px;' onclick='ActivarTipoActividad(" + item.tipoActividadID + ")'>" +
@@ -37,14 +36,12 @@ $.each(data, function (index, item) {
           "; font-size: 16px;' onclick='DesactivarTipoActividad(" + item.tipoActividadID + ")'>" +
           "<i class='" + icono + "'></i></button></td>";
 
-    // Botón editar
     let botonEditar =
         "<td><button class='btn' data-action='edit' style='" + botonEditarVisible +
         "background: none; border: none; color:#007bff; font-size: 16px;' onclick='MostrarModalEditar(" +
         item.tipoActividadID + ", \"" + item.nombre + "\", " + item.caloriasPorMinuto + ")'>" +
         "<i class='bi bi-pencil-square'></i></button></td>";
 
-    // Armado final del TR
     $("#todosLosTiposActiidades").append(
         "<tr class='" + claseFila + "'>" +
             "<td>" + item.nombre + "</td>" +
@@ -156,7 +153,7 @@ async function CrearTipoActividad() {
       document.getElementById("CaloriasPorMinutos").value
     ),
   };
-  const res = await authFetch("TipoActividad", {
+  const res = await authFetch("TiposActividades", {
     method: "POST",
     body: JSON.stringify(tipoActividad),
   })
@@ -191,7 +188,7 @@ async function CrearTipoActividad() {
 ////FUNCION PARA MOSTRAR MODAL EDICION/////
 ////////////////////////////////////////////
 async function MostrarModalEditar(tipoActividadID) {
-  const res = await authFetch(`TipoActividad/${tipoActividadID}`);
+  const res = await authFetch(`TiposActividades/${tipoActividadID}`);
   const tipoActividad = await res.json();
 
   document.getElementById("TipoActividadId").value =
@@ -218,7 +215,7 @@ async function EditarTipoActividad(tipoActividadID, nombre, caloriasPorMinutos) 
   };
 
   try {
-    const res = await authFetch(`TipoActividad/${tipoActividadID}`, {
+    const res = await authFetch(`TiposActividades/${tipoActividadID}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -289,7 +286,7 @@ async function DesactivarTipoActividad(tipoActividadID) {
 
     if (!result.isConfirmed) return;
 
-    const res = await authFetch(`TipoActividad/${tipoActividadID}`, {
+    const res = await authFetch(`TiposActividades/${tipoActividadID}`, {
       method: "DELETE",
     });
 
@@ -354,7 +351,7 @@ async function ActivarTipoActividad(tipoActividadID) {
 
     if (!result.isConfirmed) return;
 
-    const res = await authFetch(`TipoActividad/${tipoActividadID}`, {
+    const res = await authFetch(`TiposActividades/${tipoActividadID}`, {
       method: "DELETE",
     });
 

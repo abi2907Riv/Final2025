@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Final2025.Models.General;
 
 // Si desarrollamdos una API pura, especialmente para consumir desde frontend o apps móviles:
 //Usamos a modo organizativo [Route("api/[controller]")]
@@ -50,6 +51,11 @@ public class AuthController : ControllerBase
         // {
         //     var rolResult = await _rolManager.CreateAsync(new IdentityRole("ADMINISTRADOR"));
         // }
+        var emailExiste = await _userManager.FindByEmailAsync(model.Email);
+        if (emailExiste != null)
+        {
+            return BadRequest("El E-mail ya se encuentra registrado");
+        }
 
         // Creamos un nuevo usuario con los datos que escribió
         var user = new ApplicationUser
@@ -64,11 +70,22 @@ public class AuthController : ControllerBase
 
         if (result.Succeeded)
         {
+            var persona = new Persona
+            {
+                Nombre = model.NombreCompleto,
+                FechaNacimiento = model.FechaNacimiento,
+                Peso = model.Peso,
+                UsuarioID = user.Id
+            };
+
+            persona.UsuarioID = user.Id;
+            _context.Personas.Add(persona);
+            await _context.SaveChangesAsync();
             // await _userManager.AddToRoleAsync(user, "ADMINISTRADOR");
             return Ok("Registro exitoso");
         }
+        return BadRequest("La contraseña debe tener un mínimo de 6 caracteres.");
 
-        return BadRequest(result.Errors);
     }
 
     [HttpPost("login")]
@@ -89,7 +106,7 @@ public class AuthController : ControllerBase
             //     if (rol != null)
             //         rolNombre = rol.Name;
             // }
-            
+
             //Si se encuentra el usuario y la contraseña es correcta, se crea el token
             var claims = new[]
             {
@@ -141,40 +158,43 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("refresh-token")]
-public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest model)
-{
-    var user = await _userManager.FindByEmailAsync(model.Email);
-    if (user == null)
+    public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest model)
     {
-        return Unauthorized("Usuario no válido");
-    }
+        var user = await _userManager.FindByEmailAsync(model.Email);
+        if (user == null)
+        {
+            return Unauthorized("Usuario no válido");
+        }
 
-    var savedToken = await _userManager.GetAuthenticationTokenAsync(user, "MyApp", "RefreshToken");
+        var savedToken = await _userManager.GetAuthenticationTokenAsync(user, "MyApp", "RefreshToken");
 
-    // Normalización básica (por si hay espacios o saltos de línea)
-    var incomingToken = model.RefreshToken?.Trim();
-    var storedToken = savedToken?.Trim();
+        // Normalización básica (por si hay espacios o saltos de línea)
+        var incomingToken = model.RefreshToken?.Trim();
+        var storedToken = savedToken?.Trim();
 
-    if (string.IsNullOrEmpty(incomingToken) || string.IsNullOrEmpty(storedToken))
-    {
-        return Unauthorized("Token faltante");
-    }
+        if (string.IsNullOrEmpty(incomingToken) || string.IsNullOrEmpty(storedToken))
+        {
+            return Unauthorized("Token faltante");
+        }
 
-    // Obtener rol del usuario
-    // var rolUsuario = _context.UserRoles.Where(r => r.UserId == user.Id);
-    // string rolNombre = "";
+        if (incomingToken != storedToken)
+            return Unauthorized("Refresh token inválido");
 
-    // var rolAsigando = rolUsuario.FirstOrDefault();
-    // if (rolAsigando != null)
-    // {
-    //     var rol = _context.Roles.FirstOrDefault(r => r.Id == rolAsigando.RoleId);
-    //     if (rol != null)
-    //         rolNombre = rol.Name;
-    // }
+        // Obtener rol del usuario
+        // var rolUsuario = _context.UserRoles.Where(r => r.UserId == user.Id);
+        // string rolNombre = "";
 
-    // Generar nuevo token JWT
-    var claims = new[]
-    {
+        // var rolAsigando = rolUsuario.FirstOrDefault();
+        // if (rolAsigando != null)
+        // {
+        //     var rol = _context.Roles.FirstOrDefault(r => r.Id == rolAsigando.RoleId);
+        //     if (rol != null)
+        //         rolNombre = rol.Name;
+        // }
+
+        // Generar nuevo token JWT
+        var claims = new[]
+        {
         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
         new Claim(ClaimTypes.Name, user.UserName),
         new Claim(ClaimTypes.Email, user.Email),
@@ -182,32 +202,32 @@ public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest mod
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
     };
 
-    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-    var newToken = new JwtSecurityToken(
-        issuer: _configuration["Jwt:Issuer"],
-        audience: _configuration["Jwt:Issuer"],
-        claims: claims,
-        expires: DateTime.Now.AddDays(3),
-        signingCredentials: creds
-    );
+        var newToken = new JwtSecurityToken(
+            issuer: _configuration["Jwt:Issuer"],
+            audience: _configuration["Jwt:Issuer"],
+            claims: claims,
+            expires: DateTime.Now.AddDays(3),
+            signingCredentials: creds
+        );
 
-    var jwt = new JwtSecurityTokenHandler().WriteToken(newToken);
+        var jwt = new JwtSecurityTokenHandler().WriteToken(newToken);
 
-    // Generar y guardar nuevo refresh token
-    var newRefreshToken = GenerarRefreshToken();
-    await _userManager.SetAuthenticationTokenAsync(user, "MyApp", "RefreshToken", newRefreshToken);
+        // Generar y guardar nuevo refresh token
+        var newRefreshToken = GenerarRefreshToken();
+        await _userManager.SetAuthenticationTokenAsync(user, "MyApp", "RefreshToken", newRefreshToken);
 
-    return Ok(new
-    {
-        token = jwt,
-        refreshToken = newRefreshToken,
-        email = user.Email,
-        nombreCompleto = user.NombreCompleto,
-        // rol = rolNombre
-    });
-}
+        return Ok(new
+        {
+            token = jwt,
+            refreshToken = newRefreshToken,
+            email = user.Email,
+            nombreCompleto = user.NombreCompleto,
+            // rol = rolNombre
+        });
+    }
 
 
     [HttpPost("logout")]

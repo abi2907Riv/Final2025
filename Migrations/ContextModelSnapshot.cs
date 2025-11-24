@@ -97,8 +97,8 @@ namespace Final2025.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActividadID"));
 
-                    b.Property<int>("DuracionMinutos")
-                        .HasColumnType("int");
+                    b.Property<TimeSpan>("DuracionMinutos")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
@@ -129,17 +129,14 @@ namespace Final2025.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonaID"));
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaNacimiento")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("FechaNacimiento")
+                        .HasColumnType("date");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Peso")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Peso")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UsuarioID")
                         .HasColumnType("nvarchar(max)");

@@ -20,7 +20,7 @@ async function CerrarSesion() {
   //FUNCION DE LEER TOKEN DEL DISPOSITIVO
   //const getToken = () => localStorage.getItem("token");
   const token = getToken();
-  const email = localStorage.getItem("email"); // suponiendo que guardaste el email al hacer login
+  const email = localStorage.getItem("email"); 
 
   if (!token || !email) {
     localStorage.removeItem("token");

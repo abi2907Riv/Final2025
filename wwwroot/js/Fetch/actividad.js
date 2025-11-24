@@ -24,6 +24,11 @@ function MostrarActividad(data) {
   }
 
   $.each(data, function (index, item) {
+    let duracion = "0min";
+    if (item.duracionMinutos) {
+        const [h, m] = item.duracionMinutos.split(':');
+        duracion = h && h !== "00" ? `${parseInt(h)}h ${parseInt(m)}min` : `${parseInt(m)}min`;
+    }
 
     var botonesAcciones =
       "<td class='text-end'>" +
@@ -50,7 +55,7 @@ function MostrarActividad(data) {
       //"<td>" + item.persona.nombre + "</td>" +
       "<td>" + item.tipoActividad.nombre + "</td>" +
       "<td>" + item.fechaString + "</td>" +
-      "<td>" + item.duracionMinutos + "</td>" +
+      "<td>" + duracion + "</td>" +
       // "<td>" + item.observaciones + "</td>" +
       botonesAcciones +
       "</tr>"
@@ -149,13 +154,18 @@ function BuscarActividadId() {
 async function CrearActividad() {
   if (!ValidarFormulario()) {
     return;}
+
+  const duracionInput = document.getElementById("DuracionMinutos").value;
+  const duracionTimeSpan = duracionInput + ":00"; 
+
   let actividad = {
     // personaID: parseInt(document.getElementById("PersonaId").value),
     tipoActividadID : parseInt(document.getElementById("TipoActividadId").value),
     fecha: document.getElementById("Fecha").value,
-    duracionMinutos: document.getElementById("DuracionMinutos").value.trim(),
+    duracionMinutos: duracionTimeSpan,
     observaciones: document.getElementById("Observaciones").value.trim(),
   };
+  console.log("Objeto actividad a enviar:", actividad);
   const res = await authFetch("Actividades", {
     method: "POST",
     body: JSON.stringify(actividad),
@@ -239,7 +249,7 @@ async function MostrarModalEditar(actividadID) {
   const fechaFormateada = fecha.toISOString().split('T')[0];
 
   document.getElementById("Fecha").value = fechaFormateada;
-  document.getElementById("DuracionMinutos").value = actividades.duracionMinutos;
+  document.getElementById("DuracionMinutos").value = actividades.duracionMinutos.substring(0, 5);;
   document.getElementById("Observaciones").value = actividades.observaciones;
 
 
@@ -250,19 +260,28 @@ async function MostrarModalEditar(actividadID) {
 ////////////////////////////////////////////
 //////FUNCION PARA EDITAR LA CATEGORIA//////
 ////////////////////////////////////////////
-async function EditarActividad(idActividad, idTipoActividad, fecha, duracionMinutos, observaciones) {
+async function EditarActividad() {
   if (!ValidarFormulario()) {
     return;
   }
 
+  const idActividad = parseInt(document.getElementById("ActividadId").value);
+  const idTipoActividad = parseInt(document.getElementById("TipoActividadId").value);
+  const fecha = document.getElementById("Fecha").value;
+  const duracionInput = document.getElementById("DuracionMinutos").value; // HH:MM
+  const observaciones = document.getElementById("Observaciones").value.trim();
+
+  const duracion = duracionInput + ":00";
+
   const actividad = {
-    actividadID: idActividad,
-    //personaID: idPersona,
+    actividadID: idActividad,  
     tipoActividadID: idTipoActividad,
     fecha: fecha,
-    duracionMinutos: duracionMinutos,
+    duracionMinutos: duracion,
     observaciones: observaciones
   };
+
+  console.log(actividad)
 
   try {
     const res = await authFetch(`Actividades/${idActividad}`, {
@@ -318,7 +337,7 @@ function EliminarActividad(actividadID) {
     focusCancel: true,
     customClass: {
       popup: "swal2-border-radius",
-      title: "swal2-title-small", // <--- clase para achicar título
+      title: "swal2-title-small",
       confirmButton: "swal2-btn-eliminar",
       cancelButton: "swal2-btn-cancelar",
     },

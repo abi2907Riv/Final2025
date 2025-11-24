@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Final2025.Models.General;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+
 
 namespace Final2025.Controllers
 {
@@ -18,10 +20,7 @@ namespace Final2025.Controllers
         private readonly Context _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public PersonasController(
-            Context context,
-            UserManager<ApplicationUser> userManager
-        )
+        public PersonasController(Context context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -58,24 +57,6 @@ namespace Final2025.Controllers
                 return BadRequest();
             }
 
-            //Validar que no exista una categoria con el mismo nombre - sin importar mayúsculas/minúsculas
-            var emailExistente = await _context.Personas
-            .Where(p => persona.Email.ToLower().ToUpper() == p.Email.ToLower().ToUpper() && p.PersonaID != id)
-            .AnyAsync();
-
-            //Hace una condicion de que si la categoria ya existe, se devuelva un error
-            if (emailExistente)
-            {
-                return BadRequest(new { codigo = 0, mensaje = $"El Email {persona.Email} ya existe."});
-            }
-
-
-            //SOLO PERMITIR EDITAR
-            persona.Nombre = persona.Nombre;
-            persona.FechaNacimiento = persona.FechaNacimiento;
-            persona.Peso = persona.Peso;
-
-
             _context.Entry(persona).State = EntityState.Modified;
 
             try
@@ -100,39 +81,29 @@ namespace Final2025.Controllers
         // POST: api/Personas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Persona>> PostPersona(Persona persona)
+        public async Task<ActionResult<Persona>> PostPersona([FromBody] CrearUsuario persona)
         {
-            // Validar email duplicado
-            var emailExistente = await _context.Personas
-                .FirstOrDefaultAsync(c => c.Email.ToLower() == persona.Email.ToLower());
-
-            if (emailExistente != null)
+        var emailExiste = await _context.Users.Where(u => u.Email == persona.Email).AnyAsync();
+        if (emailExiste)
             {
+                // return BadRequest("El Email ya esta registrado"); 
                 return BadRequest(new { codigo = 0, mensaje = $"El Email {persona.Email} ya existe." });
             }
 
-            try
-            {
-                _context.Personas.Add(persona);
-                await _context.SaveChangesAsync();
+        var user = new ApplicationUser
+        {
+            UserName = persona.Email,
+            Email = persona.Email,
+            NombreCompleto = persona.Persona.Nombre
+        };
 
-                // Crear usuario de Identity
-                var user = new ApplicationUser
-                {
-                    NombreCompleto = persona.Nombre,
-                    UserName = persona.Email,
-                    Email = persona.Email
-                };
+        await _userManager.CreateAsync(user, "Final2025");
 
-                var result = await _userManager.CreateAsync(user, "Final2025");
+        persona.Persona.UsuarioID = user.Id;
+            _context.Personas.Add(persona.Persona);
+            await _context.SaveChangesAsync();
 
-
-                return CreatedAtAction("GetPersona", new { id = persona.PersonaID }, persona);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { mensaje = ex.Message });
-            }
+            return CreatedAtAction("GetPersona", new { id = persona.Persona.PersonaID }, persona);
         }
 
         // DELETE: api/Personas/5
@@ -150,31 +121,6 @@ namespace Final2025.Controllers
 
             return NoContent();
         }
-
-
-    //     [HttpPost("Filtrar")]
-    //     public async Task<ActionResult<IEnumerable<Persona>>> GetPersona([FromBody] FiltroPersona filtro)
-    //     {
-    //         var personas = _context.Personas.AsQueryable();
-
-    //         if (!string.IsNullOrEmpty(filtro.Nombre))
-    //         {
-    //             personas = personas.Where(c => c.Nombre.ToLower().Contains(filtro.Nombre.ToLower()));
-    //         }
-    //         if (filtro.FechaNacimiento.HasValue)
-    //         {
-    //             var fechaInicio = filtro.FechaNacimiento.Value.Date;
-    //             var fechaFin = fechaInicio.AddDays(1);
-    //             personas = personas.Where(a => a.FechaNacimiento >= fechaInicio && a.FechaNacimiento < fechaFin);
-    //         }
-
-    //         if (filtro.Peso.HasValue)
-    //         {
-    //             personas = personas.Where(c => c.Peso == filtro.Peso.Value);
-    //         }
-            
-    //         return personas.ToList();
-    //    }
 
         private bool PersonaExists(int id)
         {

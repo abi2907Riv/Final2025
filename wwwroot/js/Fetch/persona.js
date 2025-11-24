@@ -60,7 +60,6 @@ function MostrarPersonas(data) {
   }
 
   $.each(data, function (index, item) {
-    // Cálculo de edad
     const fechaHoy = new Date();
     const fechaNacimiento = new Date(item.fechaNacimiento);
     let edad = fechaHoy.getFullYear() - fechaNacimiento.getFullYear();
@@ -72,7 +71,6 @@ function MostrarPersonas(data) {
       edad--;
     }
 
-    // Botones de acciones usando template literals
     const botonesAcciones = `
             <td class='text-end'>
                 <button class='btn btn-primary btn-editar me-2' 
@@ -84,19 +82,18 @@ function MostrarPersonas(data) {
     }', '${item.email}', ${item.peso})">
                     <i class='bi bi-pencil-square'></i>
                 </button>
-                <button class='btn btn-danger btn-eliminar' 
+                <!--<button class='btn btn-danger btn-eliminar' 
                         style='background: none; border: none; color:#dc3545; font-size: 18px;' 
                         onclick="EliminarPersona(${item.personaID})">
                     <i class='bx bx-trash'></i>
-                </button>
+                </button>-->
             </td>
         `;
 
-    // Agregar fila a la tabla
     $("#todasLasPersonas").append(`
             <tr>
                 <td>${item.nombre}</td>
-                <td>${item.email}</td>
+                <!-- <td>${item.email}</td> -->
                 <td>${edad}</td>
                 <td>${item.peso}</td>
                 ${botonesAcciones}
@@ -233,15 +230,17 @@ function ValidarExistenciaPersona(mensaje) {
 async function CrearPersona() {
     if (!ValidarFormulario()) {
       return;}
+
+  let email = document.getElementById("EmailPersona").value.trim();
+
   let persona = {
     nombre: document.getElementById("nombrePersona").value.trim(),
-    email: document.getElementById("EmailPersona").value.trim(),
     fechaNacimiento: document.getElementById("FechaNacimiento").value,
-    peso: parseInt(document.getElementById("PesoPersona").value),
+    peso: parseFloat(document.getElementById("PesoPersona").value),
   };
   const res = await authFetch("Personas", {
     method: "POST",
-    body: JSON.stringify(persona),
+    body: JSON.stringify({ email, persona }),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -285,7 +284,7 @@ async function MostrarModalEditar(personaID) {
   document.getElementById("FechaNacimiento").value = fechaFormateada;
   document.getElementById("PesoPersona").value = personas.peso;
 
-  document.getElementById("EmailPersona").disabled = true;
+  document.getElementById("emailInput").style.display = "none";
 
   document.querySelector('[data-bs-target="#collapsePersonas"]').click();
 }
@@ -293,18 +292,17 @@ async function MostrarModalEditar(personaID) {
 ////////////////////////////////////////////
 //////FUNCION PARA EDITAR LA CATEGORIA//////
 ////////////////////////////////////////////
-async function EditarPersona(personaID, nombre, fechaNacimiento, email, peso) {
+async function EditarPersona(personaID) {
   if (!ValidarFormulario()) {
     return;
   }
 
-  const persona = {
-    personaID: personaID,
-    nombre: nombre.trim(),
-    fechaNacimiento: fechaNacimiento,
-    email: email, 
-    peso: peso,
-  };
+    let persona = {
+        personaID: personaID,
+        nombre: document.getElementById("nombrePersona").value.trim(),
+        fechaNacimiento: document.getElementById("FechaNacimiento").value,
+        peso: parseInt(document.getElementById("PesoPersona").value),
+    };
   console.log("Datos enviados:", JSON.stringify(persona));
 
   try {

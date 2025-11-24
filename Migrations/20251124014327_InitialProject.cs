@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Final2025.Migrations
 {
     /// <inheritdoc />
-    public partial class PrimerosModelos : Migration
+    public partial class InitialProject : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,10 +57,10 @@ namespace Final2025.Migrations
                 {
                     PersonaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Edad = table.Column<int>(type: "int", nullable: false),
-                    Peso = table.Column<int>(type: "int", nullable: false),
-                    UsuarioID = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FechaNacimiento = table.Column<DateOnly>(type: "date", nullable: false),
+                    Peso = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    UsuarioID = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,8 +73,9 @@ namespace Final2025.Migrations
                 {
                     TipoActividadID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CaloriasPorMinuto = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CaloriasPorMinuto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Eliminado = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -196,8 +197,8 @@ namespace Final2025.Migrations
                     PersonaID = table.Column<int>(type: "int", nullable: false),
                     TipoActividadID = table.Column<int>(type: "int", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DuracionMinutos = table.Column<int>(type: "int", nullable: false),
-                    Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DuracionMinutos = table.Column<TimeSpan>(type: "time", nullable: false),
+                    Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

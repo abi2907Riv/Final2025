@@ -21,8 +21,8 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerTipoActividad.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\InformeActividadesPorPersona.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\InformeActividadesPorPersona.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\script.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\script.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\actividad.js",
@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\sneat\\img\\google.png"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\imgPerfil.jpg",
+      "PackagePath": "staticwebassets\\sneat\\img\\imgPerfil.jpg"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\img\\instagram.png",
       "PackagePath": "staticwebassets\\sneat\\img\\instagram.png"
     },
@@ -135,10 +139,6 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",
       "PackagePath": "staticwebassets\\views\\home.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informeActividadPorPersona.html",
-      "PackagePath": "staticwebassets\\views\\informeActividadPorPersona.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personas.html",

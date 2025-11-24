@@ -2,7 +2,7 @@
 //FUNCION PARA OBTENER LOS TIPOS DE ACTIVIDAD EN EL DROP//
 /////////////////////////////////////////////////
 async function ObtenerTipoActividadDrop() {
-    const res = await authFetch('TipoActividad', {
+    const res = await authFetch('TiposActividades', {
         method: 'GET'
     })
     .then(response => response.json())

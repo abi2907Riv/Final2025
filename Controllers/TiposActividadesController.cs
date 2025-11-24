@@ -11,23 +11,23 @@ namespace Final2025.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TipoActividadController : ControllerBase
+    public class TiposActividadesController : ControllerBase
     {
         private readonly Context _context;
 
-        public TipoActividadController(Context context)
+        public TiposActividadesController(Context context)
         {
             _context = context;
         }
 
-        // GET: api/TipoActividad
+        // GET: api/TiposActividades
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TipoActividad>>> GetTipoActividades()
         {
             return await _context.TipoActividades.ToListAsync();
         }
 
-        // GET: api/TipoActividad/5
+        // GET: api/TiposActividades/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TipoActividad>> GetTipoActividad(int id)
         {
@@ -41,7 +41,7 @@ namespace Final2025.Controllers
             return tipoActividad;
         }
 
-        // PUT: api/TipoActividad/5
+        // PUT: api/TiposActividades/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTipoActividad(int id, TipoActividad tipoActividad)
@@ -82,7 +82,7 @@ namespace Final2025.Controllers
             return NoContent();
         }
 
-        // POST: api/TipoActividad
+        // POST: api/TiposActividades
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<TipoActividad>> PostTipoActividad(TipoActividad tipoActividad)
@@ -95,14 +95,13 @@ namespace Final2025.Controllers
             {
                 return BadRequest(new { codigo = 0, mensaje = $"El Tipo de Actividad {tipoActividad.Nombre} ya existe." });
             }
-
             _context.TipoActividades.Add(tipoActividad);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTipoActividad", new { id = tipoActividad.TipoActividadID }, tipoActividad);
         }
 
-        // DELETE: api/TipoActividad/5
+        // DELETE: api/TiposActividades/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTipoActividad(int id)
         {
@@ -111,12 +110,14 @@ namespace Final2025.Controllers
             {
                 return NotFound();
             }
+
             tipoActividad.Eliminado = !tipoActividad.Eliminado;
             _context.TipoActividades.Update(tipoActividad);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
+
 
 
 
@@ -138,7 +139,7 @@ namespace Final2025.Controllers
         //     }
             
         //     return tipoActividadFiltrada.ToList();
-        // }        
+        // }    
 
         private bool TipoActividadExists(int id)
         {

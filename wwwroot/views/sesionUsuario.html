@@ -50,7 +50,9 @@
               <form id="loginForm" class="mb-3">
                 <div class="mb-3">
                   <label for="loginEmail" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="loginEmail" placeholder="Ingrese su correo electrónico" autofocus />
+                  <input type="email" class="form-control" id="loginEmail" placeholder="Ingrese su correo electrónico"
+                    autofocus />
+                  <div class="invalid-feedback" id="errorLoginEmail"></div>
                 </div>
 
                 <div class="mb-3 form-password-toggle">
@@ -60,6 +62,7 @@
                   <div class="input-group input-group-merge">
                     <input type="password" id="loginPassword" class="form-control" aria-describedby="password" />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    <div class="invalid-feedback" id="errorContraseñaLogin"></div>
                   </div>
                 </div>
 
@@ -87,11 +90,13 @@
                 <div class="mb-3">
                   <label for="regNombre" class="form-label">Nombre de usuario</label>
                   <input type="text" class="form-control" id="regNombre" placeholder="Nombre completo" autofocus />
+                  <div class="invalid-feedback" id="errorNombreRegistrar"></div>
                 </div>
 
                 <div class="mb-3">
                   <label for="regEmail" class="form-label">Email</label>
                   <input type="email" class="form-control" id="regEmail" placeholder="Ingrese su correo electrónico" />
+                  <div class="invalid-feedback" id="errorEmailRegistrar"></div>
                 </div>
 
                 <div class="mb-3 form-password-toggle">
@@ -99,8 +104,23 @@
                   <div class="input-group input-group-merge">
                     <input type="password" id="regPassword" class="form-control" aria-describedby="password" />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    <div class="invalid-feedback" id="errorContraseñaRegistrar"></div>
                   </div>
                 </div>
+
+                <!-- NUEVOS CAMPOS -->
+                <div class="mb-3">
+                  <label for="regFechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                  <input type="date" class="form-control" id="regFechaNacimiento" />
+                  <div class="invalid-feedback" id="errorFechaNacimientoRegistrar"></div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="regPeso" class="form-label">Peso (kg)</label>
+                  <input type="number" class="form-control" id="regPeso" placeholder="Ingrese su peso" />
+                  <div class="invalid-feedback" id="errorPesoRegistrar"></div>
+                </div>
+                <!-- FIN DE NUEVOS CAMPOS -->
 
                 <button class="btn btn-primary d-grid w-100" type="submit">Registrar</button>
               </form>

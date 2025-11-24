@@ -14,11 +14,11 @@ namespace Final2025.Models.General
         public string FechaString { get { return Fecha.ToString("dd/MM/yyyy"); } }
         public DateTime Fecha { get; set; }
 
-        public int DuracionMinutos { get; set; }
+        public TimeSpan DuracionMinutos { get; set; }
         public string? Observaciones { get; set; }
 
-        public virtual Persona Persona { get; set; }
-        public virtual TipoActividad TipoActividad { get; set; }
+        public virtual Persona? Persona { get; set; }
+        public virtual TipoActividad? TipoActividad { get; set; }
     }
 
     // public class VistaActividad
