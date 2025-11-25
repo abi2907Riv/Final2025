@@ -12,25 +12,25 @@ async function ObtenerPersonasDrop() {
     .catch(error => console.log('No se puede acceder al servicio', error));
 }
 function MostrarPersonasDrop(data) {
-    let bodySelect = document.getElementById("PersonaId");
-    bodySelect.innerHTML = "";
-    // let bodySelectFiltro = document.getElementById("CategoriaIDBuscar");
-    // bodySelectFiltro.innerHTML = "";
+    // let bodySelect = document.getElementById("PersonaId");
+    // bodySelect.innerHTML = "";
+    let bodySelectFiltro = document.getElementById("personaBuscar");
+    bodySelectFiltro.innerHTML = "";
     
 
-    bodySelect.innerHTML = "<option value='0' hidden>[Seleccione una opción]</option>";
-    // bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
+    //bodySelect.innerHTML = "<option value='0' hidden>[Seleccione una opción]</option>";
+    bodySelectFiltro.innerHTML = "<option value=''>[Todas]</option>";
 
     data.forEach(element => {
-        let opt = document.createElement("option");
-        opt.value = element.personaID;
-        opt.innerHTML = element.nombre;
-        bodySelect.appendChild(opt);
+        // let opt = document.createElement("option");
+        // opt.value = element.personaID;
+        // opt.innerHTML = element.nombre;
+        // bodySelect.appendChild(opt);
 
-        // let optFiltro = document.createElement("option");
-        // optFiltro.value = element.id;
-        // optFiltro.innerHTML = element.nombre;
-        // bodySelectFiltro.appendChild(optFiltro);
+        let optFiltro = document.createElement("option");
+        optFiltro.value = element.personaID;
+        optFiltro.innerHTML = element.nombre;
+        bodySelectFiltro.appendChild(optFiltro);
    })
 }
 ////////////////////////////////////////////////////

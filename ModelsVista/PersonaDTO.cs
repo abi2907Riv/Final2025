@@ -1,0 +1,8 @@
+using Final2025.Models.General;
+
+public class PersonasDTO
+{
+    public string Nombre {get; set;}
+    public string Email {get; set;}
+    public List<TipoActividadDTO> TiposActividad {get; set;}
+}

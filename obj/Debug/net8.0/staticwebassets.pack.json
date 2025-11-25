@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerTipoActividad.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\filtroPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\filtroPersona.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\informeActividadPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\informeActividadPersona.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\script.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\script.js"
     },
@@ -137,8 +145,16 @@
       "PackagePath": "staticwebassets\\views\\actividad.html"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\filtroPersona.html",
+      "PackagePath": "staticwebassets\\views\\filtroPersona.html"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",
       "PackagePath": "staticwebassets\\views\\home.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informesActividadPersona.html",
+      "PackagePath": "staticwebassets\\views\\informesActividadPersona.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personas.html",

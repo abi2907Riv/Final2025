@@ -56,7 +56,7 @@ namespace Final2025.Controllers
             var fecha = DateOnly.FromDateTime(actividad.Fecha);
             var fechaDeHoy = DateOnly.FromDateTime(DateTime.Now);
 
-            if(fecha > fechaDeHoy)
+            if (fecha > fechaDeHoy)
             {
                 return BadRequest("La fecha no puede ser futura a la fecha de hoy");
             }
@@ -102,7 +102,7 @@ namespace Final2025.Controllers
             var fecha = DateOnly.FromDateTime(actividad.Fecha);
             var fechaDeHoy = DateOnly.FromDateTime(DateTime.Now);
 
-            if(fecha > fechaDeHoy)
+            if (fecha > fechaDeHoy)
             {
                 return BadRequest("La fecha no puede ser futura a la fecha de hoy");
             }
@@ -134,9 +134,96 @@ namespace Final2025.Controllers
             return NoContent();
         }
 
-        private bool ActividadExists(int id)
+
+        ///////////////////////////////////////////////INFORMES////////////////////////////////////////////////
+        [HttpPost("InformeActividadXPersona")]
+        public async Task<ActionResult<IEnumerable<PersonasDTO>>> InformeActividadXPersona()
         {
-            return _context.Actividades.Any(e => e.ActividadID == id);
+            //Obtengo el ID del usuario logueado
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //Trae todas las personas
+            var personas = await _context.Personas
+                //.Where(p => p.UsuarioID == userId)
+                .ToListAsync();
+
+            // Lista final que tendra los resultados finales
+            List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+
+            foreach (var persona in personas)
+            {
+                //obtienes el email del usuario logueado, usando el UsuarioID de la persona como vínculo
+                var email = await _context.Users
+                    .Where(u => u.Id == persona.UsuarioID)
+                    .Select(u => u.Email)
+                    .FirstOrDefaultAsync();
+
+                //Busco las actividades que le pertenecenn a esa persona
+                var actividades = await _context.Actividades
+                .Where(a => a.PersonaID == persona.PersonaID)
+                    .Include(a => a.TipoActividad).ToListAsync();
+
+                if (!actividades.Any())
+                    continue;
+                
+                List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
+
+                foreach (var actividad in actividades)
+                {
+                    var actividadesDelTipo = actividades
+                    .Where(a => a.TipoActividadID == actividad.TipoActividadID).ToList();
+
+                    tiposActividadMostrar.Add(new TipoActividadDTO
+                    {
+                        NombreTipo = actividad.TipoActividad.Nombre,
+                        CaloriasPorMinuto = actividad.TipoActividad.CaloriasPorMinuto,
+                        Actividades = actividadesDelTipo
+                        .Select(a => new ActividadDTO
+                        {
+                            Fecha = a.Fecha,
+                            DuracionMinutos = (int)a.DuracionMinutos.TotalMinutes,
+                            CaloriasQuemadas = (int)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto
+                        })
+                    .ToList()
+                    });
+                }
+                personasMostrar.Add(new PersonasDTO
+                {
+                    Nombre = persona.Nombre,
+                    Email = email,
+                    TiposActividad = tiposActividadMostrar
+                });
+            }
+
+            return Ok(personasMostrar);
         }
+
+
+
+        [HttpPost("FiltrarPersona")]
+        public async Task<ActionResult<IEnumerable<Actividad>>> FiltroPersonaActividad([FromBody] FiltroPersonaActividad filtro)
+        {
+            //List<Actividad> vista = new List<Actividad>();
+
+            var persona = await _context.Personas.Where(p => p.PersonaID == filtro.PersonaID)
+            .FirstOrDefaultAsync();
+
+            // Obtener todas las actividades incluidos los tipos de actividad
+            var actividades = await _context.Actividades
+            .Where(a => a.PersonaID == filtro.PersonaID)
+            .Include(a => a.TipoActividad).ToListAsync();
+
+            if (filtro.PersonaID > 0) // solo filtra si se seleccionó una persona específica
+        actividades = actividades.Where(a => a.PersonaID == filtro.PersonaID).ToList();
+
+
+            return Ok(actividades);
+            
+        }
+
+
+        private bool ActividadExists(int id)
+{
+    return _context.Actividades.Any(e => e.ActividadID == id);
+}
     }
 }
