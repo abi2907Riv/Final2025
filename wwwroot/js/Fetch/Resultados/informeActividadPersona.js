@@ -28,7 +28,7 @@ function MostrarInformeActividad(data) {
       const filaTipo = document.createElement("tr");
       filaTipo.innerHTML = `
                 <td colspan="4" class="fw-bold table-success">
-                    ${tipo.nombreTipo} — ${tipo.caloriasPorMinuto} Calorias por Minuto
+                    ${tipo.nombreTipo} — ${tipo.caloriasPorMinuto} kcal/min
                 </td>
             `;
       tbody.appendChild(filaTipo);
@@ -51,7 +51,7 @@ function MostrarInformeActividad(data) {
         filaDetalle.innerHTML = `
                     <td>${new Date(det.fecha).toLocaleDateString()}</td>
                     <td>${duracionFormateada}</td>
-                    <td>${det.caloriasQuemadas}</td>
+                    <td>${det.caloriasQuemadas} (kcal)</td>
                 `;
         tbody.appendChild(filaDetalle);
       });

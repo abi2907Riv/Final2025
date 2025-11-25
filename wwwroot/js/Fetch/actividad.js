@@ -15,6 +15,13 @@ async function ObtenerActividad() {
 ////FUNCION PARA MOSTRAR LAS ACTIVIDADES/////
 ////////////////////////////////////////////
 function MostrarActividad(data) {
+  if (window.innerWidth <= 880) {
+    MostrarActividadMobile(data);
+  } else {
+    MostrarActividadDesktop(data);
+  }
+}
+function MostrarActividadDesktop(data) {
   $("#todasLasActividades").empty();
 
   if (data.length === 0) {
@@ -60,6 +67,60 @@ function MostrarActividad(data) {
       botonesAcciones +
       "</tr>"
     );
+  });
+}
+
+function MostrarActividadMobile(data) {
+  $("#actividadesMobileContainer").empty();
+
+  if (data.length === 0) {
+    $("#actividadesMobileContainer").append(
+      "<div class='text-center text-muted'>No hay actividades para mostrar</div>"
+    );
+    return;
+  }
+
+  $.each(data, function(index, item) {
+
+    let duracion = "0min";
+    if (item.duracionMinutos) {
+      const [h, m] = item.duracionMinutos.split(':');
+      duracion = h && h !== "00" ? `${parseInt(h)}h ${parseInt(m)}min` : `${parseInt(m)}min`;
+    }
+
+    const editarHTML = `
+      <button class='btn' style='background:none; border:none; color:#007bff; font-size:18px;' 
+        onclick="MostrarModalEditar('${item.actividadID}', '${item.personaID}', '${item.tipoActividadID}', '${item.fecha}', '${item.duracionMinutos}', '${item.observaciones}')">
+        <i class='bi bi-pencil-square'></i>
+      </button>`;
+
+    const eliminarHTML = `
+      <button class='btn' style='background:none; border:none; color:#dc3545; font-size:18px;' 
+        onclick="EliminarActividad(${item.actividadID})">
+        <i class='bx bx-trash'></i>
+      </button>`;
+
+    $("#actividadesMobileContainer").append(`
+      <div class='actividad-card' style='
+        border:1px solid #ddd; border-radius:10px;
+        padding:14px; margin-bottom:12px; background:#fff;
+        box-shadow:0 2px 4px rgba(0,0,0,0.05);'>
+
+        <div class='d-flex justify-content-between align-items-center mb-1'>
+          <h6 class='fw-bold mb-0' style='color:#333;'>${item.tipoActividad.nombre}</h6>
+          <div class='d-flex align-items-center gap-2'>
+            ${editarHTML}
+            ${eliminarHTML}
+          </div>
+        </div>
+
+        <div class='text-muted' style='font-size:14px;'>
+          <div>Fecha: ${item.fechaString}</div>
+          <div>Duración: ${duracion}</div>
+        </div>
+
+      </div>
+    `);
   });
 }
 
@@ -114,9 +175,18 @@ function ValidarFormulario() {
     valido = false
   }
   if (!fecha){
-    inputFecha.classList.add("is-invalid");
-    errorFecha.textContent = "Seleccione una fecha";
-    valido = false
+      inputFecha.classList.add("is-invalid");
+      errorFecha.textContent = "Seleccione una fecha";
+      valido = false;
+  } else {
+      const fechaIngresada = new Date(fecha);
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0); // Ignorar horas
+      if (fechaIngresada > hoy) {
+          inputFecha.classList.add("is-invalid");
+          errorFecha.textContent = "La fecha no puede ser futura";
+          valido = false;
+      }
   }
   if (!duracionMinutos){
     inputDuracionMinutos.classList.add("is-invalid");

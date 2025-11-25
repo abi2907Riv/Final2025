@@ -30,7 +30,9 @@ namespace Final2025.Controllers
             .Select(p => p.PersonaID).FirstOrDefaultAsync();
 
             var actividades = await _context.Actividades.Where(a => a.PersonaID == personaID)
-            .Include(a => a.TipoActividad).ToListAsync();
+            .OrderByDescending(a => a.Fecha)
+            .Include(a => a.TipoActividad)
+            .ToListAsync();
             return actividades;
         }
 
@@ -151,7 +153,6 @@ namespace Final2025.Controllers
 
             foreach (var persona in personas)
             {
-                //obtienes el email del usuario logueado, usando el UsuarioID de la persona como vínculo
                 var email = await _context.Users
                     .Where(u => u.Id == persona.UsuarioID)
                     .Select(u => u.Email)
@@ -160,23 +161,26 @@ namespace Final2025.Controllers
                 //Busco las actividades que le pertenecenn a esa persona
                 var actividades = await _context.Actividades
                 .Where(a => a.PersonaID == persona.PersonaID)
+                .OrderByDescending(a => a.Fecha)
                     .Include(a => a.TipoActividad).ToListAsync();
 
                 if (!actividades.Any())
                     continue;
-                
+
+                //Agrupo actividades por TipoActividad
+                var tipoActividadAgrupado = actividades
+                .GroupBy(a => a.TipoActividadID);
+
                 List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
 
-                foreach (var actividad in actividades)
+                foreach (var actividad in tipoActividadAgrupado)
                 {
-                    var actividadesDelTipo = actividades
-                    .Where(a => a.TipoActividadID == actividad.TipoActividadID).ToList();
-
+                    var tiposActividad = actividad.Select(a => a.TipoActividad).First();
                     tiposActividadMostrar.Add(new TipoActividadDTO
                     {
-                        NombreTipo = actividad.TipoActividad.Nombre,
-                        CaloriasPorMinuto = actividad.TipoActividad.CaloriasPorMinuto,
-                        Actividades = actividadesDelTipo
+                        NombreTipo = tiposActividad.Nombre,
+                        CaloriasPorMinuto = tiposActividad.CaloriasPorMinuto,
+                        Actividades = actividad
                         .Select(a => new ActividadDTO
                         {
                             Fecha = a.Fecha,
@@ -213,17 +217,51 @@ namespace Final2025.Controllers
             .Include(a => a.TipoActividad).ToListAsync();
 
             if (filtro.PersonaID > 0) // solo filtra si se seleccionó una persona específica
-        actividades = actividades.Where(a => a.PersonaID == filtro.PersonaID).ToList();
+                actividades = actividades.Where(a => a.PersonaID == filtro.PersonaID).ToList();
 
 
             return Ok(actividades);
+
+        }
+
+        [HttpPost("InformeActividadXTipoActividad")]
+        public async Task<ActionResult<IEnumerable<TipoActividadDTO>>> InformeActividadXTipoActividad()
+        {
+            var tipoActividad = await _context.TipoActividades.ToListAsync();
+            var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+
+            List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
             
+            
+            foreach(var tiposActividades in tipoActividad)
+            {
+                 var actividadesDelTipo = actividades
+                    .Where(a => a.TipoActividadID == tiposActividades.TipoActividadID)
+                .Select(t => new ActividadDTO
+                {
+                    Fecha = t.Fecha,
+                    DuracionMinutos = (int)t.DuracionMinutos.TotalMinutes,
+                    CaloriasQuemadas = (int)t.DuracionMinutos.TotalMinutes * t.TipoActividad.CaloriasPorMinuto
+                })
+                .ToList();
+
+                if (!actividadesDelTipo.Any())
+                    continue;
+                tiposActividadMostrar.Add(new TipoActividadDTO
+                {
+                    NombreTipo = tiposActividades.Nombre,
+                    CaloriasPorMinuto = tiposActividades.CaloriasPorMinuto,
+                    Actividades = actividadesDelTipo
+                });
+            }
+            return Ok(tiposActividadMostrar);
+
         }
 
 
         private bool ActividadExists(int id)
-{
-    return _context.Actividades.Any(e => e.ActividadID == id);
-}
+        {
+            return _context.Actividades.Any(e => e.ActividadID == id);
+        }
     }
 }

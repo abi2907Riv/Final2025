@@ -50,6 +50,13 @@ async function ObtenerPersonas() {
 ////FUNCION PARA MOSTRAR LAS PERSONAS/////
 ////////////////////////////////////////////
 function MostrarPersonas(data) {
+  if (window.innerWidth <= 880) {
+    MostrarPersonasMobile(data);
+  } else {
+    MostrarPersonasDesktop(data);
+  }
+}
+function MostrarPersonasDesktop(data) {
   $("#todasLasPersonas").empty();
 
   if (data.length === 0) {
@@ -101,6 +108,52 @@ function MostrarPersonas(data) {
         `);
   });
 }
+
+function MostrarPersonasMobile(data) {
+  $("#personasMobileContainer").empty();
+
+  if (data.length === 0) {
+    $("#personasMobileContainer").append(
+      "<div class='text-center text-muted'>No hay personas para mostrar</div>"
+    );
+    return;
+  }
+
+  $.each(data, function(index, item) {
+    const fechaHoy = new Date();
+    const fechaNacimiento = new Date(item.fechaNacimiento);
+    let edad = fechaHoy.getFullYear() - fechaNacimiento.getFullYear();
+    const mes = fechaHoy.getMonth() - fechaNacimiento.getMonth();
+    if (mes < 0 || (mes === 0 && fechaHoy.getDate() < fechaNacimiento.getDate())) {
+      edad--;
+    }
+
+    const editarHTML = `<button class='btn' style='background:none; border:none; color:#007bff; font-size:18px;' 
+      onclick="MostrarModalEditar(${item.personaID}, '${item.nombre.replace(/'/g, "\\'")}', '${item.fechaNacimiento}', '${item.email}', ${item.peso})">
+      <i class='bi bi-pencil-square'></i></button>`;
+
+    $("#personasMobileContainer").append(`
+      <div class='persona-card' style='
+        border:1px solid #ddd; border-radius:10px;
+        padding:14px; margin-bottom:12px; background:#fff;
+        box-shadow:0 2px 4px rgba(0,0,0,0.05);'>
+
+        <div class='d-flex justify-content-between align-items-center mb-1'>
+          <h6 class='fw-bold mb-0' style='color:#333; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;'>${item.nombre}</h6>
+          <div class='d-flex align-items-center gap-2'>
+            ${editarHTML}
+          </div>
+        </div>
+
+        <div class='text-muted' style='font-size:14px;'>
+          <div>Edad: ${edad} años</div>
+          <div>Peso: ${item.peso} kg</div>
+        </div>
+      </div>
+    `);
+  });
+}
+
 
 // ////////////////////////////////////////////
 // ////FUNCION PARA VALIDAR FORMULARIO/////

@@ -13,7 +13,16 @@ async function ObtenerTipoActividad() {
 ////////////////////////////////////////////
 ////FUNCION PARA MOSTRAR LOS TIPOS DE ACTIVIDAD/////
 ////////////////////////////////////////////
+
 function MostrarTipoActividad(data) {
+  if (window.innerWidth <= 880) {
+    MostrarTipoActividadMobile(data);
+  } else {
+    MostrarTipoActividadDesktop(data);
+  }
+}
+
+function MostrarTipoActividadDesktop(data) {
   $("#todosLosTiposActiidades").empty();
 
   if (data.length === 0) {
@@ -54,6 +63,54 @@ $.each(data, function (index, item) {
 
 }
 
+function MostrarTipoActividadMobile(data) {
+  $("#tiposActividadesMobileContainer").empty();
+
+  if (data.length === 0) {
+    $("#tiposActividadesMobileContainer").append(
+      "<div class='text-center text-muted'>No hay tipos de actividad para mostrar</div>"
+    );
+    return;
+  }
+
+  $.each(data, function (index, item) {
+    let icono = item.eliminado ? "bi bi-toggle-off" : "bi bi-toggle-on";
+    let colorBoton = item.eliminado ? "#c54132ff" : "#22903bff";
+    let botonEditarVisible = item.eliminado ? "display: none;" : "";
+    let claseCard = item.eliminado ? "tipoActividad-eliminada" : "";
+
+    let toggleHTML = item.eliminado
+      ? `<button class='btn' style='background:none; border:none; color:${colorBoton}; font-size:20px;' onclick='ActivarTipoActividad(${item.tipoActividadID})'><i class='${icono}'></i></button>`
+      : `<button class='btn' style='background:none; border:none; color:${colorBoton}; font-size:20px;' onclick='DesactivarTipoActividad(${item.tipoActividadID})'><i class='${icono}'></i></button>`;
+
+    let editarHTML = `<button class='btn' style='${botonEditarVisible}background:none; border:none; color:#007bff; font-size:20px;' onclick='MostrarModalEditar(${item.tipoActividadID}, "${item.nombre}", ${item.caloriasPorMinuto})'><i class='bi bi-pencil-square'></i></button>`;
+
+    $("#tiposActividadesMobileContainer").append(`
+      <div class='tipoActividad-card ${claseCard}' style='display: flex; align-items: center; justify-content: space-between; border:1px solid #ddd; border-radius:10px; padding:10px 14px; margin-bottom:10px; background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.05); gap:8px;'>
+        <div style='display: flex; align-items: center; gap: 8px; flex:1; overflow:hidden;'>
+          ${editarHTML}
+          <div style='text-overflow: ellipsis; overflow:hidden; white-space:nowrap; cursor:pointer;' 
+            onclick='MostrarModalDetalleTipoActividad("${item.nombre.replace(/"/g, "&quot;")}", ${item.caloriasPorMinuto})'>
+          ${item.nombre} (${item.caloriasPorMinuto} cal/min)
+        </div>
+        </div>
+        ${toggleHTML}
+      </div>
+    `);
+  });
+}
+
+function MostrarModalDetalleTipoActividad(nombre, calorias) {
+    const modal = new bootstrap.Collapse(
+        document.getElementById("collapseTipoActividad"),
+        { toggle: false }
+    );
+
+    $("#collapseTipoActividad").collapse("show");
+    $("#nombreTipoActividad").val(nombre).prop("readonly", true);
+    $("#CaloriasPorMinutos").val(calorias).prop("readonly", true);
+    $('button[onclick="BuscarTipoActividadId()"]').hide();
+}
 
 // ////////////////////////////////////////////
 // ////FUNCION PARA VALIDAR FORMULARIO/////

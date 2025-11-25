@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\informeActividadPersona.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\informeActividadxtipo.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\informeActividadxtipo.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\script.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\script.js"
     },
@@ -151,6 +155,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",
       "PackagePath": "staticwebassets\\views\\home.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informeActividadTipo.html",
+      "PackagePath": "staticwebassets\\views\\informeActividadTipo.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informesActividadPersona.html",
