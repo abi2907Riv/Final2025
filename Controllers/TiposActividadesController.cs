@@ -111,6 +111,11 @@ namespace Final2025.Controllers
                 return NotFound();
             }
 
+            // var existeRelacion = await _context.Actividades.Where(a => a.TipoActividadID == id).AnyAsync();
+            // if(existeRelacion == true)
+            // {
+            //     return BadRequest("No se puede desactivar ya que contiene actividades relacionadas");
+            // }
             tipoActividad.Eliminado = !tipoActividad.Eliminado;
             _context.TipoActividades.Update(tipoActividad);
             await _context.SaveChangesAsync();
@@ -122,7 +127,8 @@ namespace Final2025.Controllers
 
 
         // [HttpPost("Filtrar")]
-        // public async Task<ActionResult<IEnumerable<TipoActividad>>> GetTipoActividad([FromBody] FiltroTipoActividad filtro)
+        // //public async Task<ActionResult<IEnumerable<TipoActividad>>> GetTipoActividad([FromBody] FiltroTipoActividad filtro)
+        // public async Task<ActionResult<IEnumerable<TipoActividad>>> Filtrar([FromBody] FiltroTipoActividad filtro)
         // {
         //     var tipoActividadFiltrada = _context.TipoActividades.AsQueryable();
         //     if (filtro.Eliminado.HasValue)

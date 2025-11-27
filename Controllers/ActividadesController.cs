@@ -392,94 +392,130 @@ namespace Final2025.Controllers
 
 
 
-        [HttpPost("InformeActividadXPersonaCantidad")]
-        public async Task<ActionResult<IEnumerable<PersonasDTO>>> InformeActividadXPersona([FromBody] FiltroActividad filtro)
-        {
-            //Obtengo el ID del usuario logueado
-            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //Trae todas las personas
-            var personas = await _context.Personas
-                //.Where(p => p.UsuarioID == userId)
-                .ToListAsync();
-            // Lista final que tendra los resultados finales
-            List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+        // [HttpPost("InformeActividadXPersonaCantidad")]
+        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> InformeActividadXPersona([FromBody] FiltroActividad filtro)
+        // {
+        //     //Obtengo el ID del usuario logueado
+        //     var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //     //Trae todas las personas
+        //     var personas = await _context.Personas
+        //         //.Where(p => p.UsuarioID == userId)
+        //         .ToListAsync();
+        //     // Lista final que tendra los resultados finales
+        //     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
 
-            foreach (var persona in personas)
-            {
-                var email = await _context.Users
-                    .Where(u => u.Id == persona.UsuarioID)
-                    .Select(u => u.Email)
-                    .FirstOrDefaultAsync();
+        //     foreach (var persona in personas)
+        //     {
+        //         var email = await _context.Users
+        //             .Where(u => u.Id == persona.UsuarioID)
+        //             .Select(u => u.Email)
+        //             .FirstOrDefaultAsync();
 
-                //Busco las actividades que le pertenecenn a esa persona
-                var actividades =_context.Actividades
-                .Where(a => a.PersonaID == persona.PersonaID)
-                .OrderByDescending(a => a.Fecha)
-                    .Include(a => a.TipoActividad).AsQueryable();
+        //         //Busco las actividades que le pertenecenn a esa persona
+        //         var actividades =_context.Actividades
+        //         .Where(a => a.PersonaID == persona.PersonaID)
+        //         .OrderByDescending(a => a.Fecha)
+        //             .Include(a => a.TipoActividad).AsQueryable();
 
-                //FILTROS
-                if (filtro.PersonaID > 0) 
-                 actividades = actividades.Where(a => a.PersonaID == filtro.PersonaID);
+        //         //FILTROS
+        //         if (filtro.PersonaID > 0) 
+        //          actividades = actividades.Where(a => a.PersonaID == filtro.PersonaID);
 
-                if (filtro.TipoActividadID > 0) 
-                 actividades = actividades.Where(a => a.TipoActividadID == filtro.TipoActividadID);
+        //         if (filtro.TipoActividadID > 0) 
+        //          actividades = actividades.Where(a => a.TipoActividadID == filtro.TipoActividadID);
 
-                // Filtrar por rango de fechas de actividades
-                DateTime fechaDesde = new DateTime();
-                bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaDesde) && DateTime.TryParse(filtro.FechaDesde, out fechaDesde);
+        //         // Filtrar por rango de fechas de actividades
+        //         DateTime fechaDesde = new DateTime();
+        //         bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaDesde) && DateTime.TryParse(filtro.FechaDesde, out fechaDesde);
             
 
-                DateTime fechaHasta = new DateTime();
-                bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaHasta) && DateTime.TryParse(filtro.FechaHasta, out fechaHasta);
+        //         DateTime fechaHasta = new DateTime();
+        //         bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaHasta) && DateTime.TryParse(filtro.FechaHasta, out fechaHasta);
 
-                // Si ambas fechas son válidas, filtrar actividades dentro del rango
-                if (fechaDesdeValido && fechaHastaValido)
-                    actividades = actividades.Where(a => a.Fecha >= fechaDesde && a.Fecha <= fechaHasta);
-                else if (fechaDesdeValido) // Solo desde
-                    actividades = actividades.Where(a => a.Fecha >= fechaDesde);
-                else if (fechaHastaValido) // Solo hasta
-                    actividades = actividades.Where(a => a.Fecha <= fechaHasta);
+        //         // Si ambas fechas son válidas, filtrar actividades dentro del rango
+        //         if (fechaDesdeValido && fechaHastaValido)
+        //             actividades = actividades.Where(a => a.Fecha >= fechaDesde && a.Fecha <= fechaHasta);
+        //         else if (fechaDesdeValido) // Solo desde
+        //             actividades = actividades.Where(a => a.Fecha >= fechaDesde);
+        //         else if (fechaHastaValido) // Solo hasta
+        //             actividades = actividades.Where(a => a.Fecha <= fechaHasta);
 
-                var actividadesFiltradas = await actividades.ToListAsync();
+        //         var actividadesFiltradas = await actividades.ToListAsync();
 
-                if (!actividadesFiltradas.Any())
-                    continue;
+        //         if (!actividadesFiltradas.Any())
+        //             continue;
 
-                //Agrupo actividades por TipoActividad
-                var tipoActividadAgrupado = actividadesFiltradas
-                .GroupBy(a => a.TipoActividadID);
+        //         //Agrupo actividades por TipoActividad
+        //         var tipoActividadAgrupado = actividadesFiltradas
+        //         .GroupBy(a => a.TipoActividadID);
 
-                List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
+        //         List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
 
-                foreach (var actividad in tipoActividadAgrupado)
-                {
-                    var tiposActividad = actividad.Select(a => a.TipoActividad).First();
-                    tiposActividadMostrar.Add(new TipoActividadDTO
-                    {
-                        NombreTipo = tiposActividad.Nombre,
-                        CaloriasPorMinuto = tiposActividad.CaloriasPorMinuto,
-                        Actividades = actividad
-                        .Select(a => new ActividadDTO
-                        {
-                            Fecha = a.Fecha,
-                            DuracionMinutos = (int)a.DuracionMinutos.TotalMinutes,
-                            CaloriasQuemadas = (int)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto
-                        })
-                    .ToList()
-                    });
-                }
-                personasMostrar.Add(new PersonasDTO
-                {
-                    Nombre = persona.Nombre,
-                    Email = email,
-                    TiposActividad = tiposActividadMostrar,
-                    TotalMinutos = actividadesFiltradas.Sum(a => (int)a.DuracionMinutos.TotalMinutes),
-                    TotalCalorias = (int)actividadesFiltradas.Sum(a => (int)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto)
-                });
-            }
+        //         foreach (var actividad in tipoActividadAgrupado)
+        //         {
+        //             var tiposActividad = actividad.Select(a => a.TipoActividad).First();
+        //             tiposActividadMostrar.Add(new TipoActividadDTO
+        //             {
+        //                 NombreTipo = tiposActividad.Nombre,
+        //                 CaloriasPorMinuto = tiposActividad.CaloriasPorMinuto,
+        //                 Actividades = actividad
+        //                 .Select(a => new ActividadDTO
+        //                 {
+        //                     Fecha = a.Fecha,
+        //                     DuracionMinutos = (int)a.DuracionMinutos.TotalMinutes,
+        //                     CaloriasQuemadas = (int)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto
+        //                 })
+        //             .ToList()
+        //             });
+        //         }
+        //         personasMostrar.Add(new PersonasDTO
+        //         {
+        //             Nombre = persona.Nombre,
+        //             Email = email,
+        //             TiposActividad = tiposActividadMostrar,
+        //             TotalMinutos = actividadesFiltradas.Sum(a => (int)a.DuracionMinutos.TotalMinutes),
+        //             TotalCalorias = (int)actividadesFiltradas.Sum(a => (int)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto)
+        //         });
+        //     }
 
-            return Ok(personasMostrar);
-        }
+        //     return Ok(personasMostrar);
+        // }
+
+
+
+        // [HttpPost("Filtrar")]
+        // //public async Task<ActionResult<IEnumerable<TipoActividad>>> GetTipoActividad([FromBody] FiltroTipoActividad filtro)
+        // public async Task<ActionResult<IEnumerable<Actividad>>> Filtrar([FromBody] FiltroActividad filtro)
+        // {
+        //     var actividadFiltrada = _context.Actividades
+        //     .Include(a => a.TipoActividad)
+        //     .AsQueryable();
+
+        //     if (filtro.TipoActividadID > 0) 
+        //         actividadFiltrada = actividadFiltrada.Where(a => a.TipoActividadID == filtro.TipoActividadID);
+
+        //     // Filtrar por rango de fechas de actividades
+        //     DateTime fechaDesde = new DateTime();
+        //     bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaDesde) && DateTime.TryParse(filtro.FechaDesde, out fechaDesde);
+            
+        //     DateTime fechaHasta = new DateTime();
+        //     bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaHasta) && DateTime.TryParse(filtro.FechaHasta, out fechaHasta);
+
+        //     // Si ambas fechas son válidas, filtrar actividades dentro del rango
+        //     if (fechaDesdeValido && fechaHastaValido)
+        //         actividadFiltrada = actividadFiltrada.Where(a => a.Fecha >= fechaDesde && a.Fecha <= fechaHasta);
+        //     else if (fechaDesdeValido) // Solo desde
+        //         actividadFiltrada = actividadFiltrada.Where(a => a.Fecha >= fechaDesde);
+        //     else if (fechaHastaValido) // Solo hasta
+        //         actividadFiltrada = actividadFiltrada.Where(a => a.Fecha <= fechaHasta);
+
+        //     if (filtro.DuracionMinutos.HasValue)
+        //     {
+        //         actividadFiltrada = actividadFiltrada.Where(c => c.DuracionMinutos == filtro.DuracionMinutos.Value);
+        //     }
+            
+        //     return actividadFiltrada.ToList();
+        // }    
         private bool ActividadExists(int id)
         {
             return _context.Actividades.Any(e => e.ActividadID == id);

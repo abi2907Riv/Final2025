@@ -1,5 +1,4 @@
-namespace Final2025.Models.General
-{
+namespace Final2025.Models.General;
     public class TipoActividad
     {
         public int TipoActividadID { get; set; }
@@ -9,4 +8,10 @@ namespace Final2025.Models.General
 
         public virtual ICollection<Actividad>? Actividades { get; set; }
     }
-}
+
+    public class FiltroTipoActividad
+    {
+        public string Nombre { get; set; }
+        public int? Eliminado { get; set; }
+        public int? CaloriasPorMinuto { get; set; }
+    }

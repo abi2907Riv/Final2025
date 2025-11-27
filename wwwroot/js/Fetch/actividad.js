@@ -1,3 +1,8 @@
+function Filtros() {
+  const filtros = document.getElementById("filtrosContainer");
+  filtros.style.display = filtros.style.display === "none" ? "block" : "none";
+}
+
 ////////////////////////////////////////////
 ////FUNCION PARA OBTENER LAS ACTIVIDADES/////
 ////////////////////////////////////////////
@@ -169,7 +174,7 @@ function ValidarFormulario() {
    // errorSelectPersona.textContent = "Seleccione una persona";
    // valido = false
  // }
-  if (tipoActividad === "0"){
+  if (tipoActividad === ""){
     selectTipoActividad.classList.add("is-invalid");
     errorSelectTipoActividad.textContent = "Seleccione una persona";
     valido = false
@@ -193,11 +198,11 @@ function ValidarFormulario() {
     errorDuracionMinutos.textContent = "Campo requerido";
     valido = false
   }
-  if (!observacion){
-    inputObservacion.classList.add("is-invalid");
-    errorObservacion.textContent = "Campo requerido";
-    valido = false
-  }
+  // if (!observacion){
+  //   inputObservacion.classList.add("is-invalid");
+  //   errorObservacion.textContent = "Campo requerido";
+  //   valido = false
+  // }
   return valido;
 }
 ////////////////////////////////////////////
@@ -276,7 +281,7 @@ function LimpiarFormulario() {
 //   const selectPersonaId = document.getElementById("PersonaId");
 //   selectPersonaId.value = "";
   const selectTipoActividadId = document.getElementById("TipoActividadId");
-  selectTipoActividadId.value = ""
+  selectTipoActividadId.value = "0"
   const inputFecha = document.getElementById("Fecha");
   inputFecha.value = ""
   const inputDuracionMinutos = document.getElementById("DuracionMinutos");
@@ -480,30 +485,41 @@ ObtenerActividad()
 
 
 
+
+
+
+
+
+
+///FILTROS
 // $(document).ready(function () {
-//   ObtenerTickets();
+//   ObtenerActividad();
 //   const filtrosBuscar = $(
-//     "#CategoriaIDBuscar, #fechaDesde, #fechaHasta, #estadoBuscar, #prioridadBuscar"
+//     "#filtroActividad, #filtroDesde, #filtroHasta, #filtroDuracion"
 //   );
 //   filtrosBuscar.on("change", function () {
-//     ObtenerTickets();
+//     ObtenerActividad();
 //   });
 // });
-
-
-
 // async function ObtenerActividad() {
 //   let tipoActividadID = parseInt(document.getElementById("filtroActividad").value);
-//   let fechaActividad = document.getElementById("filtroFecha").value;
+//   let fechaDesde = document.getElementById("filtroDesde").value;
+//   let fechaHasta = document.getElementById("filtroHasta").value;
 //   let duracionMinutos = document.getElementById("filtroDuracion").value;
 
+//   let duracionTimeSpan = null;
+
+//   if (duracionMinutos) {
+//       duracionTimeSpan = duracionMinutos + ":00"; 
+//   }
 
 //   let filtro = {
-//     tipoActividadID: tipoActividadID ? parseInt(tipoActividadID) : null,
-//     fechaActividad: fechaActividad ? new Date(fechaActividad) : null,
-//     duracionMinutos: duracionMinutos ? parseInt(duracionMinutos) : null
-    
+//     TipoActividadID: tipoActividadID ? parseInt(tipoActividadID) : null,
+//     FechaDesde: fechaDesde || null,
+//     FechaHasta: fechaHasta || null,
+//     DuracionMinutos: duracionTimeSpan
 //   };
+
 //   const res = await authFetch("Actividades/Filtrar", {
 //     method: "POST",
 //     body: JSON.stringify(filtro),

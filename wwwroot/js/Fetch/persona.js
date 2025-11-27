@@ -1,38 +1,7 @@
-// $(document).ready(function () {
-//   ObtenerPersonas();
-//   const filtrosBuscar = $(
-//     "#filtroNombre, #filtroFecha, #filtroPeso"
-//   );
-//   filtrosBuscar.on("change keyup", function () {
-//     ObtenerPersonas();
-//   });
-// });
-
-
-
-// async function ObtenerPersonas() {
-//   let nombre = document.getElementById("filtroNombre").value;
-//   let fecha = document.getElementById("filtroFecha").value;
-//   let peso = document.getElementById("filtroPeso").value;
-
-//   let filtro = {
-//     nombre: nombre !== "" ? nombre : null,
-//     fechaNacimiento: fecha !== "" ? fecha : null,
-//     peso: peso !== "" ? parseInt(peso) : null,
-//   };
-
-//   const res = await authFetch("Personas/Filtrar", {
-//     method: "POST",
-//     body: JSON.stringify(filtro),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       MostrarPersonas(data);
-//       LimpiarFormulario();
-//     })
-//     .catch((error) => console.log("No se puede acceder al servicio", error));
-// }
-
+function Filtros() {
+  const filtros = document.getElementById("filtrosContainer");
+  filtros.style.display = filtros.style.display === "none" ? "block" : "none";
+}
 
 ////////////////////////////////////////////
 ////FUNCION PARA OBTENER LAS PERSONAS/////
@@ -200,11 +169,59 @@ function ValidarFormulario() {
     errorEmail.textContent = "Campo requerido";
     valido = false
   }
-  if (!fecha){
-    inputFecha.classList.add("is-invalid");
-    errorrFecha.textContent = "Campo requerido";
-    valido = false
+    if (!fecha){
+      inputFecha.classList.add("is-invalid");
+      errorrFecha.textContent = "Seleccione una fecha";
+      valido = false;
+  } else {
+      const fechaIngresada = new Date(fecha);
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0); // Ignorar horas
+      if (fechaIngresada > hoy) {
+          inputFecha.classList.add("is-invalid");
+          errorrFecha.textContent = "La fecha no puede ser futura";
+          valido = false;
+      }
   }
+//   if (!fecha) {
+//       inputFecha.classList.add("is-invalid");
+//       errorrFecha.textContent = "Seleccione una fecha";
+//       valido = false;
+//   } else {
+//     const fechaIngresada = new Date(fecha + "T00:00:00"); 
+//     const hoy = new Date();
+//     hoy.setHours(0, 0, 0, 0);
+//     if (fechaIngresada > hoy) {
+//         inputFecha.classList.add("is-invalid");
+//         errorrFecha.textContent = "La fecha no puede ser futura";
+//         valido = false;
+//     } else {
+//         let edad = hoy.getFullYear() - fechaIngresada.getFullYear();
+//         const mesActual = hoy.getMonth();
+//         const mesNacimiento = fechaIngresada.getMonth();
+//         if (
+//             mesNacimiento > mesActual ||
+//             (mesNacimiento === mesActual && fechaIngresada.getDate() > hoy.getDate())
+//         ) {
+//             edad--;
+//         }
+//         if (edad < 18) {
+//             inputFecha.classList.add("is-invalid");
+//             errorrFecha.textContent = "Debe tener al menos 18 años";
+//             valido = false;
+//         }
+//         if (edad > 100) {
+//             inputFecha.classList.add("is-invalid");
+//             errorrFecha.textContent = "La edad no puede ser mayor a 100 años";
+//             valido = false;
+//         }
+//     }
+// }
+  // if (!fecha){
+  //   inputFecha.classList.add("is-invalid");
+  //   errorrFecha.textContent = "Campo requerido";
+  //   valido = false
+  // }
   if (!peso){
     inputPeso.classList.add("is-invalid");
     errorPeso.textContent = "Campo requerido";
@@ -392,3 +409,46 @@ async function EditarPersona(personaID) {
 }
 
 ObtenerPersonas();
+
+
+
+
+//FILTROS 
+// $(document).ready(function () {
+//   ObtenerPersonas();
+//   const filtrosBuscar = $(
+//     "#filtroNombre, #filtroFecha, #filtroPeso, #filtroEdad, #filtroFechaDesde, #filtroFechaHasta"
+//   );
+//   filtrosBuscar.on("change keyup", function () {
+//     ObtenerPersonas();
+//   });
+// });
+
+// async function ObtenerPersonas() {
+//   let nombre = document.getElementById("filtroNombre").value;
+//   let fecha = document.getElementById("filtroFecha").value;
+//   let peso = document.getElementById("filtroPeso").value;
+//   let edad = document.getElementById("filtroEdad").value;
+//   let fechaDesde = document.getElementById("filtroFechaDesde").value;
+//   let fechaHasta = document.getElementById("filtroFechaHasta").value;
+
+//   let filtro = {
+//     nombre: nombre !== "" ? nombre : null,
+//     fechaNacimiento: fecha !== "" ? fecha : null,
+//     peso: peso !== "" ? parseInt(peso) : null,
+//     edad: edad !== ""  ? parseInt(edad) : null,
+//     FechaNacimientoDesde: fechaDesde !== " " ? fechaDesde : null,
+//     FechaNacimientoHasta: fechaHasta !== " " ? fechaHasta : null,
+//   };
+
+//   const res = await authFetch("Personas/Filtrar", {
+//     method: "POST",
+//     body: JSON.stringify(filtro),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       MostrarPersonas(data);
+//       LimpiarFormulario();
+//     })
+//     .catch((error) => console.log("No se puede acceder al servicio", error));
+// }

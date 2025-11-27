@@ -1,11 +1,20 @@
 <div class="content-wrapper">
+    <!-- Encabezado filtros -->
+    <div class="d-flex filtros-header justify-content-between align-items-center my-4 px-3">
+        <h5 class="mb-0 fw-semibold text-secondary">
+            <i class="bx bx-filter-alt"></i> Filtros de Búsqueda
+        </h5>
+        <button class="btn btn-outline-primary rounded-pill shadow-sm px-4 py-2" onclick="Filtros()">
+            <i class="bx bx-slider-alt"></i> Mostrar / Ocultar Filtros
+        </button>
+    </div>
 
-
-    <!-- Cards -->
-    <div class="container-xxl flex-grow-1 container-p-y">
-
-        <!-- <div class="row g-3 mb-3">
-            <div class="col-md-4">
+    <!-- Contenedor filtros -->
+    <div id="filtrosContainer" class="bg-white px-3 py-3 rounded shadow-sm mb-4"
+        style="display: none; margin-left: 1.5rem; margin-right: 1.5rem;">
+        <div class="row g-3 align-items-end">
+            <div class="row g-3 mb-3">
+            <!-- <div class="col-md-4">
                 <label class="form-label fw-semibold" for="filtroNombre">NOMBRE</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="bx bx-search"></i></span>
@@ -28,7 +37,39 @@
                     <input type="number" class="form-control" id="filtroPeso" placeholder="Ej: 65">
                 </div>
             </div>
-        </div> -->
+
+            <div class="col-md-4">
+                <label class="form-label fw-semibold" for="filtroEdad">EDAD</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="number" class="form-control" id="filtroEdad" placeholder="Ej: 18">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label fw-semibold" for="filtroFechaDesde">FECHA DESDE</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="date" class="form-control" id="filtroFechaDesde" placeholder="Ej: 18">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label fw-semibold" for="filtroFechaHasta">FECHA HASTA</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="date" class="form-control" id="filtroFechaHasta" placeholder="Ej: 18">
+                </div>
+            </div> -->
+        </div>
+
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+
 
         <div class="card">
             <h5 class="card-header d-flex align-items-center justify-content-between fw-bold">
@@ -37,8 +78,7 @@
                 </span>
                 <div class="d-flex flex-wrap gap-2 justify-content-end">
                     <button class="btn btn-primary flex-grow-1 flex-md-grow-0" data-bs-toggle="collapse"
-                        data-bs-target="#collapsePersonas" aria-expanded="false"
-                        aria-controls="collapsePersonas">
+                        data-bs-target="#collapsePersonas" aria-expanded="false" aria-controls="collapsePersonas">
                         <i class="bx bx-plus"></i> Agregar Personas
                     </button>
                 </div>
@@ -85,8 +125,8 @@
                                 <label class="form-label fw-semibold" for="PesoPersona">PESO</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text"><i class='bx bx-git-compare'></i></span>
-                                    <input type="number" class="form-control" id="PesoPersona"
-                                        placeholder="Ej: 50" required />
+                                    <input type="number" class="form-control" id="PesoPersona" placeholder="Ej: 50"
+                                        required />
                                     <div class="invalid-feedback" id="ErrorPesoPersona"></div>
                                 </div>
                             </div>
@@ -121,7 +161,7 @@
 
 
         </div>
-<div id="personasMobileContainer"></div>
+        <div id="personasMobileContainer"></div>
     </div>
 
 </div>

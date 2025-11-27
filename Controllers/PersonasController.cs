@@ -83,23 +83,29 @@ namespace Final2025.Controllers
         [HttpPost]
         public async Task<ActionResult<Persona>> PostPersona([FromBody] CrearUsuario persona)
         {
-        var emailExiste = await _context.Users.Where(u => u.Email == persona.Email).AnyAsync();
-        if (emailExiste)
+            var emailExiste = await _context.Users.Where(u => u.Email == persona.Email).AnyAsync();
+            if (emailExiste)
             {
                 // return BadRequest("El Email ya esta registrado"); 
                 return BadRequest(new { codigo = 0, mensaje = $"El Email {persona.Email} ya existe." });
             }
 
-        var user = new ApplicationUser
-        {
-            UserName = persona.Email,
-            Email = persona.Email,
-            NombreCompleto = persona.Persona.Nombre
-        };
+            var fechaDeHoy = DateOnly.FromDateTime(DateTime.Now);
+            if (persona.Persona.FechaNacimiento > fechaDeHoy)
+            {
+                return BadRequest("La fecha de naciemiento no puede ser futura");
+            }
 
-        await _userManager.CreateAsync(user, "Final2025");
+            var user = new ApplicationUser
+            {
+                UserName = persona.Email,
+                Email = persona.Email,
+                NombreCompleto = persona.Persona.Nombre
+            };
 
-        persona.Persona.UsuarioID = user.Id;
+            await _userManager.CreateAsync(user, "Final2025");
+
+            persona.Persona.UsuarioID = user.Id;
             _context.Personas.Add(persona.Persona);
             await _context.SaveChangesAsync();
 
@@ -126,5 +132,68 @@ namespace Final2025.Controllers
         {
             return _context.Personas.Any(e => e.PersonaID == id);
         }
+
+
+
+
+        // [HttpPost("Filtrar")]
+        // //public async Task<ActionResult<IEnumerable<TipoActividad>>> GetTipoActividad([FromBody] FiltroTipoActividad filtro)
+        // public async Task<ActionResult<IEnumerable<Persona>>> Filtrar([FromBody] FiltroPersona filtro)
+        // {
+        //     var personas = _context.Personas.AsQueryable();
+
+        //     if (!string.IsNullOrEmpty(filtro.Nombre))
+        //     {
+        //         personas = personas.Where(c => c.Nombre.ToLower().Contains(filtro.Nombre.ToLower()));
+        //     }
+        //     if (!string.IsNullOrEmpty(filtro.FechaNacimiento))
+        //     {
+        //         if (DateTime.TryParse(filtro.FechaNacimiento, out DateTime fechaFiltro))
+        //         {
+        //             DateOnly fechaDateOnly = DateOnly.FromDateTime(fechaFiltro);
+        //             personas = personas.Where(p => p.FechaNacimiento == fechaDateOnly);
+        //         }
+        //     }
+        //     if (filtro.Peso.HasValue)
+        //     {
+        //         personas = personas.Where(c => c.Peso == filtro.Peso.Value);
+        //     }
+
+        //     if (filtro.Edad.HasValue)
+        //     {
+        //         // Calculamos rango de fechas según la edad
+        //         var hoy = DateOnly.FromDateTime(DateTime.Today);
+        //         var fechaMax = hoy.AddYears(-filtro.Edad.Value);
+        //         var fechaMin = fechaMax.AddYears(-1).AddDays(1);
+        //         personas = personas.Where(p => p.FechaNacimiento >= fechaMin && p.FechaNacimiento <= fechaMax);
+        //     }
+
+        //     // Filtrar por rango de fechas de actividades
+        //     DateTime fechaDesde = new DateTime();
+        //     bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaNacimientoDesde)
+        //                             && DateTime.TryParse(filtro.FechaNacimientoDesde, out fechaDesde);
+
+        //     DateTime fechaHasta = new DateTime();
+        //     bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaNacimientoHasta)
+        //                             && DateTime.TryParse(filtro.FechaNacimientoHasta, out fechaHasta);
+
+        //     DateOnly fechaDesdeDateOnly = fechaDesdeValido ? DateOnly.FromDateTime(fechaDesde) : default;
+        //     DateOnly fechaHastaDateOnly = fechaHastaValido ? DateOnly.FromDateTime(fechaHasta) : default;
+
+        //     // Si ambas fechas son válidas, filtrar actividades dentro del rango
+        //     if (fechaDesdeValido && fechaHastaValido)
+        //         personas = personas.Where(a => a.FechaNacimiento >= fechaDesdeDateOnly
+        //                                  && a.FechaNacimiento <= fechaHastaDateOnly);
+        //     else if (fechaDesdeValido) // Solo desde
+        //         personas = personas.Where(a => a.FechaNacimiento >= fechaDesdeDateOnly);
+        //     else if (fechaHastaValido) // Solo hasta
+        //         personas = personas.Where(a => a.FechaNacimiento <= fechaHastaDateOnly);
+
+        //     return personas.ToList();
+        // }
+
+
+
+
     }
 }

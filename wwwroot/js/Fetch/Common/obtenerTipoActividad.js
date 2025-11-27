@@ -19,7 +19,7 @@ function MostrarTipoActividadDrop(data) {
     
 
     bodySelect.innerHTML = "<option value='0' hidden>[Seleccione una opción]</option>";
-    // bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
+    //bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
 
     const activos = data.filter(item => item.eliminado == false);
     activos.forEach(element => {

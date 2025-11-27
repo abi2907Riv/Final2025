@@ -17,9 +17,12 @@ namespace Final2025.Models.General;
         public Persona? Persona { get; set; }
     }
 
-    // public class FiltroPersona
-    // {
-    //     public string Nombre { get; set; }
-    //     public DateTime? FechaNacimiento { get; set; }
-    //     public int? Peso { get; set; }
-    // }
+    public class FiltroPersona
+    {
+        public string Nombre { get; set; }
+        public string FechaNacimiento { get; set; }
+        public int? Peso { get; set; }
+        public int? Edad { get; set; }
+        public string FechaNacimientoDesde { get; set; }
+        public string FechaNacimientoHasta { get; set; }
+    }

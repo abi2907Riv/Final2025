@@ -1,3 +1,40 @@
+// $(document).ready(function () {
+//   ObtenerTipoActividad();
+//   const filtrosBuscar = $(
+//     "#filtroNombre, #filtroCalorias, #filtroEstado"
+//   );
+//   filtrosBuscar.on("change keyup", function () {
+//     ObtenerTipoActividad();
+//   });
+// });
+
+// async function ObtenerTipoActividad() {
+//   let nombre = document.getElementById("filtroNombre").value;
+//   let calorias = document.getElementById("filtroCalorias").value;
+//   let estado = document.getElementById("filtroEstado").value;
+
+
+//   let filtro = {
+//     nombre: nombre !== "" ? nombre : null,
+//     caloriasPorMinuto: calorias !== "" ? parseFloat(calorias) : null,
+//     eliminado: estado !== "" ? parseInt(estado) : null,
+    
+//   };
+//   const res = await authFetch("TiposActividades/Filtrar", {
+//     method: "POST",
+//     body: JSON.stringify(filtro),
+//   })
+//   const data = await res.json();
+//     MostrarTipoActividad(data);
+//     LimpiarFormulario();
+// }
+
+
+function Filtros() {
+  const filtros = document.getElementById("filtrosContainer");
+  filtros.style.display = filtros.style.display === "none" ? "block" : "none";
+}
+
 ////////////////////////////////////////////
 ////FUNCION PARA OBTENER LAS CATEGORIAS/////
 ////////////////////////////////////////////
@@ -325,7 +362,7 @@ async function DesactivarTipoActividad(tipoActividadID) {
           <p>Esta acción se puede revertir.</p>
         </div>
       `,
-      icon: "question",
+      //icon: "question",
       showCancelButton: true,
       confirmButtonText: "Sí, desactivar",
       cancelButtonText: "Cancelar",
@@ -375,6 +412,103 @@ async function DesactivarTipoActividad(tipoActividadID) {
     console.error("Error al desactivar tipo actividad", error);
   }
 }
+// async function DesactivarTipoActividad(tipoActividadID) {
+//   try {
+//     const result = await Swal.fire({
+//       title: "¿Desactivar este Tipo de Actividad?",
+//       html: `
+//         <div style="text-align: center; font-size: 0.9rem; color: #6b7280;">
+//           <p>Podrás volver a activarla más tarde.</p>
+//           <p>Esta acción se puede revertir.</p>
+//         </div>
+//       `,
+//       showCancelButton: true,
+//       confirmButtonText: "Sí, desactivar",
+//       cancelButtonText: "Cancelar",
+//       focusCancel: true,
+//       customClass: {
+//         popup: "swal2-border-radius",
+//         title: "swal2-title-small",
+//         confirmButton: "swal2-btn-eliminar",
+//         cancelButton: "swal2-btn-cancelar",
+//       },
+//       background: "#fff",
+//       color: "#22223b",
+//       buttonsStyling: false,
+//     });
+
+//     if (!result.isConfirmed) return;
+
+//     const res = await authFetch(`TiposActividades/${tipoActividadID}`, {
+//       method: "DELETE",
+//     });
+
+//     let mensajeBackend = "";
+
+//     if (res.status !== 204) {
+//       const text = await res.text();
+//       try {
+//         const data = JSON.parse(text);
+//         mensajeBackend = data?.title || data?.message || JSON.stringify(data) || text;
+//       } catch {
+//         mensajeBackend = text;
+//       }
+//     }
+
+//     if (res.ok || res.status === 204) {
+//       ObtenerTipoActividad();
+
+//       Swal.fire({
+//         title: "¡Tipo Actividad Desactivada!",
+//         toast: true,
+//         position: "bottom-end",
+//         showConfirmButton: false,
+//         timer: 2200,
+//         timerProgressBar: true,
+//         background: "#fef8f4",
+//         color: "#5f4339",
+//         icon: "success",
+//         iconColor: "#ff914d",
+//         customClass: {
+//           popup: "swal2-toast-status",
+//           title: "swal2-toast-title",
+//           content: "swal2-toast-content",
+//         },
+//       });
+//     } else {
+//       const esRelacion = mensajeBackend.includes("actividades relacionadas");
+//       Swal.fire({
+//         title: "Error",
+//         html: esRelacion
+//           ? `<div style="text-align: center; font-size: 0.9rem; color: #6b7280;">
+//                ${mensajeBackend}
+//              </div>`
+//           : mensajeBackend,
+//         confirmButtonText: "Aceptar",
+//         background: "#fff",
+//         color: "#22223b",
+//         buttonsStyling: false,
+//         customClass: esRelacion
+//           ? {
+//               popup: "swal2-border-radius",
+//               title: "swal2-title-small",
+//               confirmButton: "swal2-btn-eliminar",
+//             }
+//           : {
+//               popup: "swal2-border-radius",
+//               title: "swal2-title-small",
+//               confirmButton: "swal2-btn-cancelar",
+//             },
+//         icon: esRelacion ? undefined : "error",
+//       });
+//     }
+//   } catch (error) {
+//     console.error("Error al desactivar tipo actividad", error);
+//   }
+// }
+
+
+
 
 
 ////////////////////////////////////////////
@@ -390,7 +524,7 @@ async function ActivarTipoActividad(tipoActividadID) {
           <p>Esta acción se puede revertir.</p>
         </div>
       `,
-      icon: "question",
+      //icon: "question",
       showCancelButton: true,
       confirmButtonText: "Activar",
       cancelButtonText: "Cancelar",
@@ -522,36 +656,3 @@ ObtenerTipoActividad();
 //     .catch((error) => console.log("No se pudo editar la categoria", error));
 // }
 
-
-// $(document).ready(function () {
-//   ObtenerTipoActividad();
-//   const filtrosBuscar = $(
-//     "#filtroNombre, #filtroCalorias, #filtroEstado"
-//   );
-//   filtrosBuscar.on("change keyup", function () {
-//     ObtenerTipoActividad();
-//   });
-// });
-
-
-
-// async function ObtenerTipoActividad() {
-//   let nombre = document.getElementById("filtroNombre").value;
-//   let calorias = document.getElementById("filtroCalorias").value;
-//   let estado = document.getElementById("filtroEstado").value;
-
-
-//   let filtro = {
-//     nombre: nombre !== "" ? nombre : null,
-//     caloriasPorMinuto: calorias !== "" ? parseFloat(calorias) : null,
-//     eliminado: estado !== "" ? parseInt(estado) : null,
-    
-//   };
-//   const res = await authFetch("TipoActividad/Filtrar", {
-//     method: "POST",
-//     body: JSON.stringify(filtro),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => MostrarTipoActividad(data), LimpiarFormulario())
-//     .catch((error) => console.log("No se puede acceder al servicio", error));
-// }
