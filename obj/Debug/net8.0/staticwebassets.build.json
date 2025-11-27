@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Z/eAXVPwCCTPrwNmMq3qrDRlI9eX9oUGsMqE1stvrOA=",
+  "Hash": "TszPSkziPyQYZFt7vRDDsHZudWkJJiRNsAnJ/2QXfEc=",
   "Source": "Final2025",
   "BasePath": "_content/Final2025",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Fetch\\persona.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js",
+      "SourceId": "Final2025",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\",
+      "BasePath": "_content/Final2025",
+      "RelativePath": "js/Fetch/Resultados/actividadPersonaCantidad.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\duracionTotalActividadesPersona.js",
@@ -756,6 +775,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\views\\actividad.html"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividadPersonaCantidad.html",
+      "SourceId": "Final2025",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\",
+      "BasePath": "_content/Final2025",
+      "RelativePath": "views/actividadPersonaCantidad.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\views\\actividadPersonaCantidad.html"
     },
     {
       "Identity": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\duracionTotalActividadesPersona.html",

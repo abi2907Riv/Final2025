@@ -12,4 +12,5 @@ public class PersonasDTO
     public int TotalMinutos { get; set; }
     public int CantidadActividades { get; set; }
     public double PromedioMinutos { get; set; }
+    public int TotalCalorias { get; set; }
 }

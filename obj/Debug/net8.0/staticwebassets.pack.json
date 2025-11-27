@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerTipoActividad.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\duracionTotalActividadesPersona.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\duracionTotalActividadesPersona.js"
     },
@@ -155,6 +159,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividad.html",
       "PackagePath": "staticwebassets\\views\\actividad.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividadPersonaCantidad.html",
+      "PackagePath": "staticwebassets\\views\\actividadPersonaCantidad.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\duracionTotalActividadesPersona.html",

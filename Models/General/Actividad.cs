@@ -32,12 +32,13 @@ namespace Final2025.Models.General
     // }
 
 
-    //public class FiltroActividad
-    //{
-        //public int? TipoActividadID { get; set; }
+    public class FiltroActividad
+    {
+        public int PersonaID { get; set; }
+        public int? TipoActividadID { get; set; }
         //public DateTime? FechaActividad { get; set; }
-        //public DateTime? FechaDesde { get; set; }   // Fecha inicial del rango
-        //public DateTime? FechaHasta { get; set; }
+        public string FechaDesde { get; set; }   // Fecha inicial del rango
+        public string FechaHasta { get; set; }
         //public int? DuracionMinutos { get; set; }
-    //}
+    }
 }
