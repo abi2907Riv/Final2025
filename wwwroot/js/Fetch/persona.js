@@ -70,8 +70,8 @@ function MostrarPersonasDesktop(data) {
             <tr>
                 <td>${item.nombre}</td>
                 <!-- <td>${item.email}</td> -->
-                <td>${edad}</td>
-                <td>${item.peso}</td>
+                <td>${edad} años</td>
+                <td>${item.peso} kg</td>
                 ${botonesAcciones}
             </tr>
         `);

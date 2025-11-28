@@ -56,8 +56,14 @@ namespace Final2025.Controllers
             {
                 return BadRequest();
             }
+            var personaOriginal = await _context.Personas.FindAsync(id);
+            if (personaOriginal == null) return NotFound();
 
-            _context.Entry(persona).State = EntityState.Modified;
+            // Mantener el UsuarioID (no modificarlo jamás)
+            persona.UsuarioID = personaOriginal.UsuarioID;
+
+            // Actualizar solo los campos editables
+            _context.Entry(personaOriginal).CurrentValues.SetValues(persona);
 
             try
             {

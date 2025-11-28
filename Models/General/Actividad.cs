@@ -36,9 +36,10 @@ namespace Final2025.Models.General
     {
         public int PersonaID { get; set; }
         public int? TipoActividadID { get; set; }
-        //public DateTime? FechaActividad { get; set; }
+        public string FechaActividad { get; set; }
         public string FechaDesde { get; set; }   
         public string FechaHasta { get; set; }
         public TimeSpan? DuracionMinutos { get; set; }
+        public int? CaloriasTotales { get; set; }
     }
 }

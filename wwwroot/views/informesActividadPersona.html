@@ -1,23 +1,70 @@
 <!-- Contenido -->
 <div class="content-wrapper">
-    <!-- Título y botón de filtros -->
+    <!-- Encabezado filtros -->
+    <div class="d-flex filtros-header justify-content-between align-items-center my-4 px-3">
+        <h5 class="mb-0 fw-semibold text-secondary">
+            <i class="bx bx-filter-alt"></i> Filtros de Búsqueda
+        </h5>
+        <button class="btn btn-outline-primary rounded-pill shadow-sm px-4 py-2" onclick="Filtros()">
+            <i class="bx bx-slider-alt"></i> Mostrar / Ocultar Filtros
+        </button>
+    </div>
 
-    <!-- Contenedor de filtros -->
-    <!-- <div class="row g-3 mb-3">
-        <div class="col-md-4">
-            <label class="form-label fw-semibold" for="filtroFechaDesde">FECHA</label>
-            <span class="input-group-text"><i class="bx bx-search"></i></span>
-            <input type="date" class="form-control" id="filtroFechaDesde" placeholder="Ej: 8.5">
+    <!-- Contenedor filtros -->
+    <div id="filtrosContainer" class="bg-white px-3 py-3 rounded shadow-sm mb-4"
+        style="display: none; margin-left: 1.5rem; margin-right: 1.5rem;">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="personaBuscar">PERSONA</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <select class="form-control" id="personaBuscar"></select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroActividad">TIPO ACTIVIDAD</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <select class="form-control" id="filtroActividad"></select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroFechaDesde">FECHA DESDE</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="date" class="form-control" id="filtroFechaDesde">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroFechaHasta">FECHA HASTA</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="date" class="form-control" id="filtroFechaHasta">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroFecha">FECHA ACTIVIDAD</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="date" class="form-control" id="filtroFecha">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroDuracion">DURACION MINUTOS</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="time" class="form-control" id="filtroDuracion">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroCalorias">CALORIAS</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="number" class="form-control" id="filtroCalorias" placeholder="Ej: 8">
+                </div>
+            </div>
         </div>
-    </div> -->
-
-    <!-- <div class="col-md-4">
-                 <label class="form-label fw-semibold" for="filtroFechaHasta">FECHA DESDE</label>
-                 <div class="input-group">
-                     <span class="input-group-text"><i class="bx bx-search"></i></span>
-                    <input type="date" class="form-control" id="filtroFechaHasta" placeholder="Ej: 8.5">
-               </div>
-            </div> -->
+    </div>
 </div>
 
 
@@ -27,7 +74,7 @@
 
         <h5 class="card-header d-flex align-items-center justify-content-between fw-bold">
             <span class="d-flex align-items-center">
-                <i class="bx bx-dumbbell fs-4 me-2"></i> Actividades por Persona
+                <i class="bx bx-dumbbell fs-4 me-2"></i> Informe de las Actividades Por Persona
             </span>
         </h5>
         <!-- Tabla -->
@@ -49,3 +96,4 @@
 </div>
 
 <script src="../js/Fetch/Resultados/informeActividadPersona.js"></script>
+<script src="../js/Fetch/Common/obtenerPersonas.js"></script>

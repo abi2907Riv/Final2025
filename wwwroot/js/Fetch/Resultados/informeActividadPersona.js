@@ -1,6 +1,75 @@
+function Filtros() {
+  const filtros = document.getElementById("filtrosContainer");
+  filtros.style.display = filtros.style.display === "none" ? "block" : "none";
+}
+
+
+//////////////////////////////////////////////////
+//FUNCION PARA OBTENER LOS TIPOS DE ACTIVIDAD EN EL DROP//
+/////////////////////////////////////////////////
+async function ObtenerTipoActividadDrop() {
+    const res = await authFetch('TiposActividades', {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => {
+        MostrarTipoActividadDrop(data)
+    })
+    .catch(error => console.log('No se puede acceder al servicio', error));
+}
+function MostrarTipoActividadDrop(data) {
+    let bodySelectFiltro = document.getElementById("filtroActividad");
+    bodySelectFiltro.innerHTML = "";
+    bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
+    const activos = data.filter(item => item.eliminado == false);
+    activos.forEach(element => {
+        let optFiltro = document.createElement("option");
+        optFiltro.value = element.tipoActividadID;
+        optFiltro.innerHTML = element.nombre;
+        bodySelectFiltro.appendChild(optFiltro);
+   })
+}
+
+ObtenerTipoActividadDrop()
+
+
+
+$(document).ready(function () {
+  ObtenerInformeActividadXPersona();
+  const filtrosBuscar = $(
+    "#personaBuscar, #filtroActividad, #filtroFechaDesde, #filtroFechaHasta, #filtroFecha, #filtroDuracion, #filtroCalorias"
+  );
+  filtrosBuscar.on("change keyup", function () {
+    ObtenerInformeActividadXPersona();
+  });
+});
+
 async function ObtenerInformeActividadXPersona() {
-  const res = await authFetch("Actividades/InformeActividadXPersona", {
+  let personaIdBuscar = document.getElementById("personaBuscar").value;
+  let tipoIdBuscar = document.getElementById("filtroActividad").value;
+  let fechaDesde = document.getElementById("filtroFechaDesde").value;
+  let fechaHasta = document.getElementById("filtroFechaHasta").value;
+  let fechaActividad = document.getElementById("filtroFecha").value;
+  let duracionMinutos = document.getElementById("filtroDuracion").value;
+  let duracionTimeSpan = null;
+  let calorias = document.getElementById("filtroCalorias").value;
+
+  if (duracionMinutos) {
+        duracionTimeSpan = duracionMinutos + ":00"; 
+    }
+    let filtros = {
+        PersonaID: parseInt(personaIdBuscar) || 0,
+        TipoActividadID: parseInt(tipoIdBuscar) || 0,
+        FechaDesde: fechaDesde || null,
+        FechaHasta: fechaHasta || null,
+        FechaActividad: fechaActividad || null,
+        DuracionMinutos: duracionTimeSpan,
+        CaloriasTotales: calorias !== "" ? parseInt(calorias) : null
+
+  };
+  const res = await authFetch("Estadisticas/InformeActividadXPersona", {
     method: "POST",
+    body: JSON.stringify(filtros)
   });
   const data = await res.json();
   MostrarInformeActividad(data);
