@@ -1,5 +1,5 @@
 async function ObtenerInformeActividadXPersonaYTipo() {
-  const res = await authFetch("Estadisticas/DuracionTotalActividadesPersona", {
+  const res = await authFetch("Estadisticas/DuracionPromedioActividadPorPersona", {
     method: "POST",
   });
   const data = await res.json();
@@ -26,9 +26,8 @@ function MostrarInformeActividad(data) {
 
     const filaDatos = document.createElement("tr");
     filaDatos.innerHTML = `
-      <td class="table-success">${persona.totalMinutos} min</td>
-      <td class="table-success">${persona.cantidadActividades}</td>
-      <td class="table-success">${persona.promedioMinutos} min</td>
+      <td class="table-success">${persona.promedioMinutos}min </td>
+      <td class="table-success">${persona.promedioCalorias} kcal</td>
     `;
     tbody.appendChild(filaDatos);
   });

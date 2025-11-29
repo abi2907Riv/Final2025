@@ -1,0 +1,48 @@
+<!-- Contenido -->
+<div class="content-wrapper">
+    <!-- Título y botón de filtros -->
+
+    <!-- Contenedor de filtros -->
+<div class="row g-3 mb-3">
+    <div class="col-md-4">
+        <label class="form-label fw-semibold" for="personaBuscar">PERSONA</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bx bx-user"></i></span>
+            <select class="form-select" id="personaBuscar"></select>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<!-- Cards -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card">
+
+        <h5 class="card-header d-flex align-items-center justify-content-between fw-bold">
+            <span class="d-flex align-items-center">
+                <i class="bx bx-dumbbell fs-4 me-2"></i> Informe de total de actividades por persona
+            </span>
+        </h5>
+        <!-- Tabla -->
+        <div class="table-responsive text-nowrap mt-3">
+            <table class="table" id="tablaTotalActividadesXPersona">
+                <thead class="table-light">
+                    <tr>
+                        <th>Cantidad Total de Actividades</th>
+                        <th>Total Minutos</th>
+                        <th>Total Calorias Quemadas</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="../js/Fetch/Resultados/totalActividadXPersona.js"></script>
+<script src="../js/Fetch/Common/obtenerPersonas.js"></script>

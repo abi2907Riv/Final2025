@@ -13,7 +13,7 @@ async function ObtenerActividadesPorPersona() {
     let filtros = {
         PersonaID: parseInt(personaIdBuscar) || 0
     }
-    const res = await authFetch('Actividades/FiltrarPersona', {
+    const res = await authFetch('Estadisticas/FiltrarPersona', {
         method: 'POST',
         body: JSON.stringify(filtros)
     })

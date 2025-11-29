@@ -47,7 +47,7 @@ async function ObtenerInformeActividadXPersona() {
         FechaHasta: fechaHasta
     }
 
-  const res = await authFetch("Actividades/InformeActividadXPersonaCantidad", {
+  const res = await authFetch("Estadisticas/InformeActividadXPersonaCantidad", {
     method: "POST",
     body: JSON.stringify(filtro)
   });

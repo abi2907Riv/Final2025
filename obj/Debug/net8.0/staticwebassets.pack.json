@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerTipoActividad.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\ActividadesAgrupadasXTipoActividad.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\ActividadesAgrupadasXTipoActividad.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\DuracionPromedioActividadPorPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\DuracionPromedioActividadPorPersona.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js"
     },
@@ -47,6 +55,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\script.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\script.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\totalActividadXPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\totalActividadXPersona.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\actividad.js",
@@ -157,6 +169,14 @@
       "PackagePath": "staticwebassets\\sneat\\js\\popper.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\ActividadesAgrupadasXTipoActividad.html",
+      "PackagePath": "staticwebassets\\views\\ActividadesAgrupadasXTipoActividad.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\DuracionPromedioActividadPorPersona.html",
+      "PackagePath": "staticwebassets\\views\\DuracionPromedioActividadPorPersona.html"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividad.html",
       "PackagePath": "staticwebassets\\views\\actividad.html"
     },
@@ -199,6 +219,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\tipoActividad.html",
       "PackagePath": "staticwebassets\\views\\tipoActividad.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\totalActividadXPersona.html",
+      "PackagePath": "staticwebassets\\views\\totalActividadXPersona.html"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Final2025.Microsoft.AspNetCore.StaticWebAssets.props",
