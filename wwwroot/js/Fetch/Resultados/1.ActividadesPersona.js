@@ -47,24 +47,24 @@ $(document).ready(function () {
 async function ObtenerInformeActividadXPersona() {
   let personaIdBuscar = document.getElementById("personaBuscar").value;
   let tipoIdBuscar = document.getElementById("filtroActividad").value;
-  let fechaDesde = document.getElementById("filtroFechaDesde").value;
-  let fechaHasta = document.getElementById("filtroFechaHasta").value;
-  let fechaActividad = document.getElementById("filtroFecha").value;
-  let duracionMinutos = document.getElementById("filtroDuracion").value;
-  let duracionTimeSpan = null;
-  let calorias = document.getElementById("filtroCalorias").value;
+  //let fechaDesde = document.getElementById("filtroFechaDesde").value;
+  //let fechaHasta = document.getElementById("filtroFechaHasta").value;
+  //let fechaActividad = document.getElementById("filtroFecha").value;
+  //let duracionMinutos = document.getElementById("filtroDuracion").value;
+  //let duracionTimeSpan = null;
+  //let calorias = document.getElementById("filtroCalorias").value;
 
-  if (duracionMinutos) {
-        duracionTimeSpan = duracionMinutos + ":00"; 
-    }
+  // if (duracionMinutos) {
+  //       duracionTimeSpan = duracionMinutos + ":00"; 
+  //   }
     let filtros = {
         PersonaID: parseInt(personaIdBuscar) || 0,
         TipoActividadID: parseInt(tipoIdBuscar) || 0,
-        FechaDesde: fechaDesde || null,
-        FechaHasta: fechaHasta || null,
-        FechaActividad: fechaActividad || null,
-        DuracionMinutos: duracionTimeSpan,
-        CaloriasTotales: calorias !== "" ? parseInt(calorias) : null
+        //FechaDesde: fechaDesde || null,
+        //FechaHasta: fechaHasta || null,
+        //FechaActividad: fechaActividad || null,
+       // DuracionMinutos: duracionTimeSpan,
+        //CaloriasTotales: calorias !== "" ? parseInt(calorias) : null
 
   };
   const res = await authFetch("Estadisticas/InformeActividadXPersona", {

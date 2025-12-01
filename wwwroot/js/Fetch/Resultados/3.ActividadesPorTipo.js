@@ -1,5 +1,5 @@
 async function ObtenerInformeActividadXTipo() {
-  const res = await authFetch("Actividades/InformeActividadXTipoActividad", {
+  const res = await authFetch("Estadisticas/InformeActividadXTipoActividad", {
     method: "POST",
   });
   const data = await res.json();

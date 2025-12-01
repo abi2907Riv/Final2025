@@ -21,44 +21,44 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerTipoActividad.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\ActividadesAgrupadasXTipoActividad.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\ActividadesAgrupadasXTipoActividad.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\1.ActividadesPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\1.ActividadesPersona.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\DuracionPromedioActividadPorPersona.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\DuracionPromedioActividadPorPersona.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\2.FiltroActividadesPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\2.FiltroActividadesPersona.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\actividadPersonaCantidad.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\3.ActividadesPorTipo.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\3.ActividadesPorTipo.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\duracionTotalActividadesPersona.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\duracionTotalActividadesPersona.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\4.ActividadPorPersonaYTipo.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\4.ActividadPorPersonaYTipo.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\filtroPersona.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\filtroPersona.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\5.DuracionTotalActividadesPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\5.DuracionTotalActividadesPersona.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\informeActividadPersona.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\informeActividadPersona.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\6.ActividadesPorPersonaYTipo.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\6.ActividadesPorPersonaYTipo.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\informeActividadxtipo.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\informeActividadxtipo.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\7.TotalActividadesPorPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\7.TotalActividadesPorPersona.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\informeActivididadPersonTipo.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\informeActivididadPersonTipo.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\8.PromedioActividadPorPersona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\8.PromedioActividadPorPersona.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\9.ActividadesAgrupadasPorTipo.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\9.ActividadesAgrupadasPorTipo.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\script.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\script.js"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\totalActividadXPersona.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\totalActividadXPersona.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\actividad.js",
@@ -169,44 +169,48 @@
       "PackagePath": "staticwebassets\\sneat\\js\\popper.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\ActividadesAgrupadasXTipoActividad.html",
-      "PackagePath": "staticwebassets\\views\\ActividadesAgrupadasXTipoActividad.html"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\1.ActividadesPersona.html",
+      "PackagePath": "staticwebassets\\views\\1.ActividadesPersona.html"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\DuracionPromedioActividadPorPersona.html",
-      "PackagePath": "staticwebassets\\views\\DuracionPromedioActividadPorPersona.html"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\2.FiltroActividadesPersona.html",
+      "PackagePath": "staticwebassets\\views\\2.FiltroActividadesPersona.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\3.ActividadesPorTipo.html",
+      "PackagePath": "staticwebassets\\views\\3.ActividadesPorTipo.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\4.ActividadPorPersonaYTipo.html",
+      "PackagePath": "staticwebassets\\views\\4.ActividadPorPersonaYTipo.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\5.DuracionTotalActividadesPersona.html",
+      "PackagePath": "staticwebassets\\views\\5.DuracionTotalActividadesPersona.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\6.ActividadesPorPersonaYTipo.html",
+      "PackagePath": "staticwebassets\\views\\6.ActividadesPorPersonaYTipo.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\7.TotalActividadesPorPersona.html",
+      "PackagePath": "staticwebassets\\views\\7.TotalActividadesPorPersona.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\8.PromedioActividadPorPersona.html",
+      "PackagePath": "staticwebassets\\views\\8.PromedioActividadPorPersona.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\9.ActividadesAgrupadasPorTipo.html",
+      "PackagePath": "staticwebassets\\views\\9.ActividadesAgrupadasPorTipo.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividad.html",
       "PackagePath": "staticwebassets\\views\\actividad.html"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividadPersonaCantidad.html",
-      "PackagePath": "staticwebassets\\views\\actividadPersonaCantidad.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\duracionTotalActividadesPersona.html",
-      "PackagePath": "staticwebassets\\views\\duracionTotalActividadesPersona.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\filtroPersona.html",
-      "PackagePath": "staticwebassets\\views\\filtroPersona.html"
-    },
-    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",
       "PackagePath": "staticwebassets\\views\\home.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informeActPersTipo.html",
-      "PackagePath": "staticwebassets\\views\\informeActPersTipo.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informeActividadTipo.html",
-      "PackagePath": "staticwebassets\\views\\informeActividadTipo.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\informesActividadPersona.html",
-      "PackagePath": "staticwebassets\\views\\informesActividadPersona.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personas.html",
@@ -219,10 +223,6 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\tipoActividad.html",
       "PackagePath": "staticwebassets\\views\\tipoActividad.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\totalActividadXPersona.html",
-      "PackagePath": "staticwebassets\\views\\totalActividadXPersona.html"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Final2025.Microsoft.AspNetCore.StaticWebAssets.props",
