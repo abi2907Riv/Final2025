@@ -30,7 +30,24 @@ namespace Final2025.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Persona>>> GetPersonas()
         {
-            return await _context.Personas.ToListAsync();
+            var personas = await _context.Personas.ToListAsync();
+            var hoy = DateOnly.FromDateTime(DateTime.Today);
+
+            foreach (var p in personas)
+            {
+                var f = p.FechaNacimiento;
+
+                int edad = hoy.Year - f.Year;
+
+                if (hoy.Month < f.Month || (hoy.Month == f.Month && hoy.Day < f.Day))
+                {
+                    edad--;
+                }
+
+                p.Edad = edad;
+            }
+
+            return personas;
         }
 
         // GET: api/Personas/5
@@ -43,6 +60,17 @@ namespace Final2025.Controllers
             {
                 return NotFound();
             }
+            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var fechaNaciemiento = persona.FechaNacimiento;
+
+            int edad = hoy.Year - fechaNaciemiento.Year;
+
+            if (hoy.Month < fechaNaciemiento.Month || (hoy.Month == fechaNaciemiento.Month && hoy.Day < fechaNaciemiento.Day))
+            {
+                edad--;
+            }
+
+            persona.Edad = edad;
 
             return persona;
         }
@@ -61,6 +89,19 @@ namespace Final2025.Controllers
 
             // Mantener el UsuarioID (no modificarlo jamás)
             persona.UsuarioID = personaOriginal.UsuarioID;
+
+            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var fechaNacimiento = persona.FechaNacimiento;
+
+            // Convertimos a DateTime para poder comparar
+            var hoyDT = hoy.ToDateTime(TimeOnly.MinValue);
+            var cumpleEsteAnio = fechaNacimiento
+                                    .AddYears(hoy.Year - fechaNacimiento.Year)
+                                    .ToDateTime(TimeOnly.MinValue);
+
+            persona.Edad =
+                hoy.Year - fechaNacimiento.Year -
+                (hoyDT < cumpleEsteAnio ? 1 : 0);
 
             // Actualizar solo los campos editables
             _context.Entry(personaOriginal).CurrentValues.SetValues(persona);
@@ -101,6 +142,22 @@ namespace Final2025.Controllers
             {
                 return BadRequest("La fecha de naciemiento no puede ser futura");
             }
+
+            Console.WriteLine($"Fecha recibida: {persona.Persona.FechaNacimiento}");
+
+
+            var hoy = DateOnly.FromDateTime(DateTime.Today);
+            var f = persona.Persona.FechaNacimiento;
+
+            int edad = hoy.Year - f.Year;
+
+            // Si todavía no cumplió este año → restamos 1
+            if (hoy.Month < f.Month || (hoy.Month == f.Month && hoy.Day < f.Day))
+            {
+                edad--;
+            }
+
+            persona.Persona.Edad = edad;
 
             var user = new ApplicationUser
             {

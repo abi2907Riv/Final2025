@@ -34,18 +34,19 @@ function MostrarPersonasDesktop(data) {
     );
     return;
   }
+  console.log(data);
 
   $.each(data, function (index, item) {
-    const fechaHoy = new Date();
-    const fechaNacimiento = new Date(item.fechaNacimiento);
-    let edad = fechaHoy.getFullYear() - fechaNacimiento.getFullYear();
-    const mes = fechaHoy.getMonth() - fechaNacimiento.getMonth();
-    if (
-      mes < 0 ||
-      (mes === 0 && fechaHoy.getDate() < fechaNacimiento.getDate())
-    ) {
-      edad--;
-    }
+    // const fechaHoy = new Date();
+    // const fechaNacimiento = new Date(item.fechaNacimiento);
+    // let edad = fechaHoy.getFullYear() - fechaNacimiento.getFullYear();
+    // const mes = fechaHoy.getMonth() - fechaNacimiento.getMonth();
+    // if (
+    //   mes < 0 ||
+    //   (mes === 0 && fechaHoy.getDate() < fechaNacimiento.getDate())
+    // ) {
+    //   edad--;
+    // }
 
     const botonesAcciones = `
             <td class='text-end'>
@@ -70,7 +71,7 @@ function MostrarPersonasDesktop(data) {
             <tr>
                 <td>${item.nombre}</td>
                 <!-- <td>${item.email}</td> -->
-                <td>${edad} años</td>
+                <td>${item.edad} años</td>
                 <td>${item.peso} kg</td>
                 ${botonesAcciones}
             </tr>
@@ -115,7 +116,7 @@ function MostrarPersonasMobile(data) {
         </div>
 
         <div class='text-muted' style='font-size:14px;'>
-          <div>Edad: ${edad} años</div>
+          <div>Edad: ${item.edad} años</div>
           <div>Peso: ${item.peso} kg</div>
         </div>
       </div>

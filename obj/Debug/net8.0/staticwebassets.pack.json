@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\10.EstadisticasActividades.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\11.CaloriasReales.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\11.CaloriasReales.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\2.FiltroActividadesPersona.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\2.FiltroActividadesPersona.js"
     },
@@ -179,6 +183,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\10.EstadisticasActividades.html",
       "PackagePath": "staticwebassets\\views\\10.EstadisticasActividades.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\11.CaloriasReales.html",
+      "PackagePath": "staticwebassets\\views\\11.CaloriasReales.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\2.FiltroActividadesPersona.html",

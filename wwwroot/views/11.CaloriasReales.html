@@ -1,0 +1,67 @@
+<!-- Contenido -->
+<div class="content-wrapper">
+    <!-- Encabezado filtros -->
+    <div class="d-flex filtros-header justify-content-between align-items-center my-4 px-3">
+        <h5 class="mb-0 fw-semibold text-secondary">
+            <i class="bx bx-filter-alt"></i> Filtros de Búsqueda
+        </h5>
+        <button class="btn btn-outline-primary rounded-pill shadow-sm px-4 py-2" onclick="Filtros()">
+            <i class="bx bx-slider-alt"></i> Mostrar / Ocultar Filtros
+        </button>
+    </div>
+
+    <!-- Contenedor filtros -->
+    <div id="filtrosContainer" class="bg-white px-3 py-3 rounded shadow-sm mb-4"
+        style="display: none; margin-left: 1.5rem; margin-right: 1.5rem;">
+        <div class="row g-3 align-items-end">
+
+
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroFechaDesde">FECHA DESDE</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="date" class="form-control" id="filtroFechaDesde">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-semibold" for="filtroFechaHasta">FECHA HASTA</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bx bx-search"></i></span>
+                    <input type="date" class="form-control" id="filtroFechaHasta">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Cards -->
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card">
+
+        <h5 class="card-header d-flex align-items-center justify-content-between fw-bold">
+            <span class="d-flex align-items-center">
+                <i class="bx bx-dumbbell fs-4 me-2"></i> Calorías reales quemadas ajustadas por peso
+            </span>
+        </h5>
+        <div class="table-responsive text-nowrap mt-3">
+            <table class="table" id="tablaActividadPorPersona">
+                <thead class="table-light">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Duracion</th>
+                        <th>Calorías Base</th>
+                        <th>Calorías Ajustadas</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script src="../js/Fetch/Resultados/11.CaloriasReales.js"></script>
+<!-- <script src="../js/Fetch/Common/obtenerPersonas.js"></script> -->

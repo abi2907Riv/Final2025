@@ -654,7 +654,68 @@ namespace Final2025.Controllers
             return Ok(resultados);
         }
 
-        
+
+
+
+        [HttpPost("CaloriasQuemadasReales")]
+        public async Task<ActionResult<IEnumerable<PersonaDTO>>> CaloriasQuemadasReales()
+        {
+            var personas = await _context.Personas.ToListAsync();
+            var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+            var usuarios = await _context.Users.ToListAsync();
+
+            List<PersonaDTO> personasMostrar = new List<PersonaDTO>();
+            foreach (var persona in personas)
+            {
+                var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+                .Select(u => u.Email).FirstOrDefault();
+
+                var actividadesPersona = actividades
+                .Where(a => a.PersonaID == persona.PersonaID).AsQueryable();
+
+                if (!actividadesPersona.Any())
+                    continue;
+                var tipoActividadAgrupado = actividadesPersona
+                .GroupBy(a => a.TipoActividadID);
+
+                List<TiposDTO> tiposActividadMostrar = new List<TiposDTO>();
+
+                foreach (var actividad in tipoActividadAgrupado)
+                {
+                    var tiposActividad = actividad.Select(a => a.TipoActividad).FirstOrDefault();
+
+                    tiposActividadMostrar.Add(new TiposDTO
+                    {
+                        NombreTipo = tiposActividad.Nombre,
+                        MinutosTotales = actividad.Sum(a => a.DuracionMinutos.TotalMinutes),
+                        CaloriasRealesTotales = actividad.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes *
+                            a.TipoActividad.CaloriasPorMinuto *
+                            (persona.Peso / 70m)),
+                        Actividades = actividad.Select(a => new ActividadesDTO
+                        {
+                            Fecha = a.Fecha,
+                            DuracionMinutos = a.DuracionMinutos.TotalMinutes,
+                            CaloriasReales = (decimal)a.DuracionMinutos.TotalMinutes *
+                                 a.TipoActividad.CaloriasPorMinuto *
+                                 (persona.Peso / 70m),
+                        }).ToList()
+                    });
+                }
+                personasMostrar.Add(new PersonaDTO
+                {
+                    Nombre = persona.Nombre,
+                    Peso = persona.Peso,
+                    Email = email,
+                    MinutosTotales = actividadesPersona.Sum(a => a.DuracionMinutos.TotalMinutes),
+                    CaloriasRealesTotales = actividadesPersona.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes *
+                                                               a.TipoActividad.CaloriasPorMinuto *
+                                                               (persona.Peso / 70m)),
+                    CantidadActividades = actividadesPersona.Count(),
+                    TiposActividades = tiposActividadMostrar
+                });
+            }
+            return Ok(personasMostrar);
+        }
         private bool ActividadExists(int id)
         {
             return _context.Actividades.Any(e => e.ActividadID == id);

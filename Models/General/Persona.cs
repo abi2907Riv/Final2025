@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Final2025.Models.General;
 
     public class Persona
@@ -6,6 +8,9 @@ namespace Final2025.Models.General;
         public string Nombre { get; set; }
         public DateOnly FechaNacimiento { get; set; }
         public decimal Peso { get; set; }
+        
+        [NotMapped]
+        public int Edad { get; set; }
         public string? UsuarioID { get; set; }
 
         public virtual ICollection<Actividad> Actividades { get; set; } = new List<Actividad>();
