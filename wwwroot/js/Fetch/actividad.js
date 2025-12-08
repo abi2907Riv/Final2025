@@ -174,9 +174,9 @@ function ValidarFormulario() {
    // errorSelectPersona.textContent = "Seleccione una persona";
    // valido = false
  // }
-  if (tipoActividad === ""){
+  if (tipoActividad === "0"){
     selectTipoActividad.classList.add("is-invalid");
-    errorSelectTipoActividad.textContent = "Seleccione una persona";
+    errorSelectTipoActividad.textContent = "Seleccione un Tipo de Actividad";
     valido = false
   }
   if (!fecha){

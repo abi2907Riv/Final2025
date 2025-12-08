@@ -400,52 +400,52 @@ namespace Final2025.Controllers
 
 
         //Contar el número de actividades realizadas por cada persona y sumando los minutos y calorias totales.
-        [HttpPost("InformeTotalAactividadesXPersona")]
-        public async Task<ActionResult<IEnumerable<PersonasDTO>>> InformeTotalAactividadesXPersona([FromBody] FiltroActividad filtro)
-        {
-            var personas = await _context.Personas.ToListAsync();
+        // [HttpPost("InformeTotalAactividadesXPersona")]
+        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> InformeTotalAactividadesXPersona([FromBody] FiltroActividad filtro)
+        // {
+        //     var personas = await _context.Personas.ToListAsync();
 
-            List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
-            foreach (var persona in personas)
-            {
-                var email = await _context.Users
-                .Where(u => u.Id == persona.UsuarioID)
-                .Select(u => u.Email)
-                .FirstOrDefaultAsync();
+        //     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+        //     foreach (var persona in personas)
+        //     {
+        //         var email = await _context.Users
+        //         .Where(u => u.Id == persona.UsuarioID)
+        //         .Select(u => u.Email)
+        //         .FirstOrDefaultAsync();
 
-                var actividades = _context.Actividades
-                .Where(a => a.PersonaID == persona.PersonaID)
-                .Include(a => a.TipoActividad).AsQueryable();
+        //         var actividades = _context.Actividades
+        //         .Where(a => a.PersonaID == persona.PersonaID)
+        //         .Include(a => a.TipoActividad).AsQueryable();
 
-                //FILTRO POR PERSONA
-                if (filtro.PersonaID > 0)
-                    actividades = actividades.Where(a => a.PersonaID == filtro.PersonaID);
+        //         //FILTRO POR PERSONA
+        //         if (filtro.PersonaID > 0)
+        //             actividades = actividades.Where(a => a.PersonaID == filtro.PersonaID);
 
-                var listaActividades = await actividades.ToListAsync();
+        //         var listaActividades = await actividades.ToListAsync();
 
-                var totalMinutos = listaActividades.Any()
-                    ? listaActividades.Sum(a => (int)a.DuracionMinutos.TotalMinutes)
-                    : 0;
+        //         var totalMinutos = listaActividades.Any()
+        //             ? listaActividades.Sum(a => (int)a.DuracionMinutos.TotalMinutes)
+        //             : 0;
 
-                var cantidadActividades = listaActividades.Count;
+        //         var cantidadActividades = listaActividades.Count;
 
-                var caloriasTotales = listaActividades.Any()
-                    ? listaActividades.Sum(a =>
-                        (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto)
-                    : 0;
-                if (!actividades.Any())
-                    continue;
-                personasMostrar.Add(new PersonasDTO
-                {
-                    Nombre = persona.Nombre,
-                    Email = email,
-                    TotalMinutos = totalMinutos,
-                    CantidadActividades = cantidadActividades,
-                    TotalCalorias = caloriasTotales
-                });
-            }
-            return Ok(personasMostrar);
-        }
+        //         var caloriasTotales = listaActividades.Any()
+        //             ? listaActividades.Sum(a =>
+        //                 (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto)
+        //             : 0;
+        //         if (!actividades.Any())
+        //             continue;
+        //         personasMostrar.Add(new PersonasDTO
+        //         {
+        //             Nombre = persona.Nombre,
+        //             Email = email,
+        //             TotalMinutos = totalMinutos,
+        //             CantidadActividades = cantidadActividades,
+        //             TotalCalorias = caloriasTotales
+        //         });
+        //     }
+        //     return Ok(personasMostrar);
+        // }
 
 
         //Calcular el promedio de duración de las actividades de cada persona.
@@ -499,39 +499,39 @@ namespace Final2025.Controllers
 
         //Informe de actividades agrupadas por tipo de actividad
         //Ver cuántas actividades de cada tipo se han realizado.
-        [HttpPost("ActividadesAgrupadasXTipoActividad")]
-        public async Task<ActionResult<IEnumerable<PersonasDTO>>> ActividadesAgrupadasXTipoActividad()
-        {
-            var tipoActividad = await _context.TipoActividades.ToListAsync();
-            var actividades = await _context.Actividades
-            .Include(a => a.TipoActividad)
-            .ToListAsync();
+        // [HttpPost("ActividadesAgrupadasXTipoActividad")]
+        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> ActividadesAgrupadasXTipoActividad()
+        // {
+        //     var tipoActividad = await _context.TipoActividades.ToListAsync();
+        //     var actividades = await _context.Actividades
+        //     .Include(a => a.TipoActividad)
+        //     .ToListAsync();
 
-            List<TipoActividadDTO> tipoActividadMostrar = new List<TipoActividadDTO>();
-            foreach (var tiposActividades in tipoActividad)
-            {
-                var actTipos = actividades
-                .Where(a => a.TipoActividadID == tiposActividades.TipoActividadID)
-                .ToList();
+        //     List<TipoActividadDTO> tipoActividadMostrar = new List<TipoActividadDTO>();
+        //     foreach (var tiposActividades in tipoActividad)
+        //     {
+        //         var actTipos = actividades
+        //         .Where(a => a.TipoActividadID == tiposActividades.TipoActividadID)
+        //         .ToList();
 
-                if (!actTipos.Any())
-                    continue;
+        //         if (!actTipos.Any())
+        //             continue;
 
-                var totalActividades = actTipos.Count();
-                var totalMinutos = actTipos.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
-                var totalCalorias = actTipos.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto);
+        //         var totalActividades = actTipos.Count();
+        //         var totalMinutos = actTipos.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+        //         var totalCalorias = actTipos.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto);
 
 
-                tipoActividadMostrar.Add(new TipoActividadDTO
-                {
-                    NombreTipo = tiposActividades.Nombre,
-                    CantidadActividades = totalActividades,
-                    TotalMinutos = totalMinutos,
-                    TotalCalorias = totalCalorias
-                });
-            }
-            return Ok(tipoActividadMostrar);
-        }
+        //         tipoActividadMostrar.Add(new TipoActividadDTO
+        //         {
+        //             NombreTipo = tiposActividades.Nombre,
+        //             CantidadActividades = totalActividades,
+        //             TotalMinutos = totalMinutos,
+        //             TotalCalorias = totalCalorias
+        //         });
+        //     }
+        //     return Ok(tipoActividadMostrar);
+        // }
 
 
         [HttpPost("DetalleActividades")]
@@ -622,33 +622,33 @@ namespace Final2025.Controllers
                                 (!filtro.FechaHastaFiltro.HasValue || a.Fecha.Date <= filtro.FechaHastaFiltro.Value.Date))
                     .ToList() ?? new List<Actividad>();
 
-            var totalMinutos = actividades.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
-            var totalCalorias = actividades.Sum(a => a.TipoActividad.CaloriasPorMinuto * (int)a.DuracionMinutos.TotalMinutes);
-            var pesoFinal = grupoPersona.Peso - (totalCalorias / 7700m); 
+                var totalMinutos = actividades.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                var totalCalorias = actividades.Sum(a => a.TipoActividad.CaloriasPorMinuto * (int)a.DuracionMinutos.TotalMinutes);
+                var pesoFinal = grupoPersona.Peso - (totalCalorias / 7700m);
 
-            var tipoActividad = actividades.GroupBy(a => a.TipoActividad.Nombre)
-            .Select(grupoTipo => new AgruparXTipo
-            {
-                NombreActividad = grupoTipo.Key,
-                TotalActividades = grupoTipo.Count(),
-                TiempoTotalMinutos = grupoTipo.Sum(a => (int)a.DuracionMinutos.TotalMinutes),
-                TotalCalorias = grupoTipo.Sum(a => a.TipoActividad.CaloriasPorMinuto * (int)a.DuracionMinutos.TotalMinutes),
-                PesoFinal = grupoPersona.Peso - (grupoTipo.Sum( a => (int)a.DuracionMinutos.TotalMinutes * (int)a.TipoActividad.CaloriasPorMinuto)/7700m),
-                VariacionPeso = (grupoPersona.Peso - (grupoTipo.Sum( a => (int)a.DuracionMinutos.TotalMinutes * (int)a.TipoActividad.CaloriasPorMinuto)/7700m)),
-            }).ToList();
-            
-            return new AgruparXPersona
-            {
-                Nombre = grupoPersona.Nombre,
-                PesoInicial = grupoPersona.Peso,
-                PesoFinal = pesoFinal,
-                VariacionPeso = pesoFinal - grupoPersona.Peso,
-                TotalActividades = actividades.Count(),
-                TiempoTotalMinutos = totalMinutos,
-                PromedioDuracion = actividades.Count > 0? totalMinutos / actividades.Count: 0,
-                TotalCalorias = totalCalorias,
-                TiposAgrupados = tipoActividad
-            };
+                var tipoActividad = actividades.GroupBy(a => a.TipoActividad.Nombre)
+                .Select(grupoTipo => new AgruparXTipo
+                {
+                    NombreActividad = grupoTipo.Key,
+                    TotalActividades = grupoTipo.Count(),
+                    TiempoTotalMinutos = grupoTipo.Sum(a => (int)a.DuracionMinutos.TotalMinutes),
+                    TotalCalorias = grupoTipo.Sum(a => a.TipoActividad.CaloriasPorMinuto * (int)a.DuracionMinutos.TotalMinutes),
+                    PesoFinal = grupoPersona.Peso - (grupoTipo.Sum(a => (int)a.DuracionMinutos.TotalMinutes * (int)a.TipoActividad.CaloriasPorMinuto) / 7700m),
+                    VariacionPeso = (grupoPersona.Peso - (grupoTipo.Sum(a => (int)a.DuracionMinutos.TotalMinutes * (int)a.TipoActividad.CaloriasPorMinuto) / 7700m)),
+                }).ToList();
+
+                return new AgruparXPersona
+                {
+                    Nombre = grupoPersona.Nombre,
+                    PesoInicial = grupoPersona.Peso,
+                    PesoFinal = pesoFinal,
+                    VariacionPeso = pesoFinal - grupoPersona.Peso,
+                    TotalActividades = actividades.Count(),
+                    TiempoTotalMinutos = totalMinutos,
+                    PromedioDuracion = actividades.Count > 0 ? totalMinutos / actividades.Count : 0,
+                    TotalCalorias = totalCalorias,
+                    TiposAgrupados = tipoActividad
+                };
             }).ToList();
 
             return Ok(resultados);
@@ -715,6 +715,121 @@ namespace Final2025.Controllers
                 });
             }
             return Ok(personasMostrar);
+        }
+
+
+        [HttpPost("InformeCantidadActividadPersona")]
+        public async Task<ActionResult<IEnumerable<PersonasDTO>>> InformeCantidadActividadPersona([FromBody] FiltroActividad filtro)
+        {
+            var usuario = await _context.Users.ToListAsync();
+            var personas = await _context.Personas.ToListAsync();
+            var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+
+            List<PersonasDTO> personaMostrar = new List<PersonasDTO>();
+            foreach (var persona in personas)
+            {
+                var email = usuario.Where(u => u.Id == persona.UsuarioID)
+                .Select(u => u.Email).FirstOrDefault();
+
+                var actividadesPersona = actividades
+                .Where(a => a.PersonaID == persona.PersonaID).ToList();
+
+                if (!actividadesPersona.Any())
+                    continue;
+                var tipoActividadAgrupado = actividadesPersona
+                .GroupBy(a => a.TipoActividadID);
+
+            // Filtrar por rango de fechas de actividades
+            DateTime fechaDesde = new DateTime();
+            bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaDesde) && DateTime.TryParse(filtro.FechaDesde, out fechaDesde);
+            DateTime fechaHasta = new DateTime();
+            bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaHasta) && DateTime.TryParse(filtro.FechaHasta, out fechaHasta);
+            // Si ambas fechas son válidas, filtrar actividades dentro del rango
+            if (fechaDesdeValido && fechaHastaValido)
+                actividadesPersona = actividadesPersona.Where(a => a.Fecha >= fechaDesde && a.Fecha <= fechaHasta).ToList();
+            else if (fechaDesdeValido) // Solo desde
+                actividadesPersona = actividadesPersona.Where(a => a.Fecha >= fechaDesde).ToList();
+            else if (fechaHastaValido) // Solo hasta
+                actividadesPersona = actividadesPersona.Where(a => a.Fecha <= fechaHasta).ToList();
+
+                var duracionTotal = actividadesPersona.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                var caloriasTotales = actividadesPersona.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto);
+                var fechaUltimaActividad = actividadesPersona.OrderByDescending(t => t.FechaString)
+                .Select(t => t.Fecha).FirstOrDefault();
+                var listaPersonas = new PersonasDTO
+                {
+                    Nombre = persona.Nombre,
+                    Email = email,
+                    TotalActividades = actividadesPersona.Count(),
+                    DuracionTotal = duracionTotal,
+                    TotalCalorias = caloriasTotales,
+                    FechaUltimaActividad = fechaUltimaActividad
+                };
+                personaMostrar.Add(listaPersonas);
+
+                List<TipoActividadDTO> tipoActividadMostrar = new List<TipoActividadDTO>();
+                var actTiposPersona = actividadesPersona.GroupBy(p => p.TipoActividad.Nombre);
+                // Recorre cada grupo (categoría)
+                foreach (var tipoActividadPersona in actTiposPersona)
+                {
+                    var duracionTotalTipo = tipoActividadPersona.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                    var caloriasTotalesTipo = tipoActividadPersona.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto);
+                    var fechaUltimaTipo = tipoActividadPersona.OrderByDescending(t => t.Fecha)
+                    .Select(t => t.Fecha).FirstOrDefault();
+                    // Crea el objeto con la info de esa categoría
+                    var listaTipos = new TipoActividadDTO
+                    {
+                        NombreTipo = tipoActividadPersona.Key,
+                        TotalActividades = tipoActividadPersona.Count(),
+                        DuracionTotal = duracionTotalTipo,
+                        TotalCalorias = caloriasTotalesTipo,
+                        FechaUltimaActividad = fechaUltimaTipo
+                    };
+                    tipoActividadMostrar.Add(listaTipos);
+                }
+                listaPersonas.TiposActividad = tipoActividadMostrar;
+            }
+            return Ok(personaMostrar);
+        }
+
+
+        [HttpPost("InformeCantidad")]
+        public async Task<ActionResult<IEnumerable<PersonasDTO>>> InformeCantidad()
+        {
+            var usuario = await _context.Users.ToListAsync();
+            var personas = await _context.Personas.ToListAsync();
+            var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+
+            List<PersonasDTO> personaMostrar = new List<PersonasDTO>();
+            foreach (var persona in personas)
+            {
+                var email = usuario.Where(u => u.Id == persona.UsuarioID)
+                .Select(u => u.Email).FirstOrDefault();
+
+                var actividadesPersona = actividades
+                .Where(a => a.PersonaID == persona.PersonaID).ToList();
+
+                if (!actividadesPersona.Any())
+                    continue;
+                var tipoActividadAgrupado = actividadesPersona
+                .GroupBy(a => a.TipoActividadID);
+
+                var duracionTotal = actividadesPersona.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                var caloriasTotales = actividadesPersona.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto);
+                var fechaUltimaActividad = actividadesPersona.OrderByDescending(t => t.FechaString)
+                .Select(t => t.Fecha).FirstOrDefault();
+                var listaPersonas = new PersonasDTO
+                {
+                    Nombre = persona.Nombre,
+                    Email = email,
+                    TotalActividades = actividadesPersona.Count(),
+                    DuracionTotal = duracionTotal,
+                    TotalCalorias = caloriasTotales,
+                    FechaUltimaActividad = fechaUltimaActividad
+                };
+                personaMostrar.Add(listaPersonas);
+            }
+            return Ok(personaMostrar);
         }
         private bool ActividadExists(int id)
         {

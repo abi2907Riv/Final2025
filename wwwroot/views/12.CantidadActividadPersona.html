@@ -1,0 +1,61 @@
+<!-- INFORME DONDE CONTABILIZA LA CANTIDAD DE TICKET Y DEMAS DE CADA CLIENTE -->
+<div class="content-wrapper">
+    <div class="d-flex filtros-header justify-content-between align-items-center my-4 px-3">
+        <h5 class="mb-0 fw-semibold text-secondary">
+            <i class="bx bx-filter-alt"></i> Filtros de Búsqueda
+        </h5>
+        <button class="btn btn-outline-primary rounded-pill shadow-sm px-4 py-2" onclick="Filtros()">
+            <i class="bx bx-slider-alt"></i> Mostrar / Ocultar Filtros
+        </button>
+    </div>
+    <!-- Filtros -->
+  <div id="filtrosContainer" class="bg-white px-3 py-3 rounded shadow-sm mb-4"
+    style="display: none; margin-left: 1.5rem; margin-right: 1.5rem;">
+    <div class="row g-2 align-items-end">
+
+      <!-- Fecha Cierre Desde -->
+      <div class="col-md-2">
+        <label for="fechaCierreDesde" class="form-label fw-medium" style="font-size: 0.85rem;">Fecha Desde</label>
+        <input type="date" class="form-control form-control-sm" id="fechaDesde"
+          style="font-size: 0.85rem; padding: 0.3rem 0.5rem;">
+      </div>
+
+      <!-- Fecha cierre Hasta -->
+      <div class="col-md-2">
+        <label for="fechaCierreHasta" class="form-label fw-medium" style="font-size: 0.85rem;">Fecha Hasta</label>
+        <input type="date" class="form-control form-control-sm" id="fechaHasta"
+          style="font-size: 0.85rem; padding: 0.3rem 0.5rem;">
+      </div>
+
+    </div>
+  </div>
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card">
+
+            <h5 class="card-header d-flex align-items-center justify-content-between fw-bold">
+                <span class="d-flex align-items-center">
+                    <i class="bx bx-receipt -alt fs-4 me-2"></i> Cantidad de Actividades por Persona y Tipo de Actividad
+                </span>
+            </h5>
+
+            <!-- Tabla -->
+            <div class="table-responsive text-nowrap mt-3">
+                <table class="table" id="tablaCantidadActividadesPorPersona">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Persona</th>
+                            <th>Total Actividades</th>
+                            <th>Duracion Minutos</th>
+                            <th>Total Calorias</th>
+                            <th>Fecha Ultima Actividad</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../js/Fetch/Resultados/12.CantidadActividadPersona.js"></script>
