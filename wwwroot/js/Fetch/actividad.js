@@ -186,12 +186,21 @@ function ValidarFormulario() {
   } else {
       const fechaIngresada = new Date(fecha);
       const hoy = new Date();
-      hoy.setHours(0, 0, 0, 0); // Ignorar horas
+      hoy.setHours(0, 0, 0, 0);
+
+      //Validacion para que no se puedan cargar actividades con una fecha de un mes atras
+      const limitePasado = new Date();
+      limitePasado.setMonth(limitePasado.getMonth() - 1); 
+      limitePasado.setHours(0, 0, 0, 0);
       if (fechaIngresada > hoy) {
           inputFecha.classList.add("is-invalid");
           errorFecha.textContent = "La fecha no puede ser futura";
           valido = false;
-      }
+      } else if (fechaIngresada < limitePasado) {
+        inputFecha.classList.add("is-invalid");
+        errorFecha.textContent = "Solo se permiten fechas dentro del último mes"
+        valido = false;
+    }
   }
   if (!duracionMinutos){
     inputDuracionMinutos.classList.add("is-invalid");

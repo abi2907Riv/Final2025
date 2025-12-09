@@ -19,11 +19,15 @@ namespace Final2025.Controllers
     {
         private readonly Context _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _rolManager;
 
-        public PersonasController(Context context, UserManager<ApplicationUser> userManager)
+        public PersonasController(Context context, 
+        UserManager<ApplicationUser> userManager,
+        RoleManager<IdentityRole> rolManager)
         {
             _context = context;
             _userManager = userManager;
+            _rolManager = rolManager;
         }
 
         // GET: api/Personas
@@ -130,6 +134,11 @@ namespace Final2025.Controllers
         [HttpPost]
         public async Task<ActionResult<Persona>> PostPersona([FromBody] CrearUsuario persona)
         {
+            // var rolPersona = _context.Roles.Where(r => r.Name == "PERSONA").SingleOrDefault();
+            // if (rolPersona == null)
+            // {
+            //     var rolResult = await _rolManager.CreateAsync(new IdentityRole("PERSONA"));
+            // }
             var emailExiste = await _context.Users.Where(u => u.Email == persona.Email).AnyAsync();
             if (emailExiste)
             {
@@ -143,9 +152,7 @@ namespace Final2025.Controllers
                 return BadRequest("La fecha de naciemiento no puede ser futura");
             }
 
-            Console.WriteLine($"Fecha recibida: {persona.Persona.FechaNacimiento}");
-
-
+            //Console.WriteLine($"Fecha recibida: {persona.Persona.FechaNacimiento}");
             var hoy = DateOnly.FromDateTime(DateTime.Today);
             var f = persona.Persona.FechaNacimiento;
 
@@ -167,6 +174,7 @@ namespace Final2025.Controllers
             };
 
             await _userManager.CreateAsync(user, "Final2025");
+            //await _userManager.AddToRoleAsync(user, "PERSONA");
 
             persona.Persona.UsuarioID = user.Id;
             _context.Personas.Add(persona.Persona);

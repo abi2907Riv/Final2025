@@ -103,10 +103,16 @@ namespace Final2025.Controllers
 
             var fecha = DateOnly.FromDateTime(actividad.Fecha);
             var fechaDeHoy = DateOnly.FromDateTime(DateTime.Now);
+            var limiteFecha = fechaDeHoy.AddMonths(-1);
 
             if (fecha > fechaDeHoy)
             {
                 return BadRequest("La fecha no puede ser futura a la fecha de hoy");
+            }
+
+            if (fecha < limiteFecha)
+            {
+                return BadRequest("La fecha no puede ser anterior a un mes atrás");
             }
 
             var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -170,7 +176,11 @@ namespace Final2025.Controllers
         //     }
             
         //     return actividadFiltrada.ToList();
-        // }    
+        // } 
+
+
+
+
         private bool ActividadExists(int id)
         {
             return _context.Actividades.Any(e => e.ActividadID == id);

@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\persona.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\personaAct.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\personaAct.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\script.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\script.js"
     },
@@ -189,6 +193,14 @@
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\Models\\TipoActividadDTO.cs"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\tiempoInvertido.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\tiempoInvertido.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\tiposActividadesInforme.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\tiposActividadesInforme.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\1.ActividadesPersona.html",
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\1.ActividadesPersona.html"
     },
@@ -241,6 +253,14 @@
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\9.ActividadesAgrupadasPorTipo.html"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\TiempoInvertido.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\TiempoInvertido.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\TiposActividadesInforme.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\TiposActividadesInforme.html"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\sneat\\js\\bootstrap.js"
     },
@@ -271,6 +291,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\home.html",
       "PackagePath": "staticwebassets\\views\\home.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personaAct.html",
+      "PackagePath": "staticwebassets\\views\\personaAct.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personas.html",

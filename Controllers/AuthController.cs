@@ -81,11 +81,10 @@ public class AuthController : ControllerBase
             persona.UsuarioID = user.Id;
             _context.Personas.Add(persona);
             await _context.SaveChangesAsync();
-            // await _userManager.AddToRoleAsync(user, "ADMINISTRADOR");
+            //await _userManager.AddToRoleAsync(user, "ADMINISTRADOR");
             return Ok("Registro exitoso");
         }
         return BadRequest("La contraseña debe tener un mínimo de 6 caracteres.");
-
     }
 
     [HttpPost("login")]
