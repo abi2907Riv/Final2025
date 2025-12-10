@@ -1,4 +1,5 @@
 using Final2025.Models.General;
+using Humanizer;
 
 public class PersonasDTO
 {
@@ -21,4 +22,9 @@ public class PersonasDTO
     public double PromedioMinutos { get; set; }
     public double PromedioCalorias { get; set; }
     //public decimal TotalCalorias { get; set; }
+
+    public int Ligeras { get; set; }
+    public int Intensas { get; set; }
+    public int porcentajeIntensas { get; set; }
+    public DateTime? FechaUltimaActividadIntensiva { get; set; }
 }

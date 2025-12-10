@@ -158,7 +158,7 @@ namespace Final2025.Controllers
         //     // Filtrar por rango de fechas de actividades
         //     DateTime fechaDesde = new DateTime();
         //     bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaDesde) && DateTime.TryParse(filtro.FechaDesde, out fechaDesde);
-            
+
         //     DateTime fechaHasta = new DateTime();
         //     bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaHasta) && DateTime.TryParse(filtro.FechaHasta, out fechaHasta);
 
@@ -174,7 +174,7 @@ namespace Final2025.Controllers
         //     {
         //         actividadFiltrada = actividadFiltrada.Where(c => c.DuracionMinutos == filtro.DuracionMinutos.Value);
         //     }
-            
+
         //     return actividadFiltrada.ToList();
         // } 
 

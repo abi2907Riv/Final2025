@@ -25,12 +25,12 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\actividad.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\persona.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\persona.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\ligerasIntensasTipo.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\ligerasIntensasTipo.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\personaAct.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\personaAct.js"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\persona.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\persona.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\script.js",
@@ -193,6 +193,22 @@
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\Models\\TipoActividadDTO.cs"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\cantidades.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\cantidades.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\fechaTipoAct.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\fechaTipoAct.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\ligerasIntensivas.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\ligerasIntensivas.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\personaAct.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\personaAct.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\tiempoInvertido.js",
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\tiempoInvertido.js"
     },
@@ -261,6 +277,22 @@
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\TiposActividadesInforme.html"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\cantidades.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\cantidades.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\fechaTipoAct.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\fechaTipoAct.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\ligerasIntensivas.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\ligerasIntensivas.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\personaAct.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\personaAct.html"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\sneat\\js\\bootstrap.js"
     },
@@ -293,8 +325,8 @@
       "PackagePath": "staticwebassets\\views\\home.html"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personaAct.html",
-      "PackagePath": "staticwebassets\\views\\personaAct.html"
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\ligerasIntensivasTipo.html",
+      "PackagePath": "staticwebassets\\views\\ligerasIntensivasTipo.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\personas.html",
