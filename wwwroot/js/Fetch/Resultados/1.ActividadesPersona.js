@@ -7,30 +7,30 @@ function Filtros() {
 //////////////////////////////////////////////////
 //FUNCION PARA OBTENER LOS TIPOS DE ACTIVIDAD EN EL DROP//
 /////////////////////////////////////////////////
-async function ObtenerTipoActividadDrop() {
-    const res = await authFetch('TiposActividades', {
-        method: 'GET'
-    })
-    .then(response => response.json())
-    .then(data => {
-        MostrarTipoActividadDrop(data)
-    })
-    .catch(error => console.log('No se puede acceder al servicio', error));
-}
-function MostrarTipoActividadDrop(data) {
-    let bodySelectFiltro = document.getElementById("filtroActividad");
-    bodySelectFiltro.innerHTML = "";
-    bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
-    const activos = data.filter(item => item.eliminado == false);
-    activos.forEach(element => {
-        let optFiltro = document.createElement("option");
-        optFiltro.value = element.tipoActividadID;
-        optFiltro.innerHTML = element.nombre;
-        bodySelectFiltro.appendChild(optFiltro);
-   })
-}
+// async function ObtenerTipoActividadDrop() {
+//     const res = await authFetch('TiposActividades', {
+//         method: 'GET'
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         MostrarTipoActividadDrop(data)
+//     })
+//     .catch(error => console.log('No se puede acceder al servicio', error));
+// }
+// function MostrarTipoActividadDrop(data) {
+//     let bodySelectFiltro = document.getElementById("filtroActividad");
+//     bodySelectFiltro.innerHTML = "";
+//     bodySelectFiltro.innerHTML = "<option value='0'>[Todas]</option>";
+//     const activos = data.filter(item => item.eliminado == false);
+//     activos.forEach(element => {
+//         let optFiltro = document.createElement("option");
+//         optFiltro.value = element.tipoActividadID;
+//         optFiltro.innerHTML = element.nombre;
+//         bodySelectFiltro.appendChild(optFiltro);
+//    })
+// }
 
-ObtenerTipoActividadDrop()
+// ObtenerTipoActividadDrop()
 
 
 
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
 async function ObtenerInformeActividadXPersona() {
   let personaIdBuscar = document.getElementById("personaBuscar").value;
-  let tipoIdBuscar = document.getElementById("filtroActividad").value;
+  //let tipoIdBuscar = document.getElementById("filtroActividad").value;
   let fechaDesde = document.getElementById("filtroFechaDesde").value;
   let fechaHasta = document.getElementById("filtroFechaHasta").value;
   //let fechaActividad = document.getElementById("filtroFecha").value;
@@ -59,7 +59,7 @@ async function ObtenerInformeActividadXPersona() {
   //   }
     let filtros = {
         PersonaID: parseInt(personaIdBuscar) || 0,
-        TipoActividadID: parseInt(tipoIdBuscar) || 0,
+        //TipoActividadID: parseInt(tipoIdBuscar) || 0,
         FechaDesde: fechaDesde || null,
         FechaHasta: fechaHasta || null,
         //FechaActividad: fechaActividad || null,

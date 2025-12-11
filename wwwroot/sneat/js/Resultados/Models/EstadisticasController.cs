@@ -834,111 +834,111 @@
 
 
 
-        // [HttpPost("TiempoInvertido")]   
-        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> TiempoInvertido()
-        // {
-        //     var personas = await _context.Personas.ToListAsync();
-        //     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
-        //     var usuarios = await _context.Users.ToListAsync();
+// [HttpPost("TiempoInvertido")]   
+// public async Task<ActionResult<IEnumerable<PersonasDTO>>> TiempoInvertido()
+// {
+//     var personas = await _context.Personas.ToListAsync();
+//     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+//     var usuarios = await _context.Users.ToListAsync();
 
-        //     List<PersonasDTO> personaMostrar = new List<PersonasDTO>();
-        //     foreach (var persona in personas)
-        //     {
-        //         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
-        //         .Select(u => u.Email).FirstOrDefault();
+//     List<PersonasDTO> personaMostrar = new List<PersonasDTO>();
+//     foreach (var persona in personas)
+//     {
+//         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+//         .Select(u => u.Email).FirstOrDefault();
 
-        //         var actividadesPersona = actividades
-        //         .Where(a => a.PersonaID == persona.PersonaID).ToList();
+//         var actividadesPersona = actividades
+//         .Where(a => a.PersonaID == persona.PersonaID).ToList();
 
-        //         if (!actividadesPersona.Any())
-        //             continue;
+//         if (!actividadesPersona.Any())
+//             continue;
 
-        //         List<TipoActividadDTO> tipoActividadMostrar = new List<TipoActividadDTO>();
+//         List<TipoActividadDTO> tipoActividadMostrar = new List<TipoActividadDTO>();
 
-        //         var actividadesAgrupadas = actividadesPersona
-        //         .GroupBy(g => g.TipoActividad.Nombre);
+//         var actividadesAgrupadas = actividadesPersona
+//         .GroupBy(g => g.TipoActividad.Nombre);
 
-        //         foreach(var tiposActividades in actividadesAgrupadas)
-        //         {
-        //             var promedioTiempoInvertido = tiposActividades.Average(a => a.DuracionMinutos.TotalMinutes);
+//         foreach(var tiposActividades in actividadesAgrupadas)
+//         {
+//             var promedioTiempoInvertido = tiposActividades.Average(a => a.DuracionMinutos.TotalMinutes);
 
-        //             tipoActividadMostrar.Add(new TipoActividadDTO
-        //             {
-        //                 NombreTipo = tiposActividades.Key,
-        //                 PromedioTiempo = promedioTiempoInvertido,
-        //             });
-        //         }
-        //         personaMostrar.Add(new PersonasDTO
-        //         {
-        //             Nombre = persona.Nombre,
-        //             Email = email,
-        //             TiposActividad = tipoActividadMostrar
-        //         });
-        //     }
-        //     return Ok(personaMostrar);
-        // }
+//             tipoActividadMostrar.Add(new TipoActividadDTO
+//             {
+//                 NombreTipo = tiposActividades.Key,
+//                 PromedioTiempo = promedioTiempoInvertido,
+//             });
+//         }
+//         personaMostrar.Add(new PersonasDTO
+//         {
+//             Nombre = persona.Nombre,
+//             Email = email,
+//             TiposActividad = tipoActividadMostrar
+//         });
+//     }
+//     return Ok(personaMostrar);
+// }
 
 
-        // [HttpPost("TipoActividadActividades")]
-        // public async Task<ActionResult<IEnumerable<TipoActividadDTO>>> TipoActividadActividades()
-        // {
-        //     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
-        //     var actividadesTipo = actividades
-        //         .GroupBy(a => a.TipoActividad.Nombre);
+// [HttpPost("TipoActividadActividades")]
+// public async Task<ActionResult<IEnumerable<TipoActividadDTO>>> TipoActividadActividades()
+// {
+//     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+//     var actividadesTipo = actividades
+//         .GroupBy(a => a.TipoActividad.Nombre);
 
-        //     List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
-        //     foreach(var tipos in actividadesTipo)
-        //     {
-        //         tiposActividadMostrar.Add(new TipoActividadDTO
-        //         {
-        //             NombreTipo = tipos.Key,
-        //             Actividades = tipos.Select(a => new ActividadDTO
-        //             {
-        //                 Fecha = a.Fecha,
-        //                 DuracionMinutos = (int)a.DuracionMinutos.TotalMinutes,
-        //                 CaloriasQuemadas = (decimal)(a.DuracionMinutos.TotalMinutes * (double)a.TipoActividad.CaloriasPorMinuto),
-        //             }).ToList()
-        //         });
-        //     }
-        //     return Ok(tiposActividadMostrar);
-        // }
+//     List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
+//     foreach(var tipos in actividadesTipo)
+//     {
+//         tiposActividadMostrar.Add(new TipoActividadDTO
+//         {
+//             NombreTipo = tipos.Key,
+//             Actividades = tipos.Select(a => new ActividadDTO
+//             {
+//                 Fecha = a.Fecha,
+//                 DuracionMinutos = (int)a.DuracionMinutos.TotalMinutes,
+//                 CaloriasQuemadas = (decimal)(a.DuracionMinutos.TotalMinutes * (double)a.TipoActividad.CaloriasPorMinuto),
+//             }).ToList()
+//         });
+//     }
+//     return Ok(tiposActividadMostrar);
+// }
 
-        //         [HttpPost("PersonasActividades")]
-        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> PersonasActividades()
-        // {
-        //     var usuarios = await _context.Users.ToListAsync();
-        //     var personas = await _context.Personas.ToListAsync();
-        //     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+//         [HttpPost("PersonasActividades")]
+// public async Task<ActionResult<IEnumerable<PersonasDTO>>> PersonasActividades()
+// {
+//     var usuarios = await _context.Users.ToListAsync();
+//     var personas = await _context.Personas.ToListAsync();
+//     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
 
-        //     List<PersonasDTO> personaMostrar = new List<PersonasDTO>();
-        //     foreach(var persona in personas)
-        //     {
-        //         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
-        //         .Select(u => u.Email).FirstOrDefault();
+//     List<PersonasDTO> personaMostrar = new List<PersonasDTO>();
+//     foreach(var persona in personas)
+//     {
+//         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+//         .Select(u => u.Email).FirstOrDefault();
 
-        //         var actividadesPersona = actividades
-        //         .Where(a => a.PersonaID == persona.PersonaID)
-        //         .ToList();
+//         var actividadesPersona = actividades
+//         .Where(a => a.PersonaID == persona.PersonaID)
+//         .ToList();
 
-        //         List<ActividadDTO> actividadesMostrar = new List<ActividadDTO>();
-        //         foreach(var actividad in actividadesPersona)
-        //         {
-        //             actividadesMostrar.Add(new ActividadDTO
-        //             {
-        //                 Fecha = actividad.Fecha,
-        //                 DuracionMinutos = (int)actividad.DuracionMinutos.TotalMinutes,
-        //                 CaloriasQuemadas = (decimal)(actividad.DuracionMinutos.TotalMinutes * (double)actividad.TipoActividad.CaloriasPorMinuto)
-        //             });
-        //         }
-        //         personaMostrar.Add(new PersonasDTO
-        //         {
-        //             Nombre = persona.Nombre,
-        //             Email = email,
-        //             Actividades = actividadesMostrar
-        //         });
-        //     }
-        //     return Ok(personaMostrar);
-        // }
+//         List<ActividadDTO> actividadesMostrar = new List<ActividadDTO>();
+//         foreach(var actividad in actividadesPersona)
+//         {
+//             actividadesMostrar.Add(new ActividadDTO
+//             {
+//                 Fecha = actividad.Fecha,
+//                 DuracionMinutos = (int)actividad.DuracionMinutos.TotalMinutes,
+//                 CaloriasQuemadas = (decimal)(actividad.DuracionMinutos.TotalMinutes * (double)actividad.TipoActividad.CaloriasPorMinuto)
+//             });
+//         }
+//         personaMostrar.Add(new PersonasDTO
+//         {
+//             Nombre = persona.Nombre,
+//             Email = email,
+//             Actividades = actividadesMostrar
+//         });
+//     }
+//     return Ok(personaMostrar);
+// }
 
 
 // [HttpPost("FechaTipoActividad")]
@@ -987,161 +987,161 @@
 
 
 
-        // [HttpPost("Cantidades")]
-        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> Cantidades()
-        // {
-        //     var actividades = await _context.Actividades
-        //     .Include(a => a.TipoActividad)
-        //     .Include(a => a.Persona)
-        //     .ToListAsync(); 
-        //     var personas = await _context.Personas.ToListAsync();
-        //     var usuarios = await _context.Users.ToListAsync();
+// [HttpPost("Cantidades")]
+// public async Task<ActionResult<IEnumerable<PersonasDTO>>> Cantidades()
+// {
+//     var actividades = await _context.Actividades
+//     .Include(a => a.TipoActividad)
+//     .Include(a => a.Persona)
+//     .ToListAsync(); 
+//     var personas = await _context.Personas.ToListAsync();
+//     var usuarios = await _context.Users.ToListAsync();
 
-        //     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
-        //     foreach (var persona in personas)
-        //     {
-        //         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
-        //         .Select(u => u.Email).FirstOrDefault();
+//     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+//     foreach (var persona in personas)
+//     {
+//         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+//         .Select(u => u.Email).FirstOrDefault();
 
-        //         var actividadesPersona = actividades
-        //         .Where(a => a.PersonaID == persona.PersonaID)
-        //         .ToList();
+//         var actividadesPersona = actividades
+//         .Where(a => a.PersonaID == persona.PersonaID)
+//         .ToList();
 
-        //         var tiposAgrupados = actividadesPersona
-        //         .GroupBy(a => a.TipoActividad.Nombre)
-        //         .ToList();
+//         var tiposAgrupados = actividadesPersona
+//         .GroupBy(a => a.TipoActividad.Nombre)
+//         .ToList();
 
-        //     List<TipoActividadDTO> tiposActividadesMostrar = new List<TipoActividadDTO>();
-        //     foreach(var tipos in tiposAgrupados)
-        //         {
-        //             var totalActividades = tipos.Count();
-        //             var duracionMas30 = tipos.Count(a => a.DuracionMinutos.TotalMinutes > 30);
-        //             var duracionMenosIgual30 = tipos.Count(a => a.DuracionMinutos.TotalMinutes <= 30);
+//     List<TipoActividadDTO> tiposActividadesMostrar = new List<TipoActividadDTO>();
+//     foreach(var tipos in tiposAgrupados)
+//         {
+//             var totalActividades = tipos.Count();
+//             var duracionMas30 = tipos.Count(a => a.DuracionMinutos.TotalMinutes > 30);
+//             var duracionMenosIgual30 = tipos.Count(a => a.DuracionMinutos.TotalMinutes <= 30);
 
-        //             tiposActividadesMostrar.Add(new TipoActividadDTO
-        //             {
-        //                 NombreTipo = tipos.Key,
-        //                 TotalActividades = totalActividades,
-        //                 TotalMayor30 = duracionMas30,
-        //                 TotalMenor30 = duracionMenosIgual30
-        //             });
-        //         }
-        //     personasMostrar.Add(new PersonasDTO
-        //     {
-        //         Nombre = persona.Nombre,
-        //         Email = email,
-        //         TiposActividad = tiposActividadesMostrar
-        //     });
-        //     }
-        //     return Ok(personasMostrar);
-        // }
-
-
-        // [HttpPost("LigerasIntensas")]
-        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> LigerasIntensas()
-        // {
-        //     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
-        //     var usuarios = await _context.Users.ToListAsync();
-        //     var personas = await _context.Personas.ToListAsync();
-
-        //     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
-        //     foreach(var persona in personas)
-        //     {
-        //         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
-        //         .Select(u => u.Email).FirstOrDefault();
-
-        //         var actividadesPersona = actividades
-        //         .Where(a => a.PersonaID == persona.PersonaID)
-        //         .ToList();
-
-        //             var totalActividades = actividadesPersona.Count();
-        //             var ligeras = actividadesPersona.Count(actividad => actividad.DuracionMinutos.TotalMinutes <= 30);
-        //             var actividadesIntensivas = actividadesPersona
-        //             .Where(a => a.DuracionMinutos.TotalMinutes > 30)
-        //             .ToList();
-        //             var intensivas = actividadesIntensivas.Count();
-        //             //var intensivas  = actividadesPersona.Count(actividad => actividad.DuracionMinutos.TotalMinutes > 30).;
-        //             var porcentajeIntesivas = totalActividades > 0 ? (int)((intensivas * 100) / totalActividades) : 0;
-        //             var fechaUltima = actividadesPersona.Max(a => a.Fecha);
-        //             var fechaUltimaIntensiva = actividadesIntensivas.Max(a => a.Fecha);
-
-        //     personasMostrar.Add(new PersonasDTO
-        //     {
-        //         Nombre = persona.Nombre,
-        //         Email = email,
-        //         TotalActividades = totalActividades,
-        //         Ligeras = ligeras,
-        //         Intensas = intensivas,
-        //         porcentajeIntensas = porcentajeIntesivas,
-        //         FechaUltimaActividad = fechaUltima,
-        //         FechaUltimaActividadIntensiva = fechaUltimaIntensiva
-        //     });
-        //     }
-        //     return Ok(personasMostrar);
-        // }
+//             tiposActividadesMostrar.Add(new TipoActividadDTO
+//             {
+//                 NombreTipo = tipos.Key,
+//                 TotalActividades = totalActividades,
+//                 TotalMayor30 = duracionMas30,
+//                 TotalMenor30 = duracionMenosIgual30
+//             });
+//         }
+//     personasMostrar.Add(new PersonasDTO
+//     {
+//         Nombre = persona.Nombre,
+//         Email = email,
+//         TiposActividad = tiposActividadesMostrar
+//     });
+//     }
+//     return Ok(personasMostrar);
+// }
 
 
+// [HttpPost("LigerasIntensas")]
+// public async Task<ActionResult<IEnumerable<PersonasDTO>>> LigerasIntensas()
+// {
+//     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+//     var usuarios = await _context.Users.ToListAsync();
+//     var personas = await _context.Personas.ToListAsync();
+
+//     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+//     foreach(var persona in personas)
+//     {
+//         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+//         .Select(u => u.Email).FirstOrDefault();
+
+//         var actividadesPersona = actividades
+//         .Where(a => a.PersonaID == persona.PersonaID)
+//         .ToList();
+
+//             var totalActividades = actividadesPersona.Count();
+//             var ligeras = actividadesPersona.Count(actividad => actividad.DuracionMinutos.TotalMinutes <= 30);
+//             var actividadesIntensivas = actividadesPersona
+//             .Where(a => a.DuracionMinutos.TotalMinutes > 30)
+//             .ToList();
+//             var intensivas = actividadesIntensivas.Count();
+//             //var intensivas  = actividadesPersona.Count(actividad => actividad.DuracionMinutos.TotalMinutes > 30).;
+//             var porcentajeIntesivas = totalActividades > 0 ? (int)((intensivas * 100) / totalActividades) : 0;
+//             var fechaUltima = actividadesPersona.Max(a => a.Fecha);
+//             var fechaUltimaIntensiva = actividadesIntensivas.Max(a => a.Fecha);
+
+//     personasMostrar.Add(new PersonasDTO
+//     {
+//         Nombre = persona.Nombre,
+//         Email = email,
+//         TotalActividades = totalActividades,
+//         Ligeras = ligeras,
+//         Intensas = intensivas,
+//         porcentajeIntensas = porcentajeIntesivas,
+//         FechaUltimaActividad = fechaUltima,
+//         FechaUltimaActividadIntensiva = fechaUltimaIntensiva
+//     });
+//     }
+//     return Ok(personasMostrar);
+// }
 
 
 
 
-        // [HttpPost("LigerasIntensasTipo")]
-        // public async Task<ActionResult<IEnumerable<PersonasDTO>>> LigerasIntensasTipo()
-        // {
-        //     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
-        //     var usuarios = await _context.Users.ToListAsync();
-        //     var personas = await _context.Personas.ToListAsync();
 
-        //     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
-        //     foreach(var persona in personas)
-        //     {
-        //         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
-        //         .Select(u => u.Email).FirstOrDefault();
 
-        //         var actividadesPersona = actividades
-        //         .Where(a => a.PersonaID == persona.PersonaID)
-        //         .ToList();
+// [HttpPost("LigerasIntensasTipo")]
+// public async Task<ActionResult<IEnumerable<PersonasDTO>>> LigerasIntensasTipo()
+// {
+//     var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+//     var usuarios = await _context.Users.ToListAsync();
+//     var personas = await _context.Personas.ToListAsync();
 
-        //         var totalActividades = actividadesPersona.Count();
-        //         var ligeras = actividadesPersona.Count(a => a.DuracionMinutos.TotalMinutes <= 30);
-        //         var intensivas = actividadesPersona.Count(a => a.DuracionMinutos.TotalMinutes > 30);
-        //         var porcentajeIntensivas = totalActividades > 0 ? (int)((intensivas * 100) / totalActividades) : 0;
-        //         var fechaUltima = actividadesPersona.Max(a => a.Fecha);
+//     List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+//     foreach(var persona in personas)
+//     {
+//         var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+//         .Select(u => u.Email).FirstOrDefault();
 
-        //     List<TipoActividadDTO> tiposMostrar = new List<TipoActividadDTO>();
-        //     var tiposAgrupados = actividadesPersona.GroupBy(a => a.TipoActividad).ToList();
-        //     foreach(var tipos in tiposAgrupados)
-        //         {
-        //             var totalActividadesTipo = tipos.Count();
-        //             var ligerasTipos = tipos.Count(a => a.DuracionMinutos.TotalMinutes <= 30);
-        //             var intensasTipos = tipos.Count(a => a.DuracionMinutos.TotalMinutes > 30);
-        //             var porcentajeIntensivasTipos = totalActividadesTipo > 0 ? (int)((intensasTipos * 100) / totalActividadesTipo) :0;
-        //             var fechaltimaTipo = tipos.Max(a => a.Fecha);
+//         var actividadesPersona = actividades
+//         .Where(a => a.PersonaID == persona.PersonaID)
+//         .ToList();
 
-        //             tiposMostrar.Add(new TipoActividadDTO
-        //             {
-        //                 NombreTipo = tipos.Key.Nombre,
-        //                 TotalActividades = totalActividadesTipo,
-        //                 TotalMenor30 = ligerasTipos,
-        //                 TotalMayor30 = intensasTipos,
-        //                 porcentajeIntensivas = porcentajeIntensivasTipos,
-        //                 FechaUltimaActividad = fechaltimaTipo
-        //             });
-        //         }
-        //         personasMostrar.Add(new PersonasDTO
-        //         {
-        //             Nombre = persona.Nombre,
-        //             Email = email,
-        //             TotalActividades = totalActividades,
-        //             Ligeras = ligeras,
-        //             Intensas = intensivas,
-        //             porcentajeIntensas = porcentajeIntensivas,
-        //             FechaUltimaActividad = fechaUltima,
-        //             TiposActividad = tiposMostrar
-        //         });
-        //     }
-        //     return Ok(personasMostrar);
-        // }
+//         var totalActividades = actividadesPersona.Count();
+//         var ligeras = actividadesPersona.Count(a => a.DuracionMinutos.TotalMinutes <= 30);
+//         var intensivas = actividadesPersona.Count(a => a.DuracionMinutos.TotalMinutes > 30);
+//         var porcentajeIntensivas = totalActividades > 0 ? (int)((intensivas * 100) / totalActividades) : 0;
+//         var fechaUltima = actividadesPersona.Max(a => a.Fecha);
+
+//     List<TipoActividadDTO> tiposMostrar = new List<TipoActividadDTO>();
+//     var tiposAgrupados = actividadesPersona.GroupBy(a => a.TipoActividad).ToList();
+//     foreach(var tipos in tiposAgrupados)
+//         {
+//             var totalActividadesTipo = tipos.Count();
+//             var ligerasTipos = tipos.Count(a => a.DuracionMinutos.TotalMinutes <= 30);
+//             var intensasTipos = tipos.Count(a => a.DuracionMinutos.TotalMinutes > 30);
+//             var porcentajeIntensivasTipos = totalActividadesTipo > 0 ? (int)((intensasTipos * 100) / totalActividadesTipo) :0;
+//             var fechaltimaTipo = tipos.Max(a => a.Fecha);
+
+//             tiposMostrar.Add(new TipoActividadDTO
+//             {
+//                 NombreTipo = tipos.Key.Nombre,
+//                 TotalActividades = totalActividadesTipo,
+//                 TotalMenor30 = ligerasTipos,
+//                 TotalMayor30 = intensasTipos,
+//                 porcentajeIntensivas = porcentajeIntensivasTipos,
+//                 FechaUltimaActividad = fechaltimaTipo
+//             });
+//         }
+//         personasMostrar.Add(new PersonasDTO
+//         {
+//             Nombre = persona.Nombre,
+//             Email = email,
+//             TotalActividades = totalActividades,
+//             Ligeras = ligeras,
+//             Intensas = intensivas,
+//             porcentajeIntensas = porcentajeIntensivas,
+//             FechaUltimaActividad = fechaUltima,
+//             TiposActividad = tiposMostrar
+//         });
+//     }
+//     return Ok(personasMostrar);
+// }
 //         private bool ActividadExists(int id)
 //         {
 //             return _context.Actividades.Any(e => e.ActividadID == id);
