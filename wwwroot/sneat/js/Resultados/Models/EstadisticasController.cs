@@ -534,65 +534,7 @@
 //         // }
 
 
-//         [HttpPost("DetalleActividades")]
-//         public async Task<ActionResult<IEnumerable<PersonasDTO>>> DetalleActividades([FromBody] FiltroActividad filtro)
-//         {
-//             var usuarios = await _context.Users.ToListAsync();
-//             var personas = await _context.Personas.ToListAsync();
-//             var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
-//             List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
-
-//             foreach (var persona in personas)
-//             {
-//                 var email = usuarios
-//                 .Where(u => u.Id == persona.UsuarioID)
-//                 .Select(u => u.Email)
-//                 .FirstOrDefault();
-
-//                 var actividadesPersona = actividades
-//                 .Where(a => a.PersonaID == persona.PersonaID).AsQueryable();
-
-//                 if (filtro.PersonaID > 0)
-//                     actividadesPersona = actividadesPersona.Where(a => a.PersonaID == filtro.PersonaID);
-//                 //FILTRO POR TIPO ACTIVIDAD
-//                 if (filtro.TipoActividadID > 0)
-//                     actividadesPersona = actividadesPersona.Where(a => a.TipoActividadID == filtro.TipoActividadID);
-
-//                 if (!actividadesPersona.Any())
-//                     continue;
-
-//                 var tipoActividadAgrupado = actividadesPersona
-//                     .GroupBy(a => a.TipoActividadID);
-
-//                 List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
-//                 // Recorre cada grupo de actividades 
-//                 foreach (var actividad in tipoActividadAgrupado)
-//                 {
-//                     var tiposActividad = actividad.Select(a => a.TipoActividad).FirstOrDefault();
-
-//                     tiposActividadMostrar.Add(new TipoActividadDTO
-//                     {
-//                         NombreTipo = tiposActividad.Nombre,
-//                         CaloriasPorMinuto = tiposActividad.CaloriasPorMinuto,
-//                         Actividades = actividad
-//                         .Select(a => new ActividadDTO
-//                         {
-//                             Fecha = a.Fecha,
-//                             DuracionMinutos = (int)a.DuracionMinutos.TotalMinutes, // Convierte TimeSpan a minutos
-//                             CaloriasQuemadas = (int)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto
-//                         })
-//                     .ToList()
-//                     });
-//                 }
-//                 personasMostrar.Add(new PersonasDTO
-//                 {
-//                     Nombre = persona.Nombre,
-//                     Email = email,
-//                     TiposActividad = tiposActividadMostrar
-//                 });
-//             }
-//             return Ok(personasMostrar);
-//         }
+//        
 
 
 
@@ -1142,6 +1084,86 @@
 //     }
 //     return Ok(personasMostrar);
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //[HttpPost("DetalleActividades")]
+//         public async Task<ActionResult<IEnumerable<PersonasDTO>>> DetalleActividades([FromBody] FiltroActividad filtro)
+//         {
+//             var usuarios = await _context.Users.ToListAsync();
+//             var personas = await _context.Personas.ToListAsync();
+//             var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+//             List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+
+//             foreach (var persona in personas)
+//             {
+//                 var email = usuarios
+//                 .Where(u => u.Id == persona.UsuarioID)
+//                 .Select(u => u.Email)
+//                 .FirstOrDefault();
+
+//                 var actividadesPersona = actividades
+//                 .Where(a => a.PersonaID == persona.PersonaID).AsQueryable();
+
+//                 if (filtro.PersonaID > 0)
+//                     actividadesPersona = actividadesPersona.Where(a => a.PersonaID == filtro.PersonaID);
+//                 //FILTRO POR TIPO ACTIVIDAD
+//                 if (filtro.TipoActividadID > 0)
+//                     actividadesPersona = actividadesPersona.Where(a => a.TipoActividadID == filtro.TipoActividadID);
+
+//                 if (!actividadesPersona.Any())
+//                     continue;
+
+//                 var tipoActividadAgrupado = actividadesPersona
+//                     .GroupBy(a => a.TipoActividadID);
+
+//                 List<TipoActividadDTO> tiposActividadMostrar = new List<TipoActividadDTO>();
+//                 // Recorre cada grupo de actividades 
+//                 foreach (var actividad in tipoActividadAgrupado)
+//                 {
+//                     var tiposActividad = actividad.Select(a => a.TipoActividad).FirstOrDefault();
+
+//                     tiposActividadMostrar.Add(new TipoActividadDTO
+//                     {
+//                         NombreTipo = tiposActividad.Nombre,
+//                         CaloriasPorMinuto = tiposActividad.CaloriasPorMinuto,
+//                         Actividades = actividad
+//                         .Select(a => new ActividadDTO
+//                         {
+//                             Fecha = a.Fecha,
+//                             DuracionMinutos = (int)a.DuracionMinutos.TotalMinutes, // Convierte TimeSpan a minutos
+//                             CaloriasQuemadas = (int)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto
+//                         })
+//                     .ToList()
+//                     });
+//                 }
+//                 personasMostrar.Add(new PersonasDTO
+//                 {
+//                     Nombre = persona.Nombre,
+//                     Email = email,
+//                     TiposActividad = tiposActividadMostrar
+//                 });
+//             }
+//             return Ok(personasMostrar);
+//         }
 //         private bool ActividadExists(int id)
 //         {
 //             return _context.Actividades.Any(e => e.ActividadID == id);
