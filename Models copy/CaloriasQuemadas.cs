@@ -24,3 +24,10 @@ public class ActividadesDTO
     public decimal CaloriasReales { get; set; }
     public string Observaciones { get; set; }
 }
+
+
+public class CalcularCalorias
+{
+    public DateTime Fecha { get; set; }
+    public decimal Calorias { get; set; }
+}

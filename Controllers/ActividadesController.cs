@@ -143,6 +143,39 @@ namespace Final2025.Controllers
         }
 
 
+        [HttpGet("caloriasquemadas")]
+        public async Task<ActionResult<IEnumerable<CalcularCalorias>>> CalcularCaloriasQuemadas()
+        {
+
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var personaID = await _context.Personas.Where(p => p.UsuarioID == userId).Select(p => p.PersonaID).FirstOrDefaultAsync();
+
+            var listaXsemana = new List<CalcularCalorias>();
+
+            for (int i = 6; i >= 0; i--)
+            {
+                var fechaComprobar = DateTime.Today.AddDays(-i);
+
+                // Traemos todas las actividades de ese día
+                var actividadesDelDia = await _context.Actividades
+                    .Where(a => a.Fecha == fechaComprobar && a.PersonaID == personaID)
+                    .Include(a => a.TipoActividad) // para acceder a CaloriasPorMinuto
+                    .ToListAsync();
+
+                // Calculamos calorías por cada actividad
+                var sumaTotalCalorias = actividadesDelDia.Sum(a =>
+                    (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto);
+
+                listaXsemana.Add(new CalcularCalorias
+                {
+                    Fecha = fechaComprobar,
+                    Calorias = sumaTotalCalorias
+                });
+            }
+
+            return listaXsemana;
+        }
+
         //Metodo que permite filtrar por Tipo Actividad, por rango de fechas, por duracion de minutos
         // [HttpPost("Filtrar")]
         // //public async Task<ActionResult<IEnumerable<TipoActividad>>> GetTipoActividad([FromBody] FiltroTipoActividad filtro)
