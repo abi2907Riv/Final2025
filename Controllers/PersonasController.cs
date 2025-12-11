@@ -158,7 +158,6 @@ namespace Final2025.Controllers
 
             int edad = hoy.Year - f.Year;
 
-            // Si todavía no cumplió este año → restamos 1
             if (hoy.Month < f.Month || (hoy.Month == f.Month && hoy.Day < f.Day))
             {
                 edad--;

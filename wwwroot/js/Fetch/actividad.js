@@ -327,7 +327,8 @@ async function MostrarModalEditar(actividadID) {
 
   document.getElementById("ActividadId").value = actividades.actividadID;
   //document.getElementById("PersonaId").value = actividades.personaID;
-  document.getElementById("TipoActividadId").value = actividades.tipoActividadID;
+  //document.getElementById("TipoActividadId").value = actividades.tipoActividadID;
+  await ObtenerTipoActividadDropEditar(actividades.tipoActividadID);
 
   const fecha = new Date(actividades.fecha);
   const fechaFormateada = fecha.toISOString().split('T')[0];

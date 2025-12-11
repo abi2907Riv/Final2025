@@ -87,6 +87,62 @@ public class AuthController : ControllerBase
         return BadRequest("La contraseña debe tener un mínimo de 6 caracteres.");
     }
 
+
+    // [HttpPost("register")]
+    // public async Task<IActionResult> Register([FromBody] Register model)
+    // {
+    //     var emailExiste = await _userManager.FindByEmailAsync(model.Email);
+    //     if (emailExiste != null)
+    //     {
+    //         return BadRequest("El E-mail ya se encuentra registrado");
+    //     }
+    //     if (!await _rolManager.RoleExistsAsync("ADMINISTRADOR"))
+    //         await _rolManager.CreateAsync(new IdentityRole("ADMINISTRADOR"));
+
+    //     if (!await _rolManager.RoleExistsAsync("PERSONA"))
+    //         await _rolManager.CreateAsync(new IdentityRole("PERSONA"));
+
+    //     var admins = await _userManager.GetUsersInRoleAsync("ADMINISTRADOR");
+    //     bool yaExisteAdmin = admins.Any();
+
+    //     var user = new ApplicationUser
+    //     {
+    //         UserName = model.Email,
+    //         Email = model.Email,
+    //         NombreCompleto = model.NombreCompleto
+    //     };
+
+    //     var result = await _userManager.CreateAsync(user, model.Password);
+
+    //     if (!result.Succeeded)
+    //     {
+    //         return BadRequest("La contraseña debe tener un mínimo de 6 caracteres.");
+    //     }
+
+    //     var persona = new Persona
+    //     {
+    //         Nombre = model.NombreCompleto,
+    //         FechaNacimiento = model.FechaNacimiento,
+    //         Peso = model.Peso,
+    //         UsuarioID = user.Id
+    //     };
+
+    //     _context.Personas.Add(persona);
+    //     await _context.SaveChangesAsync();
+
+    //     if (!yaExisteAdmin)
+    //     {
+    //         await _userManager.AddToRoleAsync(user, "ADMINISTRADOR");
+    //         return Ok("Registro exitoso: Se creó el administrador del sistema");
+    //     }
+    //     else
+    //     {
+    //         await _userManager.AddToRoleAsync(user, "PERSONA");
+    //         return Ok("Registro exitoso: Usuario registrado como persona");
+    //     }
+    // }
+
+
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] Login model)
     {

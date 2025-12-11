@@ -48,3 +48,18 @@ function MostrarTipoActividadDrop(data) {
 ///////////////////////////////////////////////////
 ObtenerTipoActividadDrop()
 
+async function ObtenerTipoActividadDropEditar(idSeleccionado) {
+    const res = await authFetch('TiposActividades');
+    const data = await res.json();
+
+    let select = document.getElementById("TipoActividadId");
+    select.innerHTML = "<option value='0' hidden>[Seleccione una opción]</option>";
+
+    data.forEach(element => {
+        let opt = document.createElement("option");
+        opt.value = element.tipoActividadID;
+        opt.innerHTML = element.nombre;
+        select.appendChild(opt);
+    });
+    select.value = idSeleccionado;
+}

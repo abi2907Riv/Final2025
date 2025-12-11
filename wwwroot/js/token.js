@@ -80,3 +80,11 @@ function authFetch(url, options = {}, retry = true) {
 
 
 
+function MostrarMenuSegunRol() {
+    const rol = localStorage.getItem("rol");
+    const menuInformes = document.getElementById("menu-informes");
+
+    if (rol !== "ADMINISTRADOR") {
+        menuInformes.style.display = "none";
+    }
+}
