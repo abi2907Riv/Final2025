@@ -25,14 +25,6 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\1.ActividadesPersona.js"
     },
     {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\3.ActividadesPorTipo.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\3.ActividadesPorTipo.js"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\4.ActividadPorPersonaYTipo.js",
-      "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\4.ActividadPorPersonaYTipo.js"
-    },
-    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\actividad.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\actividad.js"
     },
@@ -141,6 +133,14 @@
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\2.FiltroActividadesPersona.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\3.ActividadesPorTipo.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\3.ActividadesPorTipo.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\4.ActividadPorPersonaYTipo.js",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\4.ActividadPorPersonaYTipo.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\5.DuracionTotalActividadesPersona.js",
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\5.DuracionTotalActividadesPersona.js"
     },
@@ -237,6 +237,14 @@
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\2.FiltroActividadesPersona.html"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\3.ActividadesPorTipo.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\3.ActividadesPorTipo.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\4.ActividadPorPersonaYTipo.html",
+      "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\4.ActividadPorPersonaYTipo.html"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\js\\Resultados\\vistasHtml\\5.DuracionTotalActividadesPersona.html",
       "PackagePath": "staticwebassets\\sneat\\js\\Resultados\\vistasHtml\\5.DuracionTotalActividadesPersona.html"
     },
@@ -311,14 +319,6 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\1.ActividadesPersona.html",
       "PackagePath": "staticwebassets\\views\\1.ActividadesPersona.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\3.ActividadesPorTipo.html",
-      "PackagePath": "staticwebassets\\views\\3.ActividadesPorTipo.html"
-    },
-    {
-      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\4.ActividadPorPersonaYTipo.html",
-      "PackagePath": "staticwebassets\\views\\4.ActividadPorPersonaYTipo.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividad.html",

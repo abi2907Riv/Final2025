@@ -88,3 +88,14 @@ function MostrarMenuSegunRol() {
         menuInformes.style.display = "none";
     }
 }
+
+
+
+function OcultarVistasSegunRol() {
+  const rol = getRol();
+  const menuParaAdmin = document.getElementById("menu-admin")
+
+  if (rol !== "ADMINISTRADOR" && menuParaAdmin) {
+    menuParaAdmin.style.display = "none";
+  }
+}
