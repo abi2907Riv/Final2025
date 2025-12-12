@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\js\\Fetch\\Common\\obtenerTipoActividad.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\PersonaTipoCantidad.js",
+      "PackagePath": "staticwebassets\\js\\Fetch\\PersonaTipoCantidad.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\Fetch\\Resultados\\1.ActividadesPersona.js",
       "PackagePath": "staticwebassets\\js\\Fetch\\Resultados\\1.ActividadesPersona.js"
     },
@@ -55,6 +59,10 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\token.js",
       "PackagePath": "staticwebassets\\js\\token.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\js\\vistaUsuario.js",
+      "PackagePath": "staticwebassets\\js\\vistaUsuario.js"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\sneat\\css\\core.css",
@@ -323,6 +331,14 @@
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\1.ActividadesPersona.html",
       "PackagePath": "staticwebassets\\views\\1.ActividadesPersona.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\PersonaTipoCantidad.html",
+      "PackagePath": "staticwebassets\\views\\PersonaTipoCantidad.html"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\VistaUsuario.html",
+      "PackagePath": "staticwebassets\\views\\VistaUsuario.html"
     },
     {
       "Id": "C:\\Users\\Usuario\\OneDrive\\Escritorio\\Final2025\\wwwroot\\views\\actividad.html",

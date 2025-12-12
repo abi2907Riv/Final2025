@@ -2,10 +2,17 @@ public class TipoActividadDTO
 {
     public string NombreTipo {get; set;}
     public decimal CaloriasPorMinuto {get; set;}
+    public int Total {get; set;}
+    public int TotalRegistros {get; set;}
     
     public List<ActividadDTO> Actividades {get; set;}
    
    
+
+
+
+
+
 
 
     public int TotalMayor30 { get; set; }

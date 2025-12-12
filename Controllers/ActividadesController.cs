@@ -142,6 +142,187 @@ namespace Final2025.Controllers
             return NoContent();
         }
 
+        [HttpPost("CantidadesPorTipo")]
+        public async Task<ActionResult<IEnumerable<PersonasDTO>>> Cantidades([FromBody] FiltroActividad filtro)
+        {
+            var personas = await _context.Personas.ToListAsync();
+            var actividades = await _context.Actividades.Include(a => a.TipoActividad).ToListAsync();
+            var usuarios = await _context.Users.ToArrayAsync();
+
+            List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+            foreach(var persona in personas)
+            {
+                var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+                .Select(u => u.Email).FirstOrDefault();
+
+                var actividadesPersona = actividades
+                .Where(a => a.PersonaID == persona.PersonaID)
+                .ToList();
+
+                DateTime fechaDesde = new DateTime();
+                bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaDesde) && DateTime.TryParse(filtro.FechaDesde, out fechaDesde);
+
+                DateTime fechaHasta = new DateTime();
+                bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaHasta) && DateTime.TryParse(filtro.FechaHasta, out fechaHasta);
+
+                if (fechaDesdeValido && fechaHastaValido)
+                    actividadesPersona = actividadesPersona.Where(a => a.Fecha >= fechaDesde && a.Fecha <= fechaHasta).ToList();
+                else if (fechaDesdeValido) 
+                    actividadesPersona = actividadesPersona.Where(a => a.Fecha >= fechaDesde).ToList();
+                else if (fechaHastaValido)
+                    actividadesPersona = actividadesPersona.Where(a => a.Fecha <= fechaHasta).ToList();
+
+                
+                var tiposAgrupados = actividadesPersona.GroupBy(a => a.TipoActividad.Nombre);
+
+                if(!actividadesPersona.Any())continue;
+
+                List<TipoActividadDTO> tiposMostrar = new List<TipoActividadDTO>();
+                foreach(var tipos in tiposAgrupados)
+                {
+                    var minutosTotales = tipos.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                    var totalActividades = tipos.Count();
+
+                    tiposMostrar.Add(new TipoActividadDTO
+                    {
+                        NombreTipo = tipos.Key,
+                        TotalMinutos = minutosTotales,
+                        TotalActividades = totalActividades,
+                    });
+                }
+                personasMostrar.Add(new PersonasDTO
+                {
+                    Nombre = persona.Nombre,
+                    Email = email,
+                    TiposActividad = tiposMostrar
+                });
+            }
+            return Ok(personasMostrar);
+        }
+
+        [HttpPost("CantidadesPersona")]
+        public async Task<ActionResult<IEnumerable<PersonasDTO>>> CantidadesPersona([FromBody] FiltroActividad filtro)
+        {
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var personas = await _context.Personas.Where(p => p.UsuarioID == userId).ToListAsync();
+            var actividades = await _context.Actividades.Include(a => a.TipoActividad)
+            .ToListAsync();
+            var usuarios = await _context.Users.ToArrayAsync();
+
+            List<PersonasDTO> personasMostrar = new List<PersonasDTO>();
+            foreach(var persona in personas)
+            {
+                var email = usuarios.Where(u => u.Id == persona.UsuarioID)
+                .Select(u => u.Email).FirstOrDefault();
+
+                var actividadesPersona = actividades
+                .Where(a => a.PersonaID == persona.PersonaID)
+                .ToList();
+
+
+                DateTime fechaDesde = new DateTime();
+                bool fechaDesdeValido = !string.IsNullOrEmpty(filtro.FechaDesde) && DateTime.TryParse(filtro.FechaDesde, out fechaDesde);
+
+                DateTime fechaHasta = new DateTime();
+                bool fechaHastaValido = !string.IsNullOrEmpty(filtro.FechaHasta) && DateTime.TryParse(filtro.FechaHasta, out fechaHasta);
+
+                if (fechaDesdeValido && fechaHastaValido)
+                    actividadesPersona = actividadesPersona.Where(a => a.Fecha >= fechaDesde && a.Fecha <= fechaHasta).ToList();
+                else if (fechaDesdeValido) 
+                    actividadesPersona = actividadesPersona.Where(a => a.Fecha >= fechaDesde).ToList();
+                else if (fechaHastaValido) 
+                    actividadesPersona = actividadesPersona.Where(a => a.Fecha <= fechaHasta).ToList();
+
+                var tiposAgrupados = actividadesPersona.GroupBy(a => a.TipoActividad.Nombre);
+
+                List<TipoActividadDTO> tiposMostrar = new List<TipoActividadDTO>();
+                foreach(var tipos in tiposAgrupados)
+                {
+                    var minutosTotales = tipos.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                    var totalActividades = tipos.Count();
+                    var minutosTiposAgrupados = actividadesPersona.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                    var cantidadesRegistro  = actividadesPersona.Count();
+
+                    tiposMostrar.Add(new TipoActividadDTO
+                    {
+                        NombreTipo = tipos.Key,
+                        TotalMinutos = minutosTotales,
+                        TotalActividades = totalActividades,
+                        Total = minutosTiposAgrupados,
+                        TotalRegistros = cantidadesRegistro
+                    });
+                }
+                personasMostrar.Add(new PersonasDTO
+                {
+                    Nombre = persona.Nombre,
+                    Email = email,
+                    TiposActividad = tiposMostrar
+                });
+            }
+            return Ok(personasMostrar);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ [HttpPost("ActividadesAgrupadasXTipoActividad")]
+        public async Task<ActionResult<IEnumerable<PersonasDTO>>> ActividadesAgrupadasXTipoActividad()
+        {
+            var tipoActividad = await _context.TipoActividades.ToListAsync();
+            var actividades = await _context.Actividades
+            .Include(a => a.TipoActividad)
+            .ToListAsync();
+
+            List<TipoActividadDTO> tipoActividadMostrar = new List<TipoActividadDTO>();
+            foreach (var tiposActividades in tipoActividad)
+            {
+                var actTipos = actividades
+                .Where(a => a.TipoActividadID == tiposActividades.TipoActividadID)
+                .ToList();
+
+                if (!actTipos.Any())
+                    continue;
+
+                var totalActividades = actTipos.Count();
+                var totalMinutos = actTipos.Sum(a => (int)a.DuracionMinutos.TotalMinutes);
+                var totalCalorias = actTipos.Sum(a => (decimal)a.DuracionMinutos.TotalMinutes * a.TipoActividad.CaloriasPorMinuto);
+
+
+                tipoActividadMostrar.Add(new TipoActividadDTO
+                {
+                    NombreTipo = tiposActividades.Nombre,
+                    CantidadActividades = totalActividades,
+                    TotalMinutos = totalMinutos,
+                    TotalCalorias = totalCalorias
+                });
+            }
+            return Ok(tipoActividadMostrar);
+        }
+
+
 
         [HttpGet("caloriasquemadas")]
         public async Task<ActionResult<IEnumerable<CalcularCalorias>>> CalcularCaloriasQuemadas()
